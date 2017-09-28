@@ -29,42 +29,51 @@
     height: 100%
 
     .nav-button-type
-      cursor: pointer
+      // cursor: pointer
+      cursor: default
+      overflow: hidden
       height: 100%
       h3
         padding-left: 10px
         padding-right: 10px
 
+    .sub-button-type
+      h3
+        cursor: pointer
+        margin: 0
+        transition: 0.25s
+        padding-top: 12px
+        padding-bottom: 12px
+        &:hover
+          transform: translate(12px, 0px)
+
     .home-btn, .music-btn, .contact-btn, .audio-btn, .multimedia-btn
       @extend .nav-button-type
 
     .music-btn
-      background: white
-      background: rgba(240, 240, 240, 0.15)
-      height: 50px
-      width: 150px
       transition: all 0.5s
-      overflow: hidden
-      cursor: pointer
-      border: 1px solid white
-      margin-right: -50px
-
+      margin-right: -70px
       &:hover
-        height: 160px
+        height: 165px
         box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
+        .nav-music-sub
+          opacity: 1
 
       .nav-music-sub
-        height: 110px
+        @extend .sub-button-type
+        opacity: 0
+        transition: all 0.2s
 
-        h3
-          transition: 0.5s
-          margin: 0
-          padding-top: 12px
-          padding-bottom: 12px
-          &:hover
-            transform: translate(12px, 0px)
+    .audio-btn
+      transition: all 0.5s
+      margin-right: -40px
+      &:hover
+        height: 165px
+        box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
+        .nav-audio-sub
+          opacity: 1
 
-      h3#main-music-btn
-        margin: 0
-        padding-top: 18px
-        padding-bottom: 12px
+      .nav-audio-sub
+        @extend .sub-button-type
+        opacity: 0
+        transition: all 0.2s
