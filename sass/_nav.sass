@@ -1,5 +1,6 @@
 .header
   position: fixed
+  background: white
   left: 0
   top: 0
   width: 100%
@@ -10,6 +11,7 @@
 
   .left-author h1
     margin: 0
+    cursor: pointer
     margin-top: 15px
     margin-left: 15px
     height: 100%
@@ -22,7 +24,10 @@
     text-transform: uppercase
     color: #aaa
     h3
-      margin-top: -10px
+      cursor: pointer
+      width: 105px
+      padding: 5px
+      margin-top: -15px
       margin-left: 50px
 
   .header-nav
@@ -40,6 +45,7 @@
         padding-right: 10px
 
     .sub-button-type
+      background: white
       h3
         cursor: pointer
         margin: 0
@@ -65,6 +71,7 @@
       .nav-music-sub
         @extend .sub-button-type
         opacity: 0
+        height: 120px
         transition: all 0.2s
 
     .audio-btn
@@ -79,6 +86,7 @@
 
       .nav-audio-sub
         @extend .sub-button-type
+        height: 120px
         opacity: 0
         transition: all 0.2s
 
