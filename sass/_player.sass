@@ -1,1 +1,82 @@
- 
+// audio
+  background: red
+  height: 70px
+  width: 300px
+
+.player-main
+  width: 90%
+  height: 65px
+  background: #222
+  display: flex
+  position: relative
+
+  .play-pause-wrapper
+    cursor: pointer
+    height: 100%
+    width: 60px
+    display: flex
+    justify-content: center
+    align-items: center
+
+    .play-button
+      width: 0
+      height: 0
+      border-top: 10px solid transparent
+      border-bottom: 10px solid transparent
+      border-left: 15px solid white
+
+  .info-section
+    height: 100%
+    width: 200px
+    // background: green
+    font-family: 'Montserrat', sans-serif
+    display: flex
+    flex: 1
+
+    .info-name
+      // background: black
+      width: 200px
+      height: 100%
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: flex-start
+      padding-left: 20px
+
+      p#info-title
+        margin: 0
+        font-size: 15px
+        font-weight: normal
+        color: rgba(255,255,255,0.95)
+
+      p#info-author
+        margin: 0
+        padding-top: 2px
+        font-size: 12px
+        font-weight: normal
+        color: rgba(255,255,255,0.5)
+
+
+    .info-time
+      flex: 1
+      height: 100%
+      display: flex
+      justify-content: flex-end
+      align-items: center
+      padding-right: 20px
+
+      p
+        margin: 0
+        font-size: 12px
+        font-weight: normal
+        color: rgba(255,255,255,0.95)
+
+  .distance-indicator
+    position: absolute
+    left: 60px
+    top: 0
+    height: 100%
+    background: rgba(255,255,255,0.05)
+    border-left: 1px solid rgba(255,255,255,0.1)
+    border-right: 1px solid rgba(255,255,255,0.1)
+    width: 50%
