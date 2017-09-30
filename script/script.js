@@ -35,6 +35,18 @@ $('.left-author.sub-author').on('click', function(){
   setHomeView();
 });
 
+$('.player-main').find('.play-pause-wrapper').on('click', function() {
+  if($(this).hasClass('play-btn-playing')) {
+    $(this).removeClass('play-btn-playing');
+    $(this).addClass('play-btn-paused');
+  }
+  else
+  {
+    $(this).removeClass('play-btn-paused');
+    $(this).addClass('play-btn-playing');
+  }
+});
+
 $(document).ready(function(){
   var pathName = window.location.href;
 

@@ -1,5 +1,5 @@
-function setVisible(e, t) {
-    t ? (e.removeClass("tab-hidden"), e.addClass("tab-visible")) : (e.removeClass("tab-visible"),
+function setVisible(e, i) {
+    i ? (e.removeClass("tab-hidden"), e.addClass("tab-visible")) : (e.removeClass("tab-visible"), 
     e.addClass("tab-hidden"));
 }
 
@@ -19,10 +19,14 @@ $(".home-btn").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
+}), $(".player-main").find(".play-pause-wrapper").on("click", function() {
+    $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
+    $(this).addClass("play-btn-paused")) : ($(this).removeClass("play-btn-paused"), 
+    $(this).addClass("play-btn-playing"));
 }), $(document).ready(function() {
     var e = window.location.href;
     if (-1 != e.indexOf("#")) {
-        var t = e.split("/"), i = t[t.length - 1];
-        console.log(e), console.log(i);
+        var i = e.split("/"), t = i[i.length - 1];
+        console.log(e), console.log(t);
     }
 });

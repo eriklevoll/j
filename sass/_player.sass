@@ -15,8 +15,13 @@
     height: 100%
     width: 60px
     display: flex
+    position: relative
     justify-content: center
     align-items: center
+    overflow: hidden
+    // 
+    // &:hover
+    //   @extend .play-btn-paused
 
     .play-button
       width: 0
@@ -24,6 +29,32 @@
       border-top: 10px solid transparent
       border-bottom: 10px solid transparent
       border-left: 15px solid white
+      transition: all 0.5s
+      position: absolute
+      transition: all 0.5s
+
+    .pause-button
+      border-bottom: none
+      border-right: 5px solid white
+      border-top: none
+      border-left: 5px solid white
+      width: 5px
+      height: 20px
+      position: absolute
+      transition: all 0.5s
+
+  .play-btn-playing
+    .play-button
+      margin-left: 0
+    .pause-button
+      margin-left: -100px
+
+  .play-btn-paused
+    .play-button
+      margin-left: 100px
+    .pause-button
+      margin-left: 0
+
 
   .info-section
     height: 100%
