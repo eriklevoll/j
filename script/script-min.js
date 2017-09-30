@@ -1,5 +1,5 @@
 function setVisible(e, t) {
-    t ? (e.removeClass("tab-hidden"), e.addClass("tab-visible")) : (e.removeClass("tab-visible"), 
+    t ? (e.removeClass("tab-hidden"), e.addClass("tab-visible")) : (e.removeClass("tab-visible"),
     e.addClass("tab-hidden"));
 }
 

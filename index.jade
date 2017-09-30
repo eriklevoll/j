@@ -7,34 +7,9 @@ head
   title Johanna Kivimägi
   link(rel="stylesheet", href="style.css")
 body
-  .header
-    .left-author
-      h1 Johanna Kivimägi
-      .sub-author
-        h3 composer
-    .header-nav
-      .home-btn
-        h3 Home
-      .music-btn
-        h3 Music
-        .nav-music-sub
-          h3 List of Works
-          h3 Collaborations
-      .audio-btn
-        h3 Audio
-        .nav-audio-sub
-          h3 Audio üks
-          h3 Audio kaks
-      .multimedia-btn
-        h3 Multimedia
-        
-      .contact-btn
-        h3 Contact
-        
-  .home-main.tab-visible#one
-  .contact-main.tab-hidden#two
-    p Johanna
-    p johanna.kivimagi@gmail.com
+  include jade/_header.jade
+  include jade/_home.jade
+  include jade/_contact.jade
   
   script(src="script/jquery-3.2.1.slim.min.js")
   script(src="script/script-min.js")
