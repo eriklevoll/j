@@ -179,13 +179,13 @@ $(document).ready(function(){
       }
     });
 
-    // source.addEventListener('loadedmetadata', function() {
-    //   var dur = source.duration;
-    //   var endTime = timeConvert(Math.round(source.duration));
-    //   endDuration = dur;
-    //   time.eq(0).html("00:00");
-    //   time.eq(2).html(endTime);
-    // });
+    source.addEventListener('loadedmetadata', function() {
+      var dur = source.duration;
+      var endTime = timeConvert(Math.round(source.duration));
+      endDuration = dur;
+      time.eq(0).html("00:00");
+      time.eq(2).html(endTime);
+    });
 
     source.addEventListener('canplay', function() {
       var dur = source.duration;
@@ -197,10 +197,7 @@ $(document).ready(function(){
     });
 
     if (source.readyState > 3) {
-      // console.log('yes');
       removeLoading(parent);
-    } else {
-      // console.log(source.readyState);
     }
   });
 })
