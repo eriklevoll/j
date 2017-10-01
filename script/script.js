@@ -225,7 +225,22 @@ $(document).ready(function(){
       setMetaData();
     }
   });
-})
+});
+
+$('.header-ham-wrap').on('click', function() {
+  var overlay = $('.header-overlay');
+  if (overlay.hasClass('menu-hidden')) {
+    overlay.removeClass('menu-hidden');
+    overlay.addClass('menu-visible');
+    $(this).removeClass('ham-closed');
+    $(this).addClass('ham-open');
+  } else {
+    overlay.removeClass('menu-visible');
+    overlay.addClass('menu-hidden');
+    $(this).removeClass('ham-open');
+    $(this).addClass('ham-closed');
+  }
+});
 
 
 // loadstart
