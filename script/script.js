@@ -64,7 +64,10 @@ function playAudio(source, play) {
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);
-  if($(this).hasClass('play-btn-playing')) {
+  if($(this).hasClass('play-btn-loading')) {
+    return;
+  }
+  else if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
     playAudio(source, false);
@@ -127,8 +130,13 @@ function clickPosToPercent(current, end) {
   return current / end * 100;
 }
 
+function removeLoading(source) {
+  source.removeClass('play-btn-loading');
+  source.addClass('play-btn-paused');
+}
+
 function addTimeSpans(source) {
-  source.html('<p> <span>00:00</span><span> / </span><span>00:00</span> </p>')
+  source.html('<p> <span>--:--</span><span> / </span><span>--:--</span> </p>')
 }
 
 $(document).ready(function(){
@@ -171,11 +179,31 @@ $(document).ready(function(){
       }
     });
 
-    source.addEventListener('loadedmetadata', function() {
+    // source.addEventListener('loadedmetadata', function() {
+    //   var dur = source.duration;
+    //   var endTime = timeConvert(Math.round(source.duration));
+    //   endDuration = dur;
+    //   time.eq(0).html("00:00");
+    //   time.eq(2).html(endTime);
+    // });
+
+    source.addEventListener('canplay', function() {
       var dur = source.duration;
       var endTime = timeConvert(Math.round(source.duration));
       endDuration = dur;
+      time.eq(0).html("00:00");
       time.eq(2).html(endTime);
+      removeLoading(parent);
     });
   });
 })
+
+
+
+// loadstart
+// durationchange
+// loadedmetadata
+// loadeddata
+// progress
+// canplay
+// canplaythrough

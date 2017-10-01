@@ -39,8 +39,12 @@ function clickPosToPercent(i, n) {
     return i / n * 100;
 }
 
+function removeLoading(i) {
+    i.removeClass("play-btn-loading"), i.addClass("play-btn-paused");
+}
+
 function addTimeSpans(i) {
-    i.html("<p> <span>00:00</span><span> / </span><span>00:00</span> </p>");
+    i.html("<p> <span>--:--</span><span> / </span><span>--:--</span> </p>");
 }
 
 var audioPlaying = !1, currentAudioSource;
@@ -57,9 +61,9 @@ $(".home-btn").on("click", function() {
     setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
     var i = $(this).find("audio").get(0);
-    $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
+    $(this).hasClass("play-btn-loading") || ($(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
-    $(this).addClass("play-btn-playing"), playAudio(i, !0));
+    $(this).addClass("play-btn-playing"), playAudio(i, !0)));
 }), $(".player-main").find(".info-section").on("click", function(i) {
     var n = $(this).offset(), e = $(this).width(), t = clickPosToPercent(i.pageX - n.left, e), a = $(this).siblings().find("audio").get(0), o = a.duration;
     a.currentTime = t / 100 * o;
@@ -75,17 +79,17 @@ $(".home-btn").on("click", function() {
     $("audio").each(function() {
         var i = $(this), n = i.get(0), e = i.parent(), t = e.siblings(".info-section"), a = e.siblings(".distance-indicator"), o = t.children(".info-time");
         addTimeSpans(o);
-        var s = o.find("p").children(), c = 0;
+        var s = o.find("p").children(), l = 0;
         n.addEventListener("timeupdate", function() {
             var i = n.currentTime, o = timeConvert(Math.round(i));
-            if (s.eq(0).html(o), c > 0) {
-                var l = timeToPercent(i, c), r = t.width();
-                a.css("width", l / 100 * r);
+            if (s.eq(0).html(o), l > 0) {
+                var c = timeToPercent(i, l), r = t.width();
+                a.css("width", c / 100 * r);
             }
-            i >= c && (n.currentTime = 0, e.trigger("click"));
-        }), n.addEventListener("loadedmetadata", function() {
-            var i = n.duration, e = timeConvert(Math.round(n.duration));
-            c = i, s.eq(2).html(e);
+            i >= l && (n.currentTime = 0, e.trigger("click"));
+        }), n.addEventListener("canplay", function() {
+            var i = n.duration, t = timeConvert(Math.round(n.duration));
+            l = i, s.eq(0).html("00:00"), s.eq(2).html(t), removeLoading(e);
         });
     });
 });
