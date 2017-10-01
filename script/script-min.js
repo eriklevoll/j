@@ -75,22 +75,24 @@ $(".home-btn").on("click", function() {
         console.log(i), console.log(e);
     }
     $("audio").each(function() {
-        var i = $(this), n = i.get(0), e = i.parent(), t = e.siblings(".info-section"), a = e.siblings(".distance-indicator"), o = t.children(".info-time");
-        addTimeSpans(o);
-        var s = o.find("p").children(), l = 0;
-        n.addEventListener("timeupdate", function() {
-            var i = n.currentTime, o = timeConvert(Math.round(i));
-            if (s.eq(0).html(o), l > 0) {
-                var r = timeToPercent(i, l), c = t.width();
-                a.css("width", r / 100 * c);
+        function i() {
+            var i = e.duration, n = timeConvert(Math.round(e.duration));
+            c = i, l.eq(0).html("00:00"), l.eq(2).html(n), removeLoading(t);
+        }
+        var n = $(this), e = n.get(0), t = n.parent(), a = t.siblings(".info-section"), o = t.siblings(".distance-indicator"), s = a.children(".info-time");
+        addTimeSpans(s);
+        var l = s.find("p").children(), c = 0;
+        e.addEventListener("timeupdate", function() {
+            var i = e.currentTime, n = timeConvert(Math.round(i));
+            if (l.eq(0).html(n), c > 0) {
+                var s = timeToPercent(i, c), r = a.width();
+                o.css("width", s / 100 * r);
             }
-            i >= l && (n.currentTime = 0, e.trigger("click"));
-        }), n.addEventListener("loadedmetadata", function() {
-            var i = n.duration, t = timeConvert(Math.round(n.duration));
-            l = i, s.eq(0).html("00:00"), s.eq(2).html(t), removeLoading(e), console.log("metadata");
-        }), n.addEventListener("canplay", function() {
-            var i = n.duration, t = timeConvert(Math.round(n.duration));
-            l = i, s.eq(0).html("00:00"), s.eq(2).html(t), removeLoading(e), console.log("canplay");
-        }), n.readyState > 3 ? (removeLoading(e), console.log(e + "#>3")) : console.log(n.readyState);
+            i >= c && (e.currentTime = 0, t.trigger("click"));
+        }), e.addEventListener("loadedmetadata", function() {
+            i();
+        }), e.addEventListener("canplay", function() {
+            i();
+        }), e.readyState > 3 && i();
     });
 });
