@@ -27,6 +27,7 @@
       cursor: pointer
       height: 100%
       width: 60px
+      min-width: 60px
       display: flex
       position: relative
       justify-content: center
@@ -118,9 +119,13 @@
           font-size: 12px
           font-weight: normal
           color: rgba(255,255,255,0.5)
+          word-wrap: normal
+          white-space: nowrap
+          text-overflow: clip
 
 
       .info-time
+        min-width: 90px
         cursor: default
         flex: 1
         height: 100%
