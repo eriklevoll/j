@@ -4,18 +4,16 @@ function setVisible(i, n) {
 }
 
 function setHomeView() {
-    console.log("yes3"), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
+    setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
     setVisible($(".home-main"), !0);
 }
 
 function setContactView() {
-    console.log("yes2"), setVisible($(".home-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !0);
+    setVisible($(".home-main"), !1), setVisible($(".players-wrapper-main"), !1), setVisible($(".contact-main"), !0);
 }
 
 function setAudioView() {
-    console.log("yes"), setVisible($(".home-main"), !1), setVisible($(".contact-main"), !1), 
-    setVisible($(".players-wrapper-main"), !0);
+    setVisible($(".home-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !0);
 }
 
 function playAudio(i, n) {
@@ -83,16 +81,16 @@ $(".home-btn").on("click", function() {
         n.addEventListener("timeupdate", function() {
             var i = n.currentTime, o = timeConvert(Math.round(i));
             if (s.eq(0).html(o), l > 0) {
-                var r = timeToPercent(i, l), c = t.width();
-                a.css("width", r / 100 * c);
+                var c = timeToPercent(i, l), r = t.width();
+                a.css("width", c / 100 * r);
             }
             i >= l && (n.currentTime = 0, e.trigger("click"));
         }), n.addEventListener("loadedmetadata", function() {
             var i = n.duration, e = timeConvert(Math.round(n.duration));
-            l = i, s.eq(0).html("00:00"), s.eq(2).html(e);
+            l = i, s.eq(0).html("00:00"), s.eq(2).html(e), console.log("metadata");
         }), n.addEventListener("canplay", function() {
             var i = n.duration, t = timeConvert(Math.round(n.duration));
-            l = i, s.eq(0).html("00:00"), s.eq(2).html(t), removeLoading(e);
-        }), n.readyState > 3 && removeLoading(e);
+            l = i, s.eq(0).html("00:00"), s.eq(2).html(t), removeLoading(e), console.log("canplay");
+        }), n.readyState > 3 ? (removeLoading(e), console.log(e + "#>3")) : console.log(n.readyState);
     });
 });

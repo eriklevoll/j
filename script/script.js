@@ -13,21 +13,18 @@ function setVisible(item, visible) {
 }
 
 function setHomeView() {
-  console.log('yes3');
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
 }
 
 function setContactView() {
-  console.log('yes2');
   setVisible($('.home-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
 }
 
 function setAudioView() {
-  console.log('yes');
   setVisible($('.home-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
@@ -185,6 +182,7 @@ $(document).ready(function(){
       endDuration = dur;
       time.eq(0).html("00:00");
       time.eq(2).html(endTime);
+      console.log('metadata');
     });
 
     source.addEventListener('canplay', function() {
@@ -194,10 +192,14 @@ $(document).ready(function(){
       time.eq(0).html("00:00");
       time.eq(2).html(endTime);
       removeLoading(parent);
+      console.log('canplay');
     });
 
     if (source.readyState > 3) {
       removeLoading(parent);
+      console.log(parent + "#>3")
+    } else {
+      console.log(source.readyState)
     }
   });
 })
