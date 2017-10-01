@@ -1,6 +1,6 @@
-function setVisible(i, e) {
-    e ? (i.removeClass("tab-hidden"), i.addClass("tab-visible")) : (i.removeClass("tab-visible"), 
-    i.addClass("tab-hidden"));
+function setVisible(e, i) {
+    i ? (e.removeClass("tab-hidden"), e.addClass("tab-visible")) : (e.removeClass("tab-visible"), 
+    e.addClass("tab-hidden"));
 }
 
 function setHomeView() {
@@ -16,97 +16,110 @@ function setAudioView() {
     setVisible($(".home-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !0);
 }
 
-function playAudio(i, e) {
-    audioPlaying = e, e ? i.play() : i.pause();
-}
-
-function setPlayPosition(i, e, n) {
-    var t = clickPosToPercent(i, e), a = n.duration;
-    n.currentTime = t / 100 * a;
-}
-
-function timeConvert(i) {
-    var e = "";
-    if (i < 60) e = "00:", i < 10 && (e += "0"), e += i; else {
-        var n = Math.floor(i / 60), t = i - 60 * n;
-        n < 10 && (e += "0"), e += n + ":", t < 10 && (e += "0"), e += t;
+function closeSideNav() {
+    var e = $(".header-overlay");
+    if (!e.hasClass("menu-hidden")) {
+        var i = $(".header-overlay-buttons"), n = $(".header-ham-wrap");
+        e.removeClass("menu-visible"), i.removeClass("menu-visible"), e.addClass("menu-hidden"), 
+        i.addClass("menu-hidden"), n.removeClass("ham-open"), n.addClass("ham-closed");
     }
-    return e;
 }
 
-function timeToPercent(i, e) {
-    return i / e * 100;
+function playAudio(e, i) {
+    audioPlaying = i, i ? e.play() : e.pause();
 }
 
-function clickPosToPercent(i, e) {
-    return i / e * 100;
+function setPlayPosition(e, i, n) {
+    var a = clickPosToPercent(e, i), s = n.duration;
+    n.currentTime = a / 100 * s;
 }
 
-function removeLoading(i) {
-    i.hasClass("play-btn-loading") && (i.removeClass("play-btn-loading"), i.addClass("play-btn-paused"));
+function timeConvert(e) {
+    var i = "";
+    if (e < 60) i = "00:", e < 10 && (i += "0"), i += e; else {
+        var n = Math.floor(e / 60), a = e - 60 * n;
+        n < 10 && (i += "0"), i += n + ":", a < 10 && (i += "0"), i += a;
+    }
+    return i;
 }
 
-function addTimeSpans(i) {
-    i.html("<p> <span>--:--</span><span> / </span><span>--:--</span> </p>");
+function timeToPercent(e, i) {
+    return e / i * 100;
+}
+
+function clickPosToPercent(e, i) {
+    return e / i * 100;
+}
+
+function removeLoading(e) {
+    e.hasClass("play-btn-loading") && (e.removeClass("play-btn-loading"), e.addClass("play-btn-paused"));
+}
+
+function addTimeSpans(e) {
+    e.html("<p> <span>--:--</span><span> / </span><span>--:--</span> </p>");
 }
 
 var audioPlaying = !1, currentAudioSource;
 
-$(".home-btn").on("click", function() {
-    setHomeView();
-}), $(".contact-btn").on("click", function() {
-    setContactView();
+$(".home-btn, .mobile-home-btn").on("click", function() {
+    closeSideNav(), setHomeView();
+}), $(".contact-btn, .mobile-contact-btn").on("click", function() {
+    closeSideNav(), setContactView();
 }), $(".left-author").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
 }), $(".audio-btn h3#audio-sub-one").on("click", function() {
     setAudioView();
+}), $(".mobile-audio-btn").on("click", function() {
+    closeSideNav(), setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
-    var i = $(this).find("audio").get(0);
+    var e = $(this).find("audio").get(0);
     $(this).hasClass("play-btn-loading") || ($(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
-    $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
-    $(this).addClass("play-btn-playing"), playAudio(i, !0)));
-}), $(".player-main").find(".info-section").on("click", function(i) {
-    var e = $(this).width();
-    setPlayPosition(i.pageX - $(this).offset().left, e, $(this).siblings().find("audio").get(0));
-}), $(".player-main").find(".distance-indicator").on("click", function(i) {
-    var e = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), t = e.width();
-    setPlayPosition(i.pageX - e.offset().left, t, n);
-}), $(".player-main").find(".buffer-indicator").on("click", function(i) {
-    var e = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), t = e.width();
-    setPlayPosition(i.pageX - e.offset().left, t, n);
+    $(this).addClass("play-btn-paused"), playAudio(e, !1)) : ($(this).removeClass("play-btn-paused"), 
+    $(this).addClass("play-btn-playing"), playAudio(e, !0)));
+}), $(".player-main").find(".info-section").on("click", function(e) {
+    var i = $(this).width();
+    setPlayPosition(e.pageX - $(this).offset().left, i, $(this).siblings().find("audio").get(0));
+}), $(".player-main").find(".distance-indicator").on("click", function(e) {
+    var i = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), a = i.width();
+    setPlayPosition(e.pageX - i.offset().left, a, n);
+}), $(".player-main").find(".buffer-indicator").on("click", function(e) {
+    var i = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), a = i.width();
+    setPlayPosition(e.pageX - i.offset().left, a, n);
 }), $(document).ready(function() {
     $("audio").each(function() {
-        function i() {
-            var i = t.duration, e = timeConvert(Math.round(t.duration));
-            c = i, r.eq(0).html("00:00"), r.eq(2).html(e), removeLoading(a);
-        }
         function e() {
-            var i = t.buffered, e = timeToPercent(i.end(i.length - 1), c), n = s.width();
-            l.css("width", e / 100 * n);
+            var e = a.duration, i = timeConvert(Math.round(a.duration));
+            c = e, r.eq(0).html("00:00"), r.eq(2).html(i), removeLoading(s);
         }
-        var n = $(this), t = n.get(0), a = n.parent(), s = a.siblings(".info-section"), o = a.siblings(".distance-indicator"), l = a.siblings(".buffer-indicator"), d = s.children(".info-time");
-        addTimeSpans(d);
-        var r = d.find("p").children(), c = 0;
-        t.addEventListener("timeupdate", function() {
-            var i = t.currentTime, n = timeConvert(Math.round(i));
+        function i() {
+            var e = a.buffered, i = timeToPercent(e.end(e.length - 1), c), n = t.width();
+            d.css("width", i / 100 * n);
+        }
+        var n = $(this), a = n.get(0), s = n.parent(), t = s.siblings(".info-section"), o = s.siblings(".distance-indicator"), d = s.siblings(".buffer-indicator"), l = t.children(".info-time");
+        addTimeSpans(l);
+        var r = l.find("p").children(), c = 0;
+        a.addEventListener("timeupdate", function() {
+            var e = a.currentTime, n = timeConvert(Math.round(e));
             if (r.eq(0).html(n), c > 0) {
-                var l = timeToPercent(i, c), d = s.width();
-                o.css("width", l / 100 * d);
+                var d = timeToPercent(e, c), l = t.width();
+                o.css("width", d / 100 * l);
             }
-            i >= c && (t.currentTime = 0, a.trigger("click")), e();
-        }), t.addEventListener("progress", function() {
-            t.buffered.length > 0 && e();
-        }), t.addEventListener("loadedmetadata", function() {
-            i();
-        }), t.addEventListener("canplay", function() {
-            i();
-        }), t.readyState > 3 && i();
+            e >= c && (a.currentTime = 0, s.trigger("click")), i();
+        }), a.addEventListener("progress", function() {
+            a.buffered.length > 0 && i();
+        }), a.addEventListener("loadedmetadata", function() {
+            e();
+        }), a.addEventListener("canplay", function() {
+            e();
+        }), a.readyState > 3 && e();
     });
 }), $(".header-ham-wrap").on("click", function() {
-    var i = $(".header-overlay");
-    i.hasClass("menu-hidden") ? (i.removeClass("menu-hidden"), i.addClass("menu-visible"), 
-    $(this).removeClass("ham-closed"), $(this).addClass("ham-open")) : (i.removeClass("menu-visible"), 
-    i.addClass("menu-hidden"), $(this).removeClass("ham-open"), $(this).addClass("ham-closed"));
+    var e = $(".header-overlay"), i = $(".header-overlay-buttons");
+    e.hasClass("menu-hidden") ? (e.removeClass("menu-hidden"), i.removeClass("menu-hidden"), 
+    e.addClass("menu-visible"), i.addClass("menu-visible"), $(this).removeClass("ham-closed"), 
+    $(this).addClass("ham-open")) : (e.removeClass("menu-visible"), i.removeClass("menu-visible"), 
+    e.addClass("menu-hidden"), i.addClass("menu-hidden"), $(this).removeClass("ham-open"), 
+    $(this).addClass("ham-closed"));
 });
