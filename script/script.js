@@ -49,7 +49,6 @@ function playAudio(source, play) {
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);
-  // var source = $(this > 'audio');
   if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
@@ -61,6 +60,29 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
     $(this).addClass('play-btn-playing');
     playAudio(source, true);
   }
+});
+
+$('.player-main').find('.info-section').on('click', function(e) {
+  var offset = $(this).offset();
+  var width = $(this).width();
+  var relX = e.pageX - offset.left;
+
+  var percent = clickPosToPercent(relX, width);
+  var audio = $(this).siblings().find('audio').get(0);
+  var duration = audio.duration;
+  audio.currentTime = percent / 100 * duration;
+});
+
+$('.player-main').find('.distance-indicator').on('click', function(e) {
+  var info = $('.player-main').find('.info-section');
+  var offset = info.offset();
+  var width = info.width();
+  var relX = e.pageX - offset.left;
+
+  var percent = clickPosToPercent(relX, width);
+  var audio = info.siblings().find('audio').get(0);
+  var duration = audio.duration;
+  audio.currentTime = percent / 100 * duration;
 });
 
 function timeConvert(inputTime) {
@@ -84,6 +106,14 @@ function timeConvert(inputTime) {
 
 function timeToPercent(current, end) {
   return current / end * 100;
+}
+
+function clickPosToPercent(current, end) {
+  return current / end * 100;
+}
+
+function percentToTime(percent, endTime) {
+
 }
 
 $(document).ready(function(){
@@ -114,7 +144,13 @@ $(document).ready(function(){
 
       if (endDuration > 0) {
         var percent = timeToPercent(current, endDuration);
-        distance.css('width', percent + "%");
+        var maxWidth = info.width()
+        distance.css('width', percent / 100 * maxWidth);
+      }
+
+      if (current >= endDuration) {
+        source.currentTime = 0;
+        parent.trigger('click');
       }
     });
 

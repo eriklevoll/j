@@ -1,5 +1,5 @@
-function setVisible(i, t) {
-    t ? (i.removeClass("tab-hidden"), i.addClass("tab-visible")) : (i.removeClass("tab-visible"), 
+function setVisible(i, n) {
+    n ? (i.removeClass("tab-hidden"), i.addClass("tab-visible")) : (i.removeClass("tab-visible"), 
     i.addClass("tab-hidden"));
 }
 
@@ -11,22 +11,28 @@ function setContactView() {
     setVisible($(".home-main"), !1), setVisible($(".contact-main"), !0);
 }
 
-function playAudio(i, t) {
-    audioPlaying = t, t ? i.play() : i.pause();
+function playAudio(i, n) {
+    audioPlaying = n, n ? i.play() : i.pause();
 }
 
 function timeConvert(i) {
-    var t = "";
-    if (i < 60) t = "00:", i < 10 && (t += "0"), t += i; else {
-        var e = Math.floor(i / 60), n = i - 60 * e;
-        e < 10 && (t += "0"), t += e + ":", n < 10 && (t += "0"), t += n;
+    var n = "";
+    if (i < 60) n = "00:", i < 10 && (n += "0"), n += i; else {
+        var t = Math.floor(i / 60), e = i - 60 * t;
+        t < 10 && (n += "0"), n += t + ":", e < 10 && (n += "0"), n += e;
     }
-    return t;
+    return n;
 }
 
-function timeToPercent(i, t) {
-    return i / t * 100;
+function timeToPercent(i, n) {
+    return i / n * 100;
 }
+
+function clickPosToPercent(i, n) {
+    return i / n * 100;
+}
+
+function percentToTime(i, n) {}
 
 var audioPlaying = !1, currentAudioSource;
 
@@ -43,23 +49,30 @@ $(".home-btn").on("click", function() {
     $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
     $(this).addClass("play-btn-playing"), playAudio(i, !0));
+}), $(".player-main").find(".info-section").on("click", function(i) {
+    var n = $(this).offset(), t = $(this).width(), e = clickPosToPercent(i.pageX - n.left, t), a = $(this).siblings().find("audio").get(0), o = a.duration;
+    a.currentTime = e / 100 * o;
+}), $(".player-main").find(".distance-indicator").on("click", function(i) {
+    var n = $(".player-main").find(".info-section"), t = n.offset(), e = n.width(), a = clickPosToPercent(i.pageX - t.left, e), o = n.siblings().find("audio").get(0), s = o.duration;
+    o.currentTime = a / 100 * s;
 }), $(document).ready(function() {
     var i = window.location.href;
     if (-1 != i.indexOf("#")) {
-        var t = i.split("/"), e = t[t.length - 1];
-        console.log(i), console.log(e);
+        var n = i.split("/"), t = n[n.length - 1];
+        console.log(i), console.log(t);
     }
     $("audio").each(function() {
-        var i = $(this), t = i.get(0), e = i.parent(), n = e.siblings(".info-section"), a = e.siblings(".distance-indicator"), o = n.children(".info-time").find("p").children(), s = 0;
-        t.addEventListener("timeupdate", function() {
-            var i = t.currentTime, e = timeConvert(Math.round(i));
-            if (o.eq(0).html(e), s > 0) {
-                var n = timeToPercent(i, s);
-                a.css("width", n + "%");
+        var i = $(this), n = i.get(0), t = i.parent(), e = t.siblings(".info-section"), a = t.siblings(".distance-indicator"), o = e.children(".info-time").find("p").children(), s = 0;
+        n.addEventListener("timeupdate", function() {
+            var i = n.currentTime, c = timeConvert(Math.round(i));
+            if (o.eq(0).html(c), s > 0) {
+                var r = timeToPercent(i, s), l = e.width();
+                a.css("width", r / 100 * l);
             }
-        }), t.addEventListener("loadedmetadata", function() {
-            var i = t.duration, e = timeConvert(Math.round(t.duration));
-            s = i, o.eq(2).html(e);
+            i >= s && (n.currentTime = 0, t.trigger("click"));
+        }), n.addEventListener("loadedmetadata", function() {
+            var i = n.duration, t = timeConvert(Math.round(n.duration));
+            s = i, o.eq(2).html(t);
         });
     });
 });
