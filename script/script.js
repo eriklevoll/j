@@ -127,12 +127,8 @@ function clickPosToPercent(current, end) {
   return current / end * 100;
 }
 
-function percentToTime(percent, endTime) {
-
-}
-
 function addTimeSpans(source) {
-  source.html('<p> <span>00:00</span><span> / </span><span></span> </p>')
+  source.html('<p> <span>00:00</span><span> / </span><span>00:00</span> </p>')
 }
 
 $(document).ready(function(){

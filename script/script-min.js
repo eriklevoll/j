@@ -39,10 +39,8 @@ function clickPosToPercent(i, n) {
     return i / n * 100;
 }
 
-function percentToTime(i, n) {}
-
 function addTimeSpans(i) {
-    i.html("<p> <span>00:00</span><span> / </span><span></span> </p>");
+    i.html("<p> <span>00:00</span><span> / </span><span>00:00</span> </p>");
 }
 
 var audioPlaying = !1, currentAudioSource;
