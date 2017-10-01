@@ -20,11 +20,16 @@ function playAudio(i, n) {
     audioPlaying = n, n ? i.play() : i.pause();
 }
 
+function setPlayPosition(i, n, t) {
+    var e = clickPosToPercent(i, n), a = t.duration;
+    t.currentTime = e / 100 * a;
+}
+
 function timeConvert(i) {
     var n = "";
     if (i < 60) n = "00:", i < 10 && (n += "0"), n += i; else {
-        var e = Math.floor(i / 60), t = i - 60 * e;
-        e < 10 && (n += "0"), n += e + ":", t < 10 && (n += "0"), n += t;
+        var t = Math.floor(i / 60), e = i - 60 * t;
+        t < 10 && (n += "0"), n += t + ":", e < 10 && (n += "0"), n += e;
     }
     return n;
 }
@@ -38,7 +43,7 @@ function clickPosToPercent(i, n) {
 }
 
 function removeLoading(i) {
-    i.removeClass("play-btn-loading"), i.addClass("play-btn-paused");
+    i.hasClass("play-btn-loading") && (i.removeClass("play-btn-loading"), i.addClass("play-btn-paused"));
 }
 
 function addTimeSpans(i) {
@@ -63,32 +68,36 @@ $(".home-btn").on("click", function() {
     $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
     $(this).addClass("play-btn-playing"), playAudio(i, !0)));
 }), $(".player-main").find(".info-section").on("click", function(i) {
-    var n = $(this).offset(), e = $(this).width(), t = clickPosToPercent(i.pageX - n.left, e), a = $(this).siblings().find("audio").get(0), o = a.duration;
-    a.currentTime = t / 100 * o;
+    var n = $(this).width();
+    setPlayPosition(i.pageX - $(this).offset().left, n, $(this).siblings().find("audio").get(0));
 }), $(".player-main").find(".distance-indicator").on("click", function(i) {
-    var n = $(this).siblings(".info-section"), e = n.offset(), t = n.width(), a = clickPosToPercent(i.pageX - e.left, t), o = n.siblings().find("audio").get(0), s = o.duration;
-    o.currentTime = a / 100 * s;
+    var n = $(this).siblings(".info-section"), t = $(this).siblings().find("audio").get(0), e = n.width();
+    setPlayPosition(i.pageX - n.offset().left, e, t);
+}), $(".player-main").find(".buffer-indicator").on("click", function(i) {
+    var n = $(this).siblings(".info-section"), t = $(this).siblings().find("audio").get(0), e = n.width();
+    setPlayPosition(i.pageX - n.offset().left, e, t);
 }), $(document).ready(function() {
-    var i = window.location.href;
-    if (-1 != i.indexOf("#")) {
-        var n = i.split("/"), e = n[n.length - 1];
-        console.log(i), console.log(e);
-    }
     $("audio").each(function() {
         function i() {
             var i = e.duration, n = timeConvert(Math.round(e.duration));
-            c = i, l.eq(0).html("00:00"), l.eq(2).html(n), removeLoading(t);
+            r = i, d.eq(0).html("00:00"), d.eq(2).html(n), removeLoading(a);
         }
-        var n = $(this), e = n.get(0), t = n.parent(), a = t.siblings(".info-section"), o = t.siblings(".distance-indicator"), s = a.children(".info-time");
-        addTimeSpans(s);
-        var l = s.find("p").children(), c = 0;
+        function n() {
+            var i = e.buffered, n = timeToPercent(i.end(i.length - 1), r), t = s.width();
+            l.css("width", n / 100 * t);
+        }
+        var t = $(this), e = t.get(0), a = t.parent(), s = a.siblings(".info-section"), o = a.siblings(".distance-indicator"), l = a.siblings(".buffer-indicator"), c = s.children(".info-time");
+        addTimeSpans(c);
+        var d = c.find("p").children(), r = 0;
         e.addEventListener("timeupdate", function() {
-            var i = e.currentTime, n = timeConvert(Math.round(i));
-            if (l.eq(0).html(n), c > 0) {
-                var s = timeToPercent(i, c), r = a.width();
-                o.css("width", s / 100 * r);
+            var i = e.currentTime, t = timeConvert(Math.round(i));
+            if (d.eq(0).html(t), r > 0) {
+                var l = timeToPercent(i, r), c = s.width();
+                o.css("width", l / 100 * c);
             }
-            i >= c && (e.currentTime = 0, t.trigger("click"));
+            i >= r && (e.currentTime = 0, a.trigger("click")), n();
+        }), e.addEventListener("progress", function() {
+            e.buffered.length > 0 && n();
         }), e.addEventListener("loadedmetadata", function() {
             i();
         }), e.addEventListener("canplay", function() {

@@ -77,27 +77,33 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   }
 });
 
-$('.player-main').find('.info-section').on('click', function(e) {
-  var offset = $(this).offset();
-  var width = $(this).width();
-  var relX = e.pageX - offset.left;
-
+function setPlayPosition(relX, width, audio) {
   var percent = clickPosToPercent(relX, width);
-  var audio = $(this).siblings().find('audio').get(0);
   var duration = audio.duration;
   audio.currentTime = percent / 100 * duration;
+}
+
+$('.player-main').find('.info-section').on('click', function(e) {
+  var width = $(this).width();
+  var relX = e.pageX - $(this).offset().left;
+  var audio = $(this).siblings().find('audio').get(0);
+  setPlayPosition(relX, width, audio);
 });
 
 $('.player-main').find('.distance-indicator').on('click', function(e) {
   var info = $(this).siblings('.info-section');
-  var offset = info.offset();
+  var audio = $(this).siblings().find('audio').get(0);
   var width = info.width();
-  var relX = e.pageX - offset.left;
+  var relX = e.pageX - info.offset().left;
+  setPlayPosition(relX, width, audio);
+});
 
-  var percent = clickPosToPercent(relX, width);
-  var audio = info.siblings().find('audio').get(0);
-  var duration = audio.duration;
-  audio.currentTime = percent / 100 * duration;
+$('.player-main').find('.buffer-indicator').on('click', function(e) {
+  var info = $(this).siblings('.info-section');
+  var audio = $(this).siblings().find('audio').get(0);
+  var width = info.width();
+  var relX = e.pageX - info.offset().left;
+  setPlayPosition(relX, width, audio);
 });
 
 function timeConvert(inputTime) {
@@ -128,8 +134,10 @@ function clickPosToPercent(current, end) {
 }
 
 function removeLoading(source) {
-  source.removeClass('play-btn-loading');
-  source.addClass('play-btn-paused');
+  if (source.hasClass('play-btn-loading')) {
+    source.removeClass('play-btn-loading');
+    source.addClass('play-btn-paused');
+  }
 }
 
 function addTimeSpans(source) {
@@ -137,14 +145,14 @@ function addTimeSpans(source) {
 }
 
 $(document).ready(function(){
-  var pathName = window.location.href;
-
-  if(pathName.indexOf('#') != -1) {
-    var split = pathName.split('/');
-    var last = split[split.length-1];
-    console.log(pathName);
-    console.log(last);
-  }
+  // var pathName = window.location.href;
+  //
+  // if(pathName.indexOf('#') != -1) {
+  //   var split = pathName.split('/');
+  //   var last = split[split.length-1];
+  //   console.log(pathName);
+  //   console.log(last);
+  // }
 
   $('audio').each(function() {
     var sourceElement = $(this);
@@ -152,6 +160,7 @@ $(document).ready(function(){
     var parent = sourceElement.parent();
     var info = parent.siblings('.info-section');
     var distance = parent.siblings('.distance-indicator');
+    var bufferIndicator = parent.siblings('.buffer-indicator');
     var infoTime = info.children('.info-time');
     addTimeSpans(infoTime);
     var time = infoTime.find('p').children();
@@ -164,6 +173,17 @@ $(document).ready(function(){
       time.eq(0).html("00:00");
       time.eq(2).html(endTime);
       removeLoading(parent);
+    }
+
+    function setBufferDistance() {
+      var buffer = source.buffered;
+      // var bufferStart = buffer.start(buffer.length-1);
+      var bufferEnd = buffer.end(buffer.length-1);
+      // var percentStart = timeToPercent(bufferStart, endDuration);
+      var percentEnd = timeToPercent(bufferEnd, endDuration);
+      var maxWidth = info.width();
+      // bufferIndicator.css('left', percentStart / 100 * maxWidth);
+      bufferIndicator.css('width', percentEnd / 100 * maxWidth);
     }
 
     source.addEventListener("timeupdate",function(){
@@ -182,6 +202,15 @@ $(document).ready(function(){
         source.currentTime = 0;
         parent.trigger('click');
       }
+
+      setBufferDistance();
+    });
+
+    source.addEventListener('progress', function() {
+      var buffer = source.buffered;
+      if (buffer.length > 0) {
+        setBufferDistance();
+      }
     });
 
     source.addEventListener('loadedmetadata', function() {
@@ -197,7 +226,6 @@ $(document).ready(function(){
     }
   });
 })
-
 
 
 // loadstart
