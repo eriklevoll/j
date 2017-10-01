@@ -75,9 +75,9 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
     var e = $(this).find("audio").get(0);
-    $(this).hasClass("play-btn-loading") || ($(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
+    $(this).hasClass("play-btn-loading") ? e.currentTime = 0 : $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), playAudio(e, !1)) : ($(this).removeClass("play-btn-paused"), 
-    $(this).addClass("play-btn-playing"), playAudio(e, !0)));
+    $(this).addClass("play-btn-playing"), playAudio(e, !0));
 }), $(".player-main").find(".info-section").on("click", function(e) {
     var i = $(this).width();
     setPlayPosition(e.pageX - $(this).offset().left, i, $(this).siblings().find("audio").get(0));

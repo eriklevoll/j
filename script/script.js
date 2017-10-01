@@ -82,7 +82,7 @@ function playAudio(source, play) {
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);
   if($(this).hasClass('play-btn-loading')) {
-    return;
+    source.currentTime = 0;
   }
   else if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
