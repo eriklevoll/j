@@ -195,6 +195,13 @@ $(document).ready(function(){
       time.eq(2).html(endTime);
       removeLoading(parent);
     });
+
+    if (source.readyState > 3) {
+      // console.log('yes');
+      removeLoading(parent);
+    } else {
+      // console.log(source.readyState);
+    }
   });
 })
 

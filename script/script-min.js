@@ -90,6 +90,6 @@ $(".home-btn").on("click", function() {
         }), n.addEventListener("canplay", function() {
             var i = n.duration, t = timeConvert(Math.round(n.duration));
             l = i, s.eq(0).html("00:00"), s.eq(2).html(t), removeLoading(e);
-        });
+        }), n.readyState > 3 && removeLoading(e);
     });
 });
