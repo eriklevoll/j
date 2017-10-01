@@ -116,6 +116,10 @@ function percentToTime(percent, endTime) {
 
 }
 
+function addTimeSpans(source) {
+  source.html('<p> <span>00:00</span><span> / </span><span></span> </p>')
+}
+
 $(document).ready(function(){
   var pathName = window.location.href;
 
@@ -133,8 +137,10 @@ $(document).ready(function(){
     var info = parent.siblings('.info-section');
     var distance = parent.siblings('.distance-indicator');
     var infoTime = info.children('.info-time');
+    addTimeSpans(infoTime);
     var time = infoTime.find('p').children();
     var endDuration = 0.0;
+
 
     source.addEventListener("timeupdate",function(){
       var current = source.currentTime;

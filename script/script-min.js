@@ -34,6 +34,10 @@ function clickPosToPercent(i, n) {
 
 function percentToTime(i, n) {}
 
+function addTimeSpans(i) {
+    i.html("<p> <span>00:00</span><span> / </span><span></span> </p>");
+}
+
 var audioPlaying = !1, currentAudioSource;
 
 $(".home-btn").on("click", function() {
@@ -62,17 +66,19 @@ $(".home-btn").on("click", function() {
         console.log(i), console.log(t);
     }
     $("audio").each(function() {
-        var i = $(this), n = i.get(0), t = i.parent(), e = t.siblings(".info-section"), a = t.siblings(".distance-indicator"), o = e.children(".info-time").find("p").children(), s = 0;
+        var i = $(this), n = i.get(0), t = i.parent(), e = t.siblings(".info-section"), a = t.siblings(".distance-indicator"), o = e.children(".info-time");
+        addTimeSpans(o);
+        var s = o.find("p").children(), c = 0;
         n.addEventListener("timeupdate", function() {
-            var i = n.currentTime, c = timeConvert(Math.round(i));
-            if (o.eq(0).html(c), s > 0) {
-                var r = timeToPercent(i, s), l = e.width();
+            var i = n.currentTime, o = timeConvert(Math.round(i));
+            if (s.eq(0).html(o), c > 0) {
+                var r = timeToPercent(i, c), l = e.width();
                 a.css("width", r / 100 * l);
             }
-            i >= s && (n.currentTime = 0, t.trigger("click"));
+            i >= c && (n.currentTime = 0, t.trigger("click"));
         }), n.addEventListener("loadedmetadata", function() {
             var i = n.duration, t = timeConvert(Math.round(n.duration));
-            s = i, o.eq(2).html(t);
+            c = i, s.eq(2).html(t);
         });
     });
 });
