@@ -1,13 +1,18 @@
 .header
+  border-bottom: 1px solid rgba(0,0,0,0.05)
+  z-index: 2
   position: fixed
   background: white
   left: 0
   top: 0
   width: 100%
-  height: 50px
+  height: 80px
   font-family: 'Muli', sans-serif
   display: flex
   justify-content: flex-start
+
+  .left-author
+    position: relative
 
   .left-author h1
     margin: 0
@@ -21,14 +26,15 @@
     text-transform: uppercase
 
   .left-author .sub-author
+    position: absolute
+    top: 30px
+    left: 50px
     text-transform: uppercase
     color: #aaa
     h3
       cursor: pointer
       width: 105px
       padding: 5px
-      margin-top: -15px
-      margin-left: 50px
       font-family: 'Montserrat', sans-serif
       font-weight: 400
 
@@ -94,8 +100,3 @@
         height: 120px
         opacity: 0
         transition: all 0.2s
-
-    // .home-btn, .multimedia-btn, .contact-btn, .music-btn
-    //   &:hover
-    //     transform: translate(0px, 4px)
-    //   transition: all 0.2s

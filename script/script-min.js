@@ -57,7 +57,7 @@ $(".home-btn").on("click", function() {
     var n = $(this).offset(), t = $(this).width(), e = clickPosToPercent(i.pageX - n.left, t), a = $(this).siblings().find("audio").get(0), o = a.duration;
     a.currentTime = e / 100 * o;
 }), $(".player-main").find(".distance-indicator").on("click", function(i) {
-    var n = $(".player-main").find(".info-section"), t = n.offset(), e = n.width(), a = clickPosToPercent(i.pageX - t.left, e), o = n.siblings().find("audio").get(0), s = o.duration;
+    var n = $(this).siblings(".info-section"), t = n.offset(), e = n.width(), a = clickPosToPercent(i.pageX - t.left, e), o = n.siblings().find("audio").get(0), s = o.duration;
     o.currentTime = a / 100 * s;
 }), $(document).ready(function() {
     var i = window.location.href;

@@ -74,7 +74,7 @@ $('.player-main').find('.info-section').on('click', function(e) {
 });
 
 $('.player-main').find('.distance-indicator').on('click', function(e) {
-  var info = $('.player-main').find('.info-section');
+  var info = $(this).siblings('.info-section');
   var offset = info.offset();
   var width = info.width();
   var relX = e.pageX - offset.left;
