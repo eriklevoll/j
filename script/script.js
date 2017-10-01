@@ -192,7 +192,6 @@ $(document).ready(function(){
       endDuration = dur;
       time.eq(0).html("00:00");
       time.eq(2).html(endTime);
-      removeLoading(parent);
     }
 
     function setBufferDistance() {
@@ -239,10 +238,12 @@ $(document).ready(function(){
 
     source.addEventListener('canplay', function() {
       setMetaData();
+      removeLoading(parent);
     });
 
     if (source.readyState > 3) {
       setMetaData();
+      removeLoading(parent);
     }
   });
 });

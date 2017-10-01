@@ -91,7 +91,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     $("audio").each(function() {
         function e() {
             var e = a.duration, i = timeConvert(Math.round(a.duration));
-            c = e, r.eq(0).html("00:00"), r.eq(2).html(i), removeLoading(s);
+            c = e, r.eq(0).html("00:00"), r.eq(2).html(i);
         }
         function i() {
             var e = a.buffered, i = timeToPercent(e.end(e.length - 1), c), n = t.width();
@@ -112,8 +112,8 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
         }), a.addEventListener("loadedmetadata", function() {
             e();
         }), a.addEventListener("canplay", function() {
-            e();
-        }), a.readyState > 3 && e();
+            e(), removeLoading(s);
+        }), a.readyState > 3 && (e(), removeLoading(s));
     });
 }), $(".header-ham-wrap").on("click", function() {
     var e = $(".header-overlay"), i = $(".header-overlay-buttons");
