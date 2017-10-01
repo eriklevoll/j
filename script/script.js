@@ -13,13 +13,24 @@ function setVisible(item, visible) {
 }
 
 function setHomeView() {
+  console.log('yes3');
   setVisible($('.contact-main'), false);
+  setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
 }
 
 function setContactView() {
+  console.log('yes2');
   setVisible($('.home-main'), false);
+  setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
+}
+
+function setAudioView() {
+  console.log('yes');
+  setVisible($('.home-main'), false);
+  setVisible($('.contact-main'), false);
+  setVisible($('.players-wrapper-main'), true);
 }
 
 $('.home-btn').on('click', function(){
@@ -36,6 +47,10 @@ $('.left-author').on('click', function(){
 
 $('.left-author.sub-author').on('click', function(){
   setHomeView();
+});
+
+$('.audio-btn h3#audio-sub-one').on('click', function(){
+  setAudioView();
 });
 
 function playAudio(source, play) {
