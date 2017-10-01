@@ -1,13 +1,17 @@
 .player-main.tab-visible
-  .play-pause-wrapper.play-btn-paused
+  .audio-wrapper.play-btn-paused
     .play-button
     .pause-button
+    audio(src="audio/Strong.mp3" type="audio/mpeg")
   .info-section
     .info-name
       p#info-title Wonderwall
       p#info-author Johanna Kivimägi
     .info-time
-      p 2:05 / 8:32
+      p
+        span 00:00
+        span / 
+        span 04:00
   .distance-indicator
   //- audio(src="audio/Strong.mp3" type="audio/mpeg")
   

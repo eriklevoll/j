@@ -1,8 +1,3 @@
-// audio
-  background: red
-  height: 70px
-  width: 300px
-
 .player-main
   width: 90%
   height: 65px
@@ -10,7 +5,7 @@
   display: flex
   position: relative
 
-  .play-pause-wrapper
+  .audio-wrapper
     cursor: pointer
     height: 100%
     width: 60px
@@ -19,9 +14,6 @@
     justify-content: center
     align-items: center
     overflow: hidden
-    // 
-    // &:hover
-    //   @extend .play-btn-paused
 
     .play-button
       width: 0
@@ -108,4 +100,5 @@
     background: rgba(255,255,255,0.05)
     border-left: 1px solid rgba(255,255,255,0.1)
     border-right: 1px solid rgba(255,255,255,0.1)
-    width: 50%
+    width: 0
+    transition: width 1s
