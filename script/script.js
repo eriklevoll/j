@@ -182,6 +182,7 @@ $(document).ready(function(){
       endDuration = dur;
       time.eq(0).html("00:00");
       time.eq(2).html(endTime);
+      removeLoading(parent);
       console.log('metadata');
     });
 
