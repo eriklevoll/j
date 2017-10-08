@@ -1,6 +1,6 @@
 .header
   border-bottom: 1px solid rgba(0,0,0,0.05)
-  z-index: 2
+  z-index: 4
   position: fixed
   background: white
   left: 0
@@ -100,17 +100,27 @@
       cursor: default
       transition: all 0.5s
       margin-right: -40px
+      // .nav-audio-sub
+        opacity: 1
       &:hover
-        height: 165px
-        box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
-        .nav-audio-sub
+        // height: 165px
+        // box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
+        // .nav-audio-sub
           opacity: 1
+
+
 
       .nav-audio-sub
         @extend .sub-button-type
         height: 120px
         opacity: 0
         transition: all 0.2s
+
+    .audio-main-hover
+      height: 165px
+      box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
+      .nav-audio-sub
+        opacity: 1
 
 // .header-overlay
 //   z-index: 3

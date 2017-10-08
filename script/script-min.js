@@ -69,8 +69,16 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
+}), $(".audio-btn").on({
+    mouseover: function() {
+        $(this).hasClass("audio-main-hover") || $(this).addClass("audio-main-hover");
+    },
+    mouseleave: function() {
+        $(this).removeClass("audio-main-hover");
+    },
+    click: function() {}
 }), $(".audio-btn h3#audio-sub-one").on("click", function() {
-    setAudioView();
+    $(".audio-btn").removeClass("audio-main-hover"), setAudioView();
 }), $(".mobile-audio-btn").on("click", function() {
     closeSideNav(), setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {

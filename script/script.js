@@ -61,12 +61,28 @@ $('.left-author.sub-author').on('click', function(){
   setHomeView();
 });
 
-// $('.audio-btn h3#audio-sub-one').on('click', function(){
-//   console.log('yes');
-// });
+$('.audio-btn').on({
+  mouseover: function(){
+    if (!$(this).hasClass('audio-main-hover')) {
+      $(this).addClass('audio-main-hover');
+    }
+  },
+  mouseleave: function() {
+    $(this).removeClass('audio-main-hover');
+  },
+  click: function() {
+    // if ($(this).hasClass('audio-main-hover')) {
+    //   console.log('on, votame ära');
+    //   $(this).removeClass('audio-main-hover');
+    // } else {
+    //   console.log('ei ole, paneme peale');
+    //   $(this).addClass('audio-main-hover');
+    // }
+  }
+});
 
 $('.audio-btn h3#audio-sub-one').on('click', function(){
-  // $('.home-main').trigger('click');
+  $('.audio-btn').removeClass('audio-main-hover');
   setAudioView();
 });
 
