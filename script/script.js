@@ -81,10 +81,10 @@ function playAudio(source, play) {
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);
-  if($(this).hasClass('play-btn-loading')) {
-    source.currentTime = 0;
-  }
-  else if($(this).hasClass('play-btn-playing')) {
+  // if($(this).hasClass('play-btn-loading')) {
+  //   source.currentTime = 0;
+  // }
+  if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
     playAudio(source, false);
@@ -93,6 +93,9 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   {
     $(this).removeClass('play-btn-paused');
     $(this).addClass('play-btn-playing');
+    if (source.currentTime <= 0) {
+      source.currentTime = 0;
+    }
     playAudio(source, true);
   }
 });
@@ -234,12 +237,13 @@ $(document).ready(function(){
 
     source.addEventListener('loadedmetadata', function() {
       setMetaData();
-    });
-
-    source.addEventListener('canplay', function() {
-      setMetaData();
       removeLoading(parent);
     });
+
+    // source.addEventListener('canplay', function() {
+    //   setMetaData();
+    //   removeLoading(parent);
+    // });
 
     if (source.readyState > 3) {
       setMetaData();

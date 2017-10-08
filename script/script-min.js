@@ -75,9 +75,10 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
     var i = $(this).find("audio").get(0);
-    $(this).hasClass("play-btn-loading") ? i.currentTime = 0 : $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
+    $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
-    $(this).addClass("play-btn-playing"), playAudio(i, !0));
+    $(this).addClass("play-btn-playing"), i.currentTime <= 0 && (i.currentTime = 0), 
+    playAudio(i, !0));
 }), $(".player-main").find(".info-section").on("click", function(i) {
     var e = $(this).width();
     setPlayPosition(i.pageX - $(this).offset().left, e, $(this).siblings().find("audio").get(0));
@@ -110,8 +111,6 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
         }), a.addEventListener("progress", function() {
             a.buffered.length > 0 && e();
         }), a.addEventListener("loadedmetadata", function() {
-            i();
-        }), a.addEventListener("canplay", function() {
             i(), removeLoading(t);
         }), a.readyState > 3 && (i(), removeLoading(t));
     });
