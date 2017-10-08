@@ -14,158 +14,180 @@
   flex-direction: column
   justify-content: flex-start
   align-items: center
+  font-family: 'Montserrat', sans-serif
 
-  .player-text
-    font-family: 'Montserrat', sans-serif
-    
-
-  .player-main:first-child
-    margin-top: 120px
-
-  .player-main
+  .player-section
     width: 90%
-    height: 65px
-    min-height: 65px
-    max-height: 65px
-    background: #222
-    display: flex
-    position: relative
-    margin-top: 15px
+    &:first-child
+      margin-top: 120px
 
     &:last-child
       margin-bottom: 40px
 
-    .audio-wrapper
-      cursor: pointer
-      height: 100%
-      width: 60px
-      min-width: 60px
+    .player-text
+      text-align: justify
+      width: 100%
+      p
+        // text-align: left
+        // height: 20px
+        margin: 10px 0 0 0
+        // display: -webkit-box
+        // overflow: scroll
+        // text-overflow: ellipsis
+        // white-space: nowrap
+        // overflow: hidden
+        // text-overflow: ellipsis
+        // transition: all 1s
+        // -webkit-line-clamp: 1
+        // -webkit-box-orient: vertical
+      //
+      // &:hover
+      //   p
+      //     white-space: pre-wrap
+      //     height: auto
+
+
+    .player-main
+      width: 100%
+      height: 65px
+      min-height: 65px
+      max-height: 65px
+      background: #222
       display: flex
       position: relative
-      justify-content: center
-      align-items: center
-      overflow: hidden
+      margin-top: 15px
 
-      .play-button
-        width: 0
-        height: 0
-        border-top: 10px solid transparent
-        border-bottom: 10px solid transparent
-        border-left: 15px solid white
-        transition: all 0.5s
-        position: absolute
-
-      .pause-button
-        border-bottom: none
-        border-right: 5px solid white
-        border-top: none
-        border-left: 5px solid white
-        width: 5px
-        height: 20px
-        position: absolute
-        transition: all 0.5s
-
-      .loader
-        position: absolute
-        height: 20px
-        width: 20px
-        background: #222
-        animation: spin 2s linear infinite
-        border: 6px solid #f3f3f3
-        border-radius: 50%
-        border-top: 6px solid rgba(255,255,255,0.2)
-        transition: all 0.5s
-
-    .play-btn-playing
-      .play-button
-        margin-left: 100px
-      .pause-button
-        margin-left: 0
-      .loader
-        margin-left: 200px
-
-    .play-btn-paused
-      .play-button
-        margin-left: 0
-      .pause-button
-        margin-left: -100px
-      .loader
-        margin-left: 100px
-
-    .play-btn-loading
-      .play-button
-        margin-left: -100px
-      .pause-button
-        margin-left: -200px
-      .loader
-        margin-left: 0
-
-
-    .info-section
-      height: 100%
-      width: 200px
-      font-family: 'Montserrat', sans-serif
-      display: flex
-      flex: 1
-
-      .info-name
-        width: 200px
+      .audio-wrapper
+        cursor: pointer
         height: 100%
+        width: 60px
+        min-width: 60px
         display: flex
-        flex-direction: column
+        position: relative
         justify-content: center
-        align-items: flex-start
-        padding-left: 20px
-
-        p#info-title
-          cursor: default
-          margin: 0
-          font-size: 15px
-          font-weight: normal
-          color: rgba(255,255,255,0.95)
-
-        p#info-author
-          cursor: default
-          margin: 0
-          padding-top: 2px
-          font-size: 12px
-          font-weight: normal
-          color: rgba(255,255,255,0.5)
-          word-wrap: normal
-          white-space: nowrap
-          text-overflow: clip
-
-      .info-time
-        min-width: 90px
-        cursor: default
-        flex: 1
-        height: 100%
-        display: flex
-        justify-content: flex-end
         align-items: center
-        padding-right: 20px
+        overflow: hidden
 
-        p
-          margin: 0
-          font-size: 12px
-          font-weight: normal
-          color: rgba(255,255,255,0.95)
+        .play-button
+          width: 0
+          height: 0
+          border-top: 10px solid transparent
+          border-bottom: 10px solid transparent
+          border-left: 15px solid white
+          transition: all 0.5s
+          position: absolute
 
-    .distance-indicator
-      position: absolute
-      left: 60px
-      top: 0
-      height: 100%
-      background: rgba(255,255,255,0.06)
-      border-right: 1px solid rgba(255,255,255,0.15)
-      width: 0
-      transition: width 0.5s
+        .pause-button
+          border-bottom: none
+          border-right: 5px solid white
+          border-top: none
+          border-left: 5px solid white
+          width: 5px
+          height: 20px
+          position: absolute
+          transition: all 0.5s
 
-    .buffer-indicator
-      position: absolute
-      left: 60px
-      top: 0
-      height: 100%
-      background: rgba(165, 149, 230, 0.05)
-      width: 0
-      transition: width 0.5s
+        .loader
+          position: absolute
+          height: 20px
+          width: 20px
+          background: #222
+          animation: spin 2s linear infinite
+          border: 6px solid #f3f3f3
+          border-radius: 50%
+          border-top: 6px solid rgba(255,255,255,0.2)
+          transition: all 0.5s
+
+      .play-btn-playing
+        .play-button
+          margin-left: 100px
+        .pause-button
+          margin-left: 0
+        .loader
+          margin-left: 200px
+
+      .play-btn-paused
+        .play-button
+          margin-left: 0
+        .pause-button
+          margin-left: -100px
+        .loader
+          margin-left: 100px
+
+      .play-btn-loading
+        .play-button
+          margin-left: -100px
+        .pause-button
+          margin-left: -200px
+        .loader
+          margin-left: 0
+
+
+      .info-section
+        height: 100%
+        width: 200px
+        font-family: 'Montserrat', sans-serif
+        display: flex
+        flex: 1
+
+        .info-name
+          width: 200px
+          height: 100%
+          display: flex
+          flex-direction: column
+          justify-content: center
+          align-items: flex-start
+          padding-left: 20px
+
+          p#info-title
+            cursor: default
+            margin: 0
+            font-size: 15px
+            font-weight: normal
+            color: rgba(255,255,255,0.95)
+
+          p#info-author
+            cursor: default
+            margin: 0
+            padding-top: 2px
+            font-size: 12px
+            font-weight: normal
+            color: rgba(255,255,255,0.5)
+            word-wrap: normal
+            white-space: nowrap
+            text-overflow: clip
+
+        .info-time
+          min-width: 90px
+          cursor: default
+          flex: 1
+          height: 100%
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          padding-right: 20px
+
+          p
+            margin: 0
+            font-size: 12px
+            font-weight: normal
+            color: rgba(255,255,255,0.95)
+
+      .distance-indicator
+        position: absolute
+        left: 60px
+        top: 0
+        height: 100%
+        background: rgba(255,255,255,0.06)
+        border-right: 1px solid rgba(255,255,255,0.15)
+        width: 0
+        transition: width 0.5s
+
+      .buffer-indicator
+        position: absolute
+        left: 60px
+        top: 0
+        height: 100%
+        background: rgba(165, 149, 230, 0.05)
+        width: 0
+        transition: width 0.5s

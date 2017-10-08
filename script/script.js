@@ -188,6 +188,17 @@ function addTimeSpans(source) {
   source.html('<p> <span>--:--</span><span> / </span><span>--:--</span> </p>')
 }
 
+function loadDescription(paragraph, title) {
+  $.ajax({
+      url : "text/" + title + ".txt",
+      dataType: "text",
+      success : function (result) {
+        // var data = "<p>" + result + "</p>";
+          paragraph.html(result);
+      }
+  });
+}
+
 $(document).ready(function(){
   // var pathName = window.location.href;
   //
@@ -197,6 +208,8 @@ $(document).ready(function(){
   //   console.log(pathName);
   //   console.log(last);
   // }
+
+  var counter = 1;
 
   $('audio').each(function() {
     var sourceElement = $(this);
@@ -208,6 +221,8 @@ $(document).ready(function(){
     var infoTime = info.children('.info-time');
     addTimeSpans(infoTime);
     var time = infoTime.find('p').children();
+    var text = parent.parent().siblings('.player-text');
+    var textParagraph = text.find('p').eq(0);
     var endDuration = 0.0;
 
     function setMetaData() {
@@ -220,12 +235,9 @@ $(document).ready(function(){
 
     function setBufferDistance() {
       var buffer = source.buffered;
-      // var bufferStart = buffer.start(buffer.length-1);
       var bufferEnd = buffer.end(buffer.length-1);
-      // var percentStart = timeToPercent(bufferStart, endDuration);
       var percentEnd = timeToPercent(bufferEnd, endDuration);
       var maxWidth = info.width();
-      // bufferIndicator.css('left', percentStart / 100 * maxWidth);
       bufferIndicator.css('width', percentEnd / 100 * maxWidth);
     }
 
@@ -270,6 +282,9 @@ $(document).ready(function(){
       setMetaData();
       removeLoading(parent);
     }
+
+    loadDescription(textParagraph, "track_" + counter);
+    counter++;
   });
 });
 

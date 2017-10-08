@@ -59,6 +59,16 @@ function addTimeSpans(i) {
     i.html("<p> <span>--:--</span><span> / </span><span>--:--</span> </p>");
 }
 
+function loadDescription(i, e) {
+    $.ajax({
+        url: "text/" + e + ".txt",
+        dataType: "text",
+        success: function(e) {
+            i.html(e);
+        }
+    });
+}
+
 var audioPlaying = !1, currentAudioSource;
 
 $(".home-btn, .mobile-home-btn").on("click", function() {
@@ -97,30 +107,32 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     var e = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), a = e.width();
     setPlayPosition(i.pageX - e.offset().left, a, n);
 }), $(document).ready(function() {
+    var i = 1;
     $("audio").each(function() {
-        function i() {
-            var i = a.duration, e = timeConvert(Math.round(a.duration));
-            c = i, r.eq(0).html("00:00"), r.eq(2).html(e);
-        }
         function e() {
-            var i = a.buffered, e = timeToPercent(i.end(i.length - 1), c), n = s.width();
-            d.css("width", e / 100 * n);
+            var i = t.duration, e = timeConvert(Math.round(t.duration));
+            m = i, c.eq(0).html("00:00"), c.eq(2).html(e);
         }
-        var n = $(this), a = n.get(0), t = n.parent(), s = t.siblings(".info-section"), o = t.siblings(".distance-indicator"), d = t.siblings(".buffer-indicator"), l = s.children(".info-time");
-        addTimeSpans(l);
-        var r = l.find("p").children(), c = 0;
-        a.addEventListener("timeupdate", function() {
-            var i = a.currentTime, n = timeConvert(Math.round(i));
-            if (r.eq(0).html(n), c > 0) {
-                var d = timeToPercent(i, c), l = s.width();
-                o.css("width", d / 100 * l);
+        function n() {
+            var i = t.buffered, e = timeToPercent(i.end(i.length - 1), m), n = o.width();
+            l.css("width", e / 100 * n);
+        }
+        var a = $(this), t = a.get(0), s = a.parent(), o = s.siblings(".info-section"), d = s.siblings(".distance-indicator"), l = s.siblings(".buffer-indicator"), r = o.children(".info-time");
+        addTimeSpans(r);
+        var c = r.find("p").children(), u = s.parent().siblings(".player-text").find("p").eq(0), m = 0;
+        t.addEventListener("timeupdate", function() {
+            var i = t.currentTime, e = timeConvert(Math.round(i));
+            if (c.eq(0).html(e), m > 0) {
+                var a = timeToPercent(i, m), l = o.width();
+                d.css("width", a / 100 * l);
             }
-            i >= c && (a.currentTime = 0, t.trigger("click")), e();
-        }), a.addEventListener("progress", function() {
-            a.buffered.length > 0 && e();
-        }), a.addEventListener("loadedmetadata", function() {
-            i(), removeLoading(t);
-        }), a.readyState > 3 && (i(), removeLoading(t));
+            i >= m && (t.currentTime = 0, s.trigger("click")), n();
+        }), t.addEventListener("progress", function() {
+            t.buffered.length > 0 && n();
+        }), t.addEventListener("loadedmetadata", function() {
+            e(), removeLoading(s);
+        }), t.readyState > 3 && (e(), removeLoading(s)), loadDescription(u, "track_" + i), 
+        i++;
     });
 }), $(".header-ham-wrap").on("click", function() {
     var i = $(".header-overlay-buttons");
