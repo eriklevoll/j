@@ -61,7 +61,12 @@ $('.left-author.sub-author').on('click', function(){
   setHomeView();
 });
 
+// $('.audio-btn h3#audio-sub-one').on('click', function(){
+//   console.log('yes');
+// });
+
 $('.audio-btn h3#audio-sub-one').on('click', function(){
+  // $('.home-main').trigger('click');
   setAudioView();
 });
 
