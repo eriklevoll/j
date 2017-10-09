@@ -115,7 +115,7 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
     $(this).removeClass('play-btn-paused');
     $(this).addClass('play-btn-playing');
     if (source.currentTime <= 0) {
-      source.currentTime = 0;
+      source.currentTime = 0.05;
     }
     playAudio(source, true);
   }

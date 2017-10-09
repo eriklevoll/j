@@ -95,7 +95,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     var i = $(this).find("audio").get(0);
     $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
-    $(this).addClass("play-btn-playing"), i.currentTime <= 0 && (i.currentTime = 0), 
+    $(this).addClass("play-btn-playing"), i.currentTime <= 0 && (i.currentTime = .05), 
     playAudio(i, !0));
 }), $(".player-main").find(".info-section").on("click", function(i) {
     var e = $(this).width();
