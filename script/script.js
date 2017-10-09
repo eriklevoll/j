@@ -210,6 +210,8 @@ $(document).ready(function(){
   //   console.log(last);
   // }
 
+  $('.preloader').delay(350).fadeOut('slow');
+
   var counter = 1;
 
   $('audio').each(function() {
