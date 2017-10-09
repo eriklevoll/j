@@ -210,7 +210,8 @@ $(document).ready(function(){
   //   console.log(last);
   // }
 
-  $('.preloader').delay(350).fadeOut('slow');
+  $('.status').fadeOut(); // will first fade out the loading animation
+  $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
 
   var counter = 1;
 

@@ -101,7 +101,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     var i = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), t = i.width();
     setPlayPosition(e.pageX - i.offset().left, t, n);
 }), $(document).ready(function() {
-    $(".preloader").delay(350).fadeOut("slow");
+    $(".status").fadeOut(), $(".preloader").delay(350).fadeOut("slow");
     var e = 1;
     $("audio").each(function() {
         function i() {
