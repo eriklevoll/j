@@ -200,6 +200,11 @@ function loadDescription(paragraph, title) {
   });
 }
 
+$(window).on('load', function () {
+  $('.status').fadeOut(); // will first fade out the loading animation
+  $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+})
+
 $(document).ready(function(){
   // var pathName = window.location.href;
   //
@@ -209,9 +214,6 @@ $(document).ready(function(){
   //   console.log(pathName);
   //   console.log(last);
   // }
-
-  $('.status').fadeOut(); // will first fade out the loading animation
-  $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
 
   var counter = 1;
 

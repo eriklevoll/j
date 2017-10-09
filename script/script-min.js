@@ -100,8 +100,9 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".player-main").find(".buffer-indicator").on("click", function(e) {
     var i = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), t = i.width();
     setPlayPosition(e.pageX - i.offset().left, t, n);
-}), $(document).ready(function() {
+}), $(window).on("load", function() {
     $(".status").fadeOut(), $(".preloader").delay(350).fadeOut("slow");
+}), $(document).ready(function() {
     var e = 1;
     $("audio").each(function() {
         function i() {
@@ -110,16 +111,16 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
         }
         function n() {
             var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), n = o.width();
-            d.css("width", i / 100 * n);
+            l.css("width", i / 100 * n);
         }
-        var t = $(this), a = t.get(0), s = t.parent(), o = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), d = s.siblings(".buffer-indicator"), r = o.children(".info-time");
+        var t = $(this), a = t.get(0), s = t.parent(), o = s.siblings(".info-section"), d = s.siblings(".distance-indicator"), l = s.siblings(".buffer-indicator"), r = o.children(".info-time");
         addTimeSpans(r);
         var c = r.find("p").children(), u = s.parent().siblings(".player-text").find("p").eq(0), m = 0;
         a.addEventListener("timeupdate", function() {
             var e = a.currentTime, i = timeConvert(Math.round(e));
             if (c.eq(0).html(i), m > 0) {
-                var t = timeToPercent(e, m), d = o.width();
-                l.css("width", t / 100 * d);
+                var t = timeToPercent(e, m), l = o.width();
+                d.css("width", t / 100 * l);
             }
             e >= m && (a.currentTime = 0, s.trigger("click")), n();
         }), a.addEventListener("progress", function() {
