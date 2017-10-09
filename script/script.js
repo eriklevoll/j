@@ -62,15 +62,16 @@ $('.left-author.sub-author').on('click', function(){
 });
 
 $('.audio-btn').on({
-  mouseover: function(){
-    if (!$(this).hasClass('audio-main-hover')) {
-      $(this).addClass('audio-main-hover');
-    }
-  },
-  mouseleave: function() {
-    $(this).removeClass('audio-main-hover');
-  },
+  // mouseover: function(){
+  //   if (!$(this).hasClass('audio-main-hover')) {
+  //     $(this).addClass('audio-main-hover');
+  //   }
+  // },
+  // mouseleave: function() {
+  //   $(this).removeClass('audio-main-hover');
+  // },
   click: function() {
+    setAudioView();
     // if ($(this).hasClass('audio-main-hover')) {
     //   console.log('on, votame ära');
     //   $(this).removeClass('audio-main-hover');
@@ -81,10 +82,10 @@ $('.audio-btn').on({
   }
 });
 
-$('.audio-btn h3#audio-sub-one').on('click', function(){
-  $('.audio-btn').removeClass('audio-main-hover');
-  setAudioView();
-});
+// $('.audio-btn h3#audio-sub-one').on('click', function(){
+//   $('.audio-btn').removeClass('audio-main-hover');
+//   setAudioView();
+// });
 
 $('.mobile-audio-btn').on('click', function(){
   closeSideNav();
