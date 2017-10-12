@@ -109,8 +109,6 @@
         // .nav-audio-sub
           opacity: 1
 
-
-
       .nav-audio-sub
         @extend .sub-button-type
         height: 120px
@@ -130,10 +128,8 @@
   height: 40px
   position: absolute
   right: 0
-  // top: 0
   display: none
   cursor: pointer
-  // transition: all 0.25s
 
   .header-ham-line
     position: absolute
@@ -141,12 +137,14 @@
     height: 2px
     background: black
     border-radius: 15px
-    // transition: all 0.6s
     margin: 0
     margin-left: calc(50% - 18px)
 
   #two
     transition: all 0.6s
+    z-index: 4
+  #one, #three
+    z-index: 5
 
 .ham-open
   .header-ham-line
