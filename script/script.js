@@ -189,13 +189,22 @@ function addTimeSpans(source) {
   source.html('<p> <span>--:--</span><span> / </span><span>--:--</span> </p>')
 }
 
-function loadDescription(paragraph, title) {
+function checkIE() {
+  // IE <= 10
+  var ieVersion = (function() { if (new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null) { return parseFloat( RegExp.$1 ); } else { return false; } })();
+  // IE 11
+  var isIE = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
+  return (ieVersion || isIE) ? true : false;
+}
+
+function loadDescription(textDiv, title) {
   $.ajax({
       url : "text/" + title + ".txt",
       dataType: "text",
       success : function (result) {
-        // var data = "<p>" + result + "</p>";
-          paragraph.html(result);
+        var paragraph = document.createElement('p');
+        paragraph.textContent = result;
+        textDiv.appendChild(paragraph);
       }
   });
 }
@@ -227,9 +236,9 @@ $(document).ready(function(){
     var infoTime = info.children('.info-time');
     addTimeSpans(infoTime);
     var time = infoTime.find('p').children();
-    var text = parent.parent().siblings('.player-text');
-    var textParagraph = text.find('p').eq(0);
+    var text = parent.parent().siblings('.player-text')[0];
     var endDuration = 0.0;
+
 
     function setMetaData() {
       var dur = source.duration;
@@ -289,7 +298,7 @@ $(document).ready(function(){
       removeLoading(parent);
     }
 
-    loadDescription(textParagraph, "track_" + counter);
+    loadDescription(text, "track_" + counter);
     counter++;
   });
 });

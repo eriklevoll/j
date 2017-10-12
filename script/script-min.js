@@ -59,12 +59,18 @@ function addTimeSpans(e) {
     e.html("<p> <span>--:--</span><span> / </span><span>--:--</span> </p>");
 }
 
+function checkIE() {
+    var e = null != new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})").exec(navigator.userAgent) && parseFloat(RegExp.$1), i = "-ms-scroll-limit" in document.documentElement.style && "-ms-ime-align" in document.documentElement.style;
+    return !(!e && !i);
+}
+
 function loadDescription(e, i) {
     $.ajax({
         url: "text/" + i + ".txt",
         dataType: "text",
         success: function(i) {
-            e.html(i);
+            var n = document.createElement("p");
+            n.textContent = i, e.appendChild(n);
         }
     });
 }
@@ -111,16 +117,16 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
         }
         function n() {
             var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), n = o.width();
-            l.css("width", i / 100 * n);
+            d.css("width", i / 100 * n);
         }
-        var t = $(this), a = t.get(0), s = t.parent(), o = s.siblings(".info-section"), d = s.siblings(".distance-indicator"), l = s.siblings(".buffer-indicator"), r = o.children(".info-time");
+        var t = $(this), a = t.get(0), s = t.parent(), o = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), d = s.siblings(".buffer-indicator"), r = o.children(".info-time");
         addTimeSpans(r);
-        var c = r.find("p").children(), u = s.parent().siblings(".player-text").find("p").eq(0), m = 0;
+        var c = r.find("p").children(), u = s.parent().siblings(".player-text")[0], m = 0;
         a.addEventListener("timeupdate", function() {
             var e = a.currentTime, i = timeConvert(Math.round(e));
             if (c.eq(0).html(i), m > 0) {
-                var t = timeToPercent(e, m), l = o.width();
-                d.css("width", t / 100 * l);
+                var t = timeToPercent(e, m), d = o.width();
+                l.css("width", t / 100 * d);
             }
             e >= m && (a.currentTime = 0, s.trigger("click")), n();
         }), a.addEventListener("progress", function() {
