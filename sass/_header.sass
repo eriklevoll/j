@@ -38,7 +38,7 @@
   .left-author h1
     margin: 0
     cursor: pointer
-    margin-top: 15px
+    margin-top: 10px
     margin-left: 15px
     height: 100%
     font-size: 31px
@@ -47,8 +47,9 @@
     text-transform: uppercase
 
   .left-author .sub-author
+    cursor: pointer
     position: absolute
-    top: 30px
+    top: 25px
     left: 50px
     text-transform: uppercase
     color: #aaa
@@ -62,13 +63,14 @@
       font-weight: 400
 
   .header-nav
+    // background: pink
     position: absolute
     display: flex
     // display: none
     right: 20px
     height: 100%
-
     .nav-button-type
+      padding-top: 8px
       cursor: pointer
       overflow: hidden
       height: 100%
@@ -238,7 +240,7 @@
       color: white
       cursor: pointer
 
-  .mobile-home-btn, .mobile-music-btn, .mobile-audio-btn, .mobile-multimedia-btn, .mobile-contact-btn
+  .mobile-home-btn, .mobile-bio-btn, .mobile-audio-btn, .mobile-multimedia-btn, .mobile-contact-btn
     @extend .mobile-button-type
 
   .mobile-home-btn
