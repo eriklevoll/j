@@ -202,9 +202,7 @@ function loadDescription(textDiv, title) {
       url : "text/" + title + ".txt",
       dataType: "text",
       success : function (result) {
-        var paragraph = document.createElement('p');
-        paragraph.textContent = result;
-        textDiv.appendChild(paragraph);
+        textDiv.innerHTML = "<p>" + result + "</p>";
       }
   });
 }

@@ -69,8 +69,7 @@ function loadDescription(e, i) {
         url: "text/" + i + ".txt",
         dataType: "text",
         success: function(i) {
-            var n = document.createElement("p");
-            n.textContent = i, e.appendChild(n);
+            e.innerHTML = "<p>" + i + "</p>";
         }
     });
 }
