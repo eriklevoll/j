@@ -14,18 +14,28 @@ function setVisible(item, visible) {
 
 function setHomeView() {
   setVisible($('.contact-main'), false);
+  setVisible($('.bio-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
 }
 
 function setContactView() {
   setVisible($('.home-main'), false);
+  setVisible($('.bio-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
 }
 
+function SetBioView() {
+  setVisible($('.home-main'), false);
+  setVisible($('.players-wrapper-main'), false);
+  setVisible($('.contact-main'), false);
+  setVisible($('.bio-main'), true);
+}
+
 function setAudioView() {
   setVisible($('.home-main'), false);
+  setVisible($('.bio-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
 }
@@ -33,12 +43,9 @@ function setAudioView() {
 function closeSideNav() {
   var overlay = $('.header-overlay-buttons');
   if (overlay.hasClass('menu-hidden')) { return; }
-  // var overlayButtons = $('.header-overlay-buttons');
   var ham = $('.header-ham-wrap');
   overlay.removeClass('menu-visible');
-  // overlayButtons.removeClass('menu-visible');
   overlay.addClass('menu-hidden');
-  // overlayButtons.addClass('menu-hidden');
   ham.removeClass('ham-open');
   ham.addClass('ham-closed');
 }
@@ -51,6 +58,11 @@ $('.home-btn, .mobile-home-btn').on('click', function(){
 $('.contact-btn, .mobile-contact-btn').on('click', function(){
   closeSideNav();
   setContactView();
+});
+
+$('.bio-btn, .mobile-bio-btn').on('click', function(){
+  closeSideNav();
+  SetBioView();
 });
 
 $('.left-author').on('click', function(){

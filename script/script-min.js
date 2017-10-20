@@ -4,16 +4,23 @@ function setVisible(e, i) {
 }
 
 function setHomeView() {
-    setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
+    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".players-wrapper-main"), !1), 
     setVisible($(".home-main"), !0);
 }
 
 function setContactView() {
-    setVisible($(".home-main"), !1), setVisible($(".players-wrapper-main"), !1), setVisible($(".contact-main"), !0);
+    setVisible($(".home-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".players-wrapper-main"), !1), 
+    setVisible($(".contact-main"), !0);
+}
+
+function SetBioView() {
+    setVisible($(".home-main"), !1), setVisible($(".players-wrapper-main"), !1), setVisible($(".contact-main"), !1), 
+    setVisible($(".bio-main"), !0);
 }
 
 function setAudioView() {
-    setVisible($(".home-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !0);
+    setVisible($(".home-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), 
+    setVisible($(".players-wrapper-main"), !0);
 }
 
 function closeSideNav() {
@@ -80,6 +87,8 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setHomeView();
 }), $(".contact-btn, .mobile-contact-btn").on("click", function() {
     closeSideNav(), setContactView();
+}), $(".bio-btn, .mobile-bio-btn").on("click", function() {
+    closeSideNav(), SetBioView();
 }), $(".left-author").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
