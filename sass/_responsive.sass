@@ -1,3 +1,13 @@
+@media screen and (max-width: 1000px)
+  .header
+    .header-nav
+      display: none
+  .header-ham-wrap
+    display: flex
+  .players-wrapper-main
+    .player-section
+      width: 70%
+
 @media screen and (max-width: 815px)
   .header-nav
     .home-btn
@@ -10,17 +20,30 @@
         font-size: 25px
       .sub-author
         h3
-          font-size: 14px
         left: 40px
 
-//700
-@media screen and (max-width: 1000px)
-  .header
-    .header-nav
-      display: none
-  .header-ham-wrap
-    display: flex
+  .players-wrapper-main
+    padding-left: 0
+    align-items: center
+    .player-section
+      width: 80%
 
+  .bio-main
+    font-size: 16px
+    .bio-text
+      padding-left: 10%
+      padding-right: 10%
+
+
+@media screen and (max-width: 600px)
+  .players-wrapper-main
+    .player-section
+      width: 90%
+
+  .bio-main
+    .bio-text
+      padding-left: 5%
+      padding-right: 5%
 
 @media screen and (max-width: 550px)
   .main-wrap
@@ -32,12 +55,29 @@
     .player-main
       width: 99%
 
+@media screen and (max-width: 480px)
+  .players-wrapper-main
+    .player-section
+      width: 95%
+
+  .bio-main
+    .bio-text
+      padding-left: 2%
+      padding-right: 2%
+      margin-top: 30%
+      text-align: justify
+
 @media screen and (max-width: 450px)
   .players-wrapper-main
     .player-main
       .info-section
         .info-time
           padding-right: 10px
+
+@media screen and (max-width: 400px)
+  .players-wrapper-main
+    .player-section
+      width: 99%
 
 @media screen and (max-width: 350px)
   .main-wrap
