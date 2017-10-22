@@ -15,6 +15,7 @@ function setVisible(item, visible) {
 function setHomeView() {
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), false);
+  setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
 }
@@ -22,12 +23,14 @@ function setHomeView() {
 function setContactView() {
   setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
+  setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
 }
 
 function SetBioView() {
   setVisible($('.home-main'), false);
+  setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), true);
@@ -36,8 +39,17 @@ function SetBioView() {
 function setAudioView() {
   setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
+  setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
+}
+
+function setMultimediaView() {
+  setVisible($('.home-main'), false);
+  setVisible($('.bio-main'), false);
+  setVisible($('.contact-main'), false);
+  setVisible($('.players-wrapper-main'), false);
+  setVisible($('.multimedia-main'), true);
 }
 
 function closeSideNav() {
@@ -63,6 +75,11 @@ $('.contact-btn, .mobile-contact-btn').on('click', function(){
 $('.bio-btn, .mobile-bio-btn').on('click', function(){
   closeSideNav();
   SetBioView();
+});
+
+$('.multimedia-btn, .mobile-multimedia-btn').on('click', function(){
+  closeSideNav();
+  setMultimediaView();
 });
 
 $('.left-author').on('click', function(){
@@ -112,6 +129,34 @@ function playAudio(source, play) {
     source.pause();
   }
 }
+
+$('.multimedia-main video').on('play', function() {
+  $('.header-ham-wrap').hide();
+  $('.multimedia-overlay').addClass('multioverlay-visible');
+});
+
+$('.multimedia-main video').on('pause', function() {
+  if ((window).innerWidth <= 1000) {
+    $('.header-ham-wrap').show();
+  }
+  $('.multimedia-overlay').removeClass('multioverlay-visible');
+});
+
+$('.multimedia-overlay').on('click', function() {
+  $(this).removeClass('multioverlay-visible');
+  $('.multimedia-main video').pause();
+});
+
+$('.multimedia-main video').on('click', function() {
+  var video = $(this)[0];
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+});
+
+
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);

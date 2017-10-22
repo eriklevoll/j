@@ -1,0 +1,33 @@
+.multimedia-overlay
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background: rgba(0, 0, 0, 0.96)
+  z-index: 6
+  visibility: collapse
+  opacity: 0
+  transition: all 2s
+  // &:hover
+  //   @extend .multioverlay-visible
+
+.multimedia-main
+  // margin-top: 120px
+  // margin-bottom: 100px
+  height: 80%
+  // background: pink
+  width: auto
+  display: flex
+  justify-content: center
+  align-items: center
+  video
+    padding-top: 50px
+    // margin-top: 160px
+    height: 100%
+    width: auto
+    z-index: 7
+
+.multioverlay-visible
+  visibility: visible
+  opacity: 1
