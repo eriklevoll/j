@@ -311,7 +311,9 @@ function reSizeVideoControls() {
   $('video').each(function() {
     var source = $(this).get(0);
     var controls = $(this).siblings('.v-controls');
-    controls.width($(this).width());
+    if ($(this).width() > 0) {
+      controls.width($(this).width());
+    };
   });
 }
 
@@ -339,11 +341,12 @@ $(document).ready(function(){
   //     console.log("data: " + $(this).width());
   //     controls.width($(this).width());
   //   });
-  //
-  //   source.addEventListener('loadedmetadata', function() {
-  //     console.log("metadata: " + $(this).width());
-  //     controls.width($(this).width());
-  //   });
+
+    source.addEventListener('loadedmetadata', function() {
+      if (controls.width() == 0) {
+        controls.width($(this).width());
+      };
+    });
   //
   //   source.addEventListener('progress', function() {
   //     if (controls.width() == 0 && $(this).width() > 0) {
