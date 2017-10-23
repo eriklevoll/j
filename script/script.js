@@ -21,7 +21,7 @@ function setHomeView() {
 }
 
 function setContactView() {
-  setVisible($('.home-main'), false);
+  // setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
@@ -29,7 +29,7 @@ function setContactView() {
 }
 
 function SetBioView() {
-  setVisible($('.home-main'), false);
+  // setVisible($('.home-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
@@ -37,7 +37,7 @@ function SetBioView() {
 }
 
 function setAudioView() {
-  setVisible($('.home-main'), false);
+  // setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
@@ -45,7 +45,7 @@ function setAudioView() {
 }
 
 function setMultimediaView() {
-  setVisible($('.home-main'), false);
+  // setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
