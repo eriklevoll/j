@@ -9,24 +9,174 @@
   visibility: collapse
   opacity: 0
   transition: all 2s
-  // &:hover
-  //   @extend .multioverlay-visible
 
 .multimedia-main
-  // margin-top: 120px
-  // margin-bottom: 100px
-  height: 80%
-  // background: pink
-  width: auto
+  margin-top: 120px
+  height: calc(100% - 220px)
+  width: 100%
   display: flex
   justify-content: center
   align-items: center
-  video
-    padding-top: 50px
-    // margin-top: 160px
+
+  .v-player-section
+    width: 100%
     height: 100%
-    width: auto
-    z-index: 7
+    display: flex
+    justify-content: center
+
+    .v-player-main
+      max-height: 100%
+      width: 70%
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      video
+        height: calc(100% - 55px)
+        z-index: 7
+      video::-webkit-media-controls
+        display: none !important
+
+      .v-controls
+        margin-top: -1px
+        width: 100%
+        height: 55px
+        min-height: 55px
+        max-height: 55px
+        background: black
+        display: flex
+        position: relative
+        .v-buttons
+          cursor: pointer
+          height: 100%
+          width: 60px
+          min-width: 60px
+          display: flex
+          position: relative
+          justify-content: center
+          align-items: center
+          overflow: hidden
+          .v-play-button
+            width: 0
+            height: 0
+            border-top: 10px solid transparent
+            border-bottom: 10px solid transparent
+            border-left: 15px solid white
+            transition: all 0.5s
+            position: absolute
+            top: calc(50% - 10px)
+            left: calc(50% - 4px)
+          .v-pause-button
+            border-bottom: none
+            border-right: 5px solid white
+            border-top: none
+            border-left: 5px solid white
+            width: 5px
+            height: 20px
+            position: absolute
+            transition: all 0.5s
+            top: calc(50% - 10px)
+            left: calc(50% - 7px)
+          .v-loader
+            position: absolute
+            height: 20px
+            width: 20px
+            background: #222
+            animation: spin 2s linear infinite
+            border: 6px solid #f3f3f3
+            border-radius: 50%
+            border-top: 6px solid rgba(255,255,255,0.2)
+            transition: all 0.5s
+            top: calc(50% - 16px)
+            left: calc(50% - 16px)
+
+        .v-buttons-playing
+          .v-play-button
+            margin-left: 100px
+          .v-pause-button
+            margin-left: 0
+          .v-loader
+            animation: none
+            margin-left: 200px
+
+        .v-buttons-paused
+          .v-play-button
+            margin-left: 0
+          .v-pause-button
+            margin-left: -100px
+          .v-loader
+            animation: none
+            margin-left: 100px
+
+        .v-buttons-loading
+          .v-play-button
+            margin-left: -100px
+          .v-pause-button
+            margin-left: -200px
+          .v-loader
+            margin-left: 0
+
+        .v-info-section
+          // background: green
+          height: 100%
+          width: 200px
+          font-family: 'Montserrat', sans-serif
+          display: flex
+          flex: 1
+          .v-info-name
+            width: 200px
+            height: 100%
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: flex-start
+            padding-left: 20px
+            p#v-info-title
+              cursor: default
+              margin: 0
+              font-size: 15px
+              font-weight: normal
+              color: rgba(255,255,255,0.95)
+            p#v-info-author
+              cursor: default
+              margin: 0
+              padding-top: 2px
+              font-size: 12px
+              font-weight: normal
+              color: rgba(255,255,255,0.5)
+              word-wrap: normal
+              white-space: nowrap
+              text-overflow: clip
+
+          .v-info-time
+            min-width: 90px
+            cursor: default
+            flex: 1
+            height: 100%
+            display: flex
+            justify-content: flex-end
+            align-items: center
+            padding-right: 20px
+            p
+              margin: 0
+              font-size: 12px
+              font-weight: normal
+              color: rgba(255,255,255,0.95)
+
+          .v-fullscreen-btn
+            width: 34px
+            margin-right: 5px
+            background-image: url("img/full_screen_200.png")
+            background-repeat: no-repeat
+            background-position: center
+            background-size: contain
+            cursor: pointer
+            transition: all 0.1s
+            &:hover
+              transform: scale(1.1, 1.1)
+              // transform: translateX(3px)
+              // width: 40px
+
 
 .multioverlay-visible
   visibility: visible

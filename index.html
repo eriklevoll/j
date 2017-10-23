@@ -78,9 +78,31 @@
       </p>
     </div>
   </div>
-  <div class="multimedia-overlay"></div>
-  <div class="multimedia-main tab-hidden" onclick="">
-    <video src="http://www.mediafire.com/file/1j7aacd5l073wkt/vid2.mp4" type="video/mp4" controls="controls" preload="metadata"></video>
+  <div class="multimedia-main tab-visible" onclick="">
+    <div class="v-player-section">
+      <div class="v-player-main">
+        <video src="http://www.mediafire.com/file/1j7aacd5l073wkt/vid2.mp4" type="video/mp4" preload="metadata"></video>
+        <div class="v-controls">
+          <div class="v-buttons v-buttons-paused">
+            <div class="v-play-button"></div>
+            <div class="v-pause-button"></div>
+            <div class="v-loader"></div>
+          </div>
+          <div class="v-info-section">
+            <div class="v-info-name">
+              <p id="v-info-title">Ilus video</p>
+              <p id="v-info-author">Johanna Kivimägi</p>
+            </div>
+            <div class="v-info-time">
+              <p>00:00 / 12:34</p>
+            </div>
+            <div class="v-fullscreen-btn"></div>
+          </div>
+        </div>
+        <div class="v-distance-indicator"></div>
+        <div class="v-buffer-indicator"></div>
+      </div>
+    </div>
   </div>
   <div class="players-wrapper-main tab-hidden" onclick="">
     <div class="player-section">
@@ -204,13 +226,13 @@
       <div class="player-text"></div>
     </div>
   </div>
-  <div class="home-main tab-visible" onclick=""></div>
+  <div class="home-main tab-hidden" onclick=""></div>
   <div class="contact-main tab-hidden" onclick="">
     <div class="contact-text">
       <p>Johanna Kivimägi</p>
       <p>johanna.kivimagi@gmail.com</p>
     </div>
-    <div class="contact-image"></div>
+    <div class="contact-image"></div><img src="https://ln.syncusercontent.com/mfs-60:e558d0a1998c01dae3b2549582abb039=============================/p/j2.png?allowdd=0&amp;datakey=FkoTArkhSeJ3y2RvmWSfzQ9/6UAvt6VRFNpPhZ33JFz5cjvfZ/zaDYwOeEii43SgmEB8nu3nCOAa8yr2gO/0u2+zCqASIfXzqdeq7489I8OT5RDIizwLFg9ExkngdCSiFPFq+oLg3wJVKFqgeOsDMjJP4p5I3o60GPP3PbBREYimgrUpmlX4+ldKm7wMjMTgKbDaArF67fm8rLvjAtVRQUXRcmPrH+qpiDgwOztCE+NiUkyTc4u1t09Ghs1FySK3rttmwfPm+SBfrZmpRSXM6P0m3ygwwoHM/qTlYXOmmPXmwfxk+FGJAyMiwj9h67M+5ljQWQRlPbZRLQ4as5wcDQ&amp;engine=ln-2.6.10&amp;errurl=HTAdUkESURtO/OdzWOcRy3ok9hKC2j2XqmX7+o8UQ7Juai6UaLJhsEHFwDJDPiOyDlk/Hc/QYlk8CxfPGarN6dylTUaiXo0ivev+q4c40JsYOVR+0gndB+3+W8U/LYPRhJ02hYCwG3NWBnI42BnQSmiKgREEfiJiVWQVKmP2qO5tNw7UNfp0dsU52HnLluMK0J+JGRU3Y4lX8dWj97rf1BqVsxvCeVEe5MiohHGbwjyZ2JrOHVCitZMrFtT+aoqJk9rL5Ay26vh/CkAXsXejwi66Ez8jUwC+pzdv2SxVNkWCvv3GRnZ3tYHviKRnGjjoJP2XKjB8/uUgBZEV9Rjgnw==&amp;header1=Q29udGVudC1UeXBlOiBpbWFnZS9wbmc&amp;header2=Q29udGVudC1EaXNwb3NpdGlvbjogaW5saW5lOyBmaWxlbmFtZT0iajIucG5nIg&amp;ipaddress=ee60df12df856d8aad76954759b1928ae56475ef&amp;linkcachekey=6f387e5d0&amp;linkoid=332230002&amp;mode=100&amp;sharelink_id=4221071100002&amp;timestamp=1508692527663&amp;uagent=1993d703c71315fadd24f79c1a212f5143eab0f3&amp;signature=48d24f3937cf6f4851935ae7fbff89acf2a44d14"/>
   </div>
   <script src="script/jquery-3.2.1.min.js"></script>
   <script src="script/script-min.js"></script>

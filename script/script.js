@@ -121,7 +121,7 @@ $('.mobile-audio-btn').on('click', function(){
   setAudioView();
 });
 
-function playAudio(source, play) {
+function playMedia(source, play) {
   audioPlaying = play;
   if (play) {
     source.play();
@@ -156,6 +156,39 @@ $('.multimedia-main video').on('click', function() {
   }
 });
 
+$('.v-player-main').find('.v-fullscreen-btn').on('click', function() {
+  var info = $(this).parent();
+  var controls = info.parent();
+  var source = controls.siblings().get(0);
+  if (source.requestFullscreen) {
+      source.requestFullscreen();
+  } else if (source.mozRequestFullScreen) {
+    source.mozRequestFullScreen();
+  } else if (source.webkitRequestFullscreen) {
+    source.webkitRequestFullscreen();
+  } else if (source.msRequestFullscreen) {
+    source.msRequestFullscreen();
+  }
+});
+
+$('.v-player-main').find('.v-buttons').on('click', function() {
+  var controls = $(this).parent();
+  var source = controls.siblings().get(0);
+  if($(this).hasClass('v-buttons-playing')) {
+    $(this).removeClass('v-buttons-playing');
+    $(this).addClass('v-buttons-paused');
+    playMedia(source, false);
+  }
+  else
+  {
+    $(this).removeClass('v-buttons-paused');
+    $(this).addClass('v-buttons-playing');
+    if (source.currentTime <= 0) {
+      source.currentTime = 0.05;
+    }
+    playMedia(source, true);
+  }
+});
 
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
@@ -166,7 +199,7 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
-    playAudio(source, false);
+    playMedia(source, false);
   }
   else
   {
@@ -175,7 +208,7 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
-    playAudio(source, true);
+    playMedia(source, true);
   }
 });
 
@@ -269,6 +302,14 @@ $(window).on('load', function () {
   $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
 })
 
+window.addEventListener('resize', function(event) {
+  $('video').each(function() {
+    var source = $(this).get(0);
+    var controls = $(this).siblings('.v-controls');
+    controls.width($(this).width());
+  });
+});
+
 $(document).ready(function(){
   // var pathName = window.location.href;
   //
@@ -278,6 +319,15 @@ $(document).ready(function(){
   //   console.log(pathName);
   //   console.log(last);
   // }
+
+  $('video').each(function() {
+    var source = $(this).get(0);
+    var controls = $(this).siblings('.v-controls');
+
+    source.addEventListener('loadedmetadata', function() {
+      controls.width($(this).width());
+    });
+  });
 
   var counter = 1;
 

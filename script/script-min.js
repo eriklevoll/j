@@ -37,20 +37,20 @@ function closeSideNav() {
     }
 }
 
-function playAudio(i, e) {
+function playMedia(i, e) {
     audioPlaying = e, e ? i.play() : i.pause();
 }
 
-function setPlayPosition(i, e, n) {
-    var t = clickPosToPercent(i, e), a = n.duration;
-    n.currentTime = t / 100 * a;
+function setPlayPosition(i, e, t) {
+    var n = clickPosToPercent(i, e), a = t.duration;
+    t.currentTime = n / 100 * a;
 }
 
 function timeConvert(i) {
     var e = "";
     if (i < 60) e = "00:", i < 10 && (e += "0"), e += i; else {
-        var n = Math.floor(i / 60), t = i - 60 * n;
-        n < 10 && (e += "0"), e += n + ":", t < 10 && (e += "0"), e += t;
+        var t = Math.floor(i / 60), n = i - 60 * t;
+        t < 10 && (e += "0"), e += t + ":", n < 10 && (e += "0"), e += n;
     }
     return e;
 }
@@ -115,49 +115,69 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".multimedia-main video").on("click", function() {
     var i = $(this)[0];
     i.paused ? i.play() : i.pause();
+}), $(".v-player-main").find(".v-fullscreen-btn").on("click", function() {
+    var i = $(this).parent().parent().siblings().get(0);
+    i.requestFullscreen ? i.requestFullscreen() : i.mozRequestFullScreen ? i.mozRequestFullScreen() : i.webkitRequestFullscreen ? i.webkitRequestFullscreen() : i.msRequestFullscreen && i.msRequestFullscreen();
+}), $(".v-player-main").find(".v-buttons").on("click", function() {
+    var i = $(this).parent().siblings().get(0);
+    $(this).hasClass("v-buttons-playing") ? ($(this).removeClass("v-buttons-playing"), 
+    $(this).addClass("v-buttons-paused"), playMedia(i, !1)) : ($(this).removeClass("v-buttons-paused"), 
+    $(this).addClass("v-buttons-playing"), i.currentTime <= 0 && (i.currentTime = .05), 
+    playMedia(i, !0));
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
     var i = $(this).find("audio").get(0);
     $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
-    $(this).addClass("play-btn-paused"), playAudio(i, !1)) : ($(this).removeClass("play-btn-paused"), 
+    $(this).addClass("play-btn-paused"), playMedia(i, !1)) : ($(this).removeClass("play-btn-paused"), 
     $(this).addClass("play-btn-playing"), i.currentTime <= 0 && (i.currentTime = .05), 
-    playAudio(i, !0));
+    playMedia(i, !0));
 }), $(".player-main").find(".info-section").on("click", function(i) {
     var e = $(this).width();
     setPlayPosition(i.pageX - $(this).offset().left, e, $(this).siblings().find("audio").get(0));
 }), $(".player-main").find(".distance-indicator").on("click", function(i) {
-    var e = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), t = e.width();
-    setPlayPosition(i.pageX - e.offset().left, t, n);
+    var e = $(this).siblings(".info-section"), t = $(this).siblings().find("audio").get(0), n = e.width();
+    setPlayPosition(i.pageX - e.offset().left, n, t);
 }), $(".player-main").find(".buffer-indicator").on("click", function(i) {
-    var e = $(this).siblings(".info-section"), n = $(this).siblings().find("audio").get(0), t = e.width();
-    setPlayPosition(i.pageX - e.offset().left, t, n);
+    var e = $(this).siblings(".info-section"), t = $(this).siblings().find("audio").get(0), n = e.width();
+    setPlayPosition(i.pageX - e.offset().left, n, t);
 }), $(window).on("load", function() {
     $(".status").fadeOut(), $(".preloader").delay(350).fadeOut("slow");
+}), window.addEventListener("resize", function(i) {
+    $("video").each(function() {
+        $(this).get(0);
+        $(this).siblings(".v-controls").width($(this).width());
+    });
 }), $(document).ready(function() {
+    $("video").each(function() {
+        var i = $(this).get(0), e = $(this).siblings(".v-controls");
+        i.addEventListener("loadedmetadata", function() {
+            e.width($(this).width());
+        });
+    });
     var i = 1;
     $("audio").each(function() {
         function e() {
             var i = a.duration, e = timeConvert(Math.round(a.duration));
-            u = i, r.eq(0).html("00:00"), r.eq(2).html(e);
+            m = i, c.eq(0).html("00:00"), c.eq(2).html(e);
         }
-        function n() {
-            var i = a.buffered, e = timeToPercent(i.end(i.length - 1), u), n = o.width();
-            d.css("width", e / 100 * n);
+        function t() {
+            var i = a.buffered, e = timeToPercent(i.end(i.length - 1), m), t = o.width();
+            d.css("width", e / 100 * t);
         }
-        var t = $(this), a = t.get(0), s = t.parent(), o = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), d = s.siblings(".buffer-indicator"), m = o.children(".info-time");
-        addTimeSpans(m);
-        var r = m.find("p").children(), c = s.parent().siblings(".player-text")[0], u = 0;
+        var n = $(this), a = n.get(0), s = n.parent(), o = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), d = s.siblings(".buffer-indicator"), r = o.children(".info-time");
+        addTimeSpans(r);
+        var c = r.find("p").children(), u = s.parent().siblings(".player-text")[0], m = 0;
         a.addEventListener("timeupdate", function() {
             var i = a.currentTime, e = timeConvert(Math.round(i));
-            if (r.eq(0).html(e), u > 0) {
-                var t = timeToPercent(i, u), d = o.width();
-                l.css("width", t / 100 * d);
+            if (c.eq(0).html(e), m > 0) {
+                var n = timeToPercent(i, m), d = o.width();
+                l.css("width", n / 100 * d);
             }
-            i >= u && (a.currentTime = 0, s.trigger("click")), n();
+            i >= m && (a.currentTime = 0, s.trigger("click")), t();
         }), a.addEventListener("progress", function() {
-            a.buffered.length > 0 && n();
+            a.buffered.length > 0 && t();
         }), a.addEventListener("loadedmetadata", function() {
             e(), removeLoading(s);
-        }), a.readyState > 3 && (e(), removeLoading(s)), loadDescription(c, "track_" + i), 
+        }), a.readyState > 3 && (e(), removeLoading(s)), loadDescription(u, "track_" + i), 
         i++;
     });
 }), $(".header-ham-wrap").on("click", function() {
