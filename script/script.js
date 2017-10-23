@@ -317,6 +317,8 @@ function reSizeVideoControls() {
   });
 }
 
+
+
 $(document).ready(function(){
   // var pathName = window.location.href;
   //
@@ -331,6 +333,10 @@ $(document).ready(function(){
     var source = $(this).get(0);
     var controls = $(this).siblings('.v-controls');
 
+    source.addEventListener('resize', function(event) {
+      controls.width($(this).width());
+    });
+
     // source.load();
 
   //   $(this).onload = function() {
@@ -342,11 +348,11 @@ $(document).ready(function(){
   //     controls.width($(this).width());
   //   });
 
-    source.addEventListener('loadedmetadata', function() {
-      if (controls.width() == 0) {
-        controls.width($(this).width());
-      };
-    });
+    // source.addEventListener('loadedmetadata', function() {
+    //   if (controls.width() == 0) {
+    //     controls.width($(this).width());
+    //   };
+    // });
   //
   //   source.addEventListener('progress', function() {
   //     if (controls.width() == 0 && $(this).width() > 0) {

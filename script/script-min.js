@@ -154,8 +154,8 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(document).ready(function() {
     $("video").each(function() {
         var i = $(this).get(0), e = $(this).siblings(".v-controls");
-        i.addEventListener("loadedmetadata", function() {
-            0 == e.width() && e.width($(this).width());
+        i.addEventListener("resize", function(i) {
+            e.width($(this).width());
         });
     });
     var i = 1;
