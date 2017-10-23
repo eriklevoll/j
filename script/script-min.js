@@ -90,7 +90,7 @@ function reSizeVideoControls() {
     $("video").each(function() {
         $(this).get(0);
         var i = $(this).siblings(".v-controls");
-        $(this).width() > 0 && i.width($(this).width());
+        $(this).width() > 0 && ($(this).width() > $(window).width() ? i.width($(window).width()) : i.width($(this).width()));
     });
 }
 

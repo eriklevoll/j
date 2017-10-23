@@ -312,7 +312,11 @@ function reSizeVideoControls() {
     var source = $(this).get(0);
     var controls = $(this).siblings('.v-controls');
     if ($(this).width() > 0) {
-      controls.width($(this).width());
+      if ($(this).width() > $(window).width()) {
+          controls.width($(window).width());
+      } else {
+        controls.width($(this).width());
+      }
     };
   });
 }
