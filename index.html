@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body onclick="">
-  <div class="preloader">
-    <div class="status"></div>
-  </div>
   <div class="header-bg-image"></div>
   <div class="header" onclick="">
     <div class="left-author">
@@ -225,7 +222,14 @@
       <div class="player-text"></div>
     </div>
   </div>
-  <div class="home-main tab-visible" onclick=""></div>
+  <div class="home-main tab-visible" onclick="">
+    <div class="home-video">
+      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" poster="img/vid-frame.jpg">
+        <source src="video/vi7.webm" type="video/webm"/>
+        <source src="video/vi7.mp4" type="video/mp4"/>
+      </video>
+    </div>
+  </div>
   <div class="contact-main tab-hidden" onclick="">
     <div class="contact-text">
       <p>Johanna Kivimägi</p>
