@@ -5,27 +5,32 @@ function setVisible(i, e) {
 
 function setHomeView() {
     setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), 
-    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0), $(".home-video").find("video").css("filter", "hue-rotate(0deg)");
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0), $(".home-video").find("video").css("opacity", "0.2"), 
+    $(".home-video").find("video").css("filter", "hue-rotate(0deg)");
 }
 
 function setContactView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !0), $(".home-video").find("video").css("filter", "hue-rotate(90deg)");
+    setVisible($(".contact-main"), !0), $(".home-video").find("video").css("opacity", "0.2"), 
+    $(".home-video").find("video").css("filter", "hue-rotate(90deg)");
 }
 
 function SetBioView() {
     setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), $(".home-video").find("video").css("filter", "hue-rotate(180deg)");
+    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), $(".home-video").find("video").css("opacity", "0.2"), 
+    $(".home-video").find("video").css("filter", "hue-rotate(180deg)");
 }
 
 function setAudioView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
-    setVisible($(".players-wrapper-main"), !0), $(".home-video").find("video").css("filter", "hue-rotate(270deg)");
+    setVisible($(".players-wrapper-main"), !0), $(".home-video").find("video").css("opacity", "0"), 
+    $(".home-video").find("video").css("filter", "hue-rotate(270deg)");
 }
 
 function setMultimediaView() {
     setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".multimedia-main"), !0), $(".home-video").find("video").css("filter", "hue-rotate(-60deg)");
+    setVisible($(".multimedia-main"), !0), $(".home-video").find("video").css("opacity", "0"), 
+    $(".home-video").find("video").css("filter", "hue-rotate(-60deg)");
 }
 
 function closeSideNav() {
