@@ -18,6 +18,7 @@ function setHomeView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
+  $('.home-video').find('video').css('filter', 'hue-rotate(0deg)');
 }
 
 function setContactView() {
@@ -26,6 +27,7 @@ function setContactView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
+  $('.home-video').find('video').css('filter', 'hue-rotate(90deg)');
 }
 
 function SetBioView() {
@@ -34,6 +36,7 @@ function SetBioView() {
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), true);
+  $('.home-video').find('video').css('filter', 'hue-rotate(180deg)');
 }
 
 function setAudioView() {
@@ -42,6 +45,7 @@ function setAudioView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
+  $('.home-video').find('video').css('filter', 'hue-rotate(270deg)');
 }
 
 function setMultimediaView() {
@@ -50,6 +54,7 @@ function setMultimediaView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
+  $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
 }
 
 function closeSideNav() {
