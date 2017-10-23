@@ -155,7 +155,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     $("video").each(function() {
         var i = $(this).get(0), e = $(this).siblings(".v-controls");
         i.addEventListener("resize", function(i) {
-            e.width($(this).width());
+            $(this).width() > $(window).width() ? e.width($(window).width()) : e.width($(this).width());
         });
     });
     var i = 1;

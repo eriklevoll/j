@@ -338,7 +338,12 @@ $(document).ready(function(){
     var controls = $(this).siblings('.v-controls');
 
     source.addEventListener('resize', function(event) {
-      controls.width($(this).width());
+      if ($(this).width() > $(window).width()) {
+          controls.width($(window).width());
+      } else {
+        controls.width($(this).width());
+      }
+      // controls.width($(this).width());
     });
 
     // source.load();
