@@ -19,7 +19,7 @@ function setHomeView() {
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
   $('.home-video').find('video').css('opacity', '0.2');
-  $('.home-video').find('video').css('filter', 'hue-rotate(0deg)');
+  // $('.home-video').find('video').css('filter', 'hue-rotate(0deg)');
 }
 
 function setContactView() {
@@ -29,7 +29,7 @@ function setContactView() {
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
   $('.home-video').find('video').css('opacity', '0.2');
-  $('.home-video').find('video').css('filter', 'hue-rotate(90deg)');
+  // $('.home-video').find('video').css('filter', 'hue-rotate(90deg)');
 }
 
 function SetBioView() {
@@ -39,7 +39,7 @@ function SetBioView() {
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), true);
   $('.home-video').find('video').css('opacity', '0.2');
-  $('.home-video').find('video').css('filter', 'hue-rotate(180deg)');
+  // $('.home-video').find('video').css('filter', 'hue-rotate(180deg)');
 }
 
 function setAudioView() {
@@ -49,7 +49,7 @@ function setAudioView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
   $('.home-video').find('video').css('opacity', '0');
-  $('.home-video').find('video').css('filter', 'hue-rotate(270deg)');
+  // $('.home-video').find('video').css('filter', 'hue-rotate(270deg)');
 }
 
 function setMultimediaView() {
@@ -59,7 +59,7 @@ function setMultimediaView() {
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
   $('.home-video').find('video').css('opacity', '0');
-  $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
+  // $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
 }
 
 function closeSideNav() {
