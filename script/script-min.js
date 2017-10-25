@@ -5,27 +5,27 @@ function setVisible(i, e) {
 
 function setHomeView() {
     setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), 
-    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0), $(".home-video").find("video").css("opacity", "0.2");
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0);
 }
 
 function setContactView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !0), $(".home-video").find("video").css("opacity", "0.2");
+    setVisible($(".contact-main"), !0);
 }
 
 function SetBioView() {
     setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), $(".home-video").find("video").css("opacity", "0.2");
+    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0);
 }
 
 function setAudioView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
-    setVisible($(".players-wrapper-main"), !0), $(".home-video").find("video").css("opacity", "0");
+    setVisible($(".players-wrapper-main"), !0);
 }
 
 function setMultimediaView() {
     setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".multimedia-main"), !0), $(".home-video").find("video").css("opacity", "0");
+    setVisible($(".multimedia-main"), !0);
 }
 
 function closeSideNav() {
@@ -42,8 +42,8 @@ function playMedia(i, e) {
 }
 
 function setPlayPosition(i, e, t) {
-    var n = clickPosToPercent(i, e), s = t.duration;
-    t.currentTime = n / 100 * s;
+    var n = clickPosToPercent(i, e), a = t.duration;
+    t.currentTime = n / 100 * a;
 }
 
 function timeConvert(i) {
@@ -151,38 +151,47 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     $(".status").fadeOut(), $(".preloader").delay(350).fadeOut("slow");
 }), window.addEventListener("resize", function(i) {
     reSizeVideoControls();
+});
+
+var bgVideo = $(".home-video").find("video");
+
+window.addEventListener("mousemove", function(i) {
+    var e = $(window).width() - 250 - i.pageX, t = i.pageY - 40;
+    $(".header-nav").find(".ghost-nav").each(function() {
+        $(this).css("left", .01 * e), $(this).css("top", 10 - .015 * t);
+    });
 }), $(document).ready(function() {
     $("video").each(function() {
         var i = $(this).get(0), e = $(this).siblings(".v-controls");
         i.addEventListener("resize", function(i) {
             $(this).width() > $(window).width() ? e.width($(window).width()) : e.width($(this).width());
-        });
+        }), $(".home-video video").get(0).playbackRate = .9;
     });
     var i = 1;
     $("audio").each(function() {
         function e() {
-            var i = s.duration, e = timeConvert(Math.round(s.duration));
+            var i = a.duration, e = timeConvert(Math.round(a.duration));
             m = i, c.eq(0).html("00:00"), c.eq(2).html(e);
         }
         function t() {
-            var i = s.buffered, e = timeToPercent(i.end(i.length - 1), m), t = o.width();
+            var i = a.buffered, e = timeToPercent(i.end(i.length - 1), m), t = o.width();
             d.css("width", e / 100 * t);
         }
-        var n = $(this), s = n.get(0), a = n.parent(), o = a.siblings(".info-section"), l = a.siblings(".distance-indicator"), d = a.siblings(".buffer-indicator"), r = o.children(".info-time");
+        var n = $(this), a = n.get(0), s = n.parent(), o = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), d = s.siblings(".buffer-indicator"), r = o.children(".info-time");
         addTimeSpans(r);
-        var c = r.find("p").children(), u = a.parent().siblings(".player-text")[0], m = 0;
-        s.addEventListener("timeupdate", function() {
-            var i = s.currentTime, e = timeConvert(Math.round(i));
+        var c = r.find("p").children(), u = s.parent().siblings(".player-text")[0], m = 0;
+        a.addEventListener("timeupdate", function() {
+            var i = a.currentTime, e = timeConvert(Math.round(i));
             if (c.eq(0).html(e), m > 0) {
                 var n = timeToPercent(i, m), d = o.width();
                 l.css("width", n / 100 * d);
             }
-            i >= m && (s.currentTime = 0, a.trigger("click")), t();
-        }), s.addEventListener("progress", function() {
-            s.buffered.length > 0 && t();
-        }), s.addEventListener("loadedmetadata", function() {
-            e(), removeLoading(a);
-        }), s.readyState > 3 && (e(), removeLoading(a)), loadDescription(u, "track_" + i), 
+            i >= m && (a.currentTime = 0, s.trigger("click")), t();
+        }), a.addEventListener("progress", function() {
+            a.buffered.length > 0 && t();
+        }), a.addEventListener("loadedmetadata", function() {
+            e(), removeLoading(s);
+        }), a.readyState > 3 && (e(), removeLoading(s)), loadDescription(u, "track_" + i), 
         i++;
     });
 }), $(".header-ham-wrap").on("click", function() {

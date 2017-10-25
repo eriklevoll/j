@@ -32,7 +32,8 @@
   justify-content: flex-start
   // background: pink
   // display: none
-
+  color: white
+  color: rgba(#cccccc, 0.9)
   .left-author
     position: relative
 
@@ -55,6 +56,8 @@
     text-transform: uppercase
     color: #aaa
     color: black
+    color: white
+    color: rgba(#cccccc, 0.9)
     h3
       cursor: pointer
       width: 105px
@@ -75,51 +78,95 @@
       cursor: pointer
       overflow: hidden
       height: 100%
+      position: relative
+      width: 150px
+      // background: pink
       h3
         padding-left: 10px
         padding-right: 10px
         font-family: 'Montserrat', sans-serif
         font-weight: 400
+        position: absolute
+        left: 0
+        // color: rgba(255, 255, 255, 0.9)
+        &:first-child
+          font-weight: 400
+          color: rgba(#cccccc, 0.9)
+        &:last-child
+          left: 10px
+          top: 11px
+          color: rgba(91, 237, 212, 0.25)
+          filter: blur(1px)
 
 
-    .sub-button-type
-      background: white
-      h3
-        cursor: pointer
-        margin: 0
-        transition: 0.25s
-        padding-top: 12px
-        padding-bottom: 12px
-        &:hover
-          transform: translate(12px, 0px)
+    // .sub-button-type
+    //   background: white
+    //   // position: relative
+    //   // width: 100px
+    //   h3
+    //     cursor: pointer
+    //     margin: 0
+    //     transition: 0.25s
+    //     padding-top: 12px
+    //     padding-bottom: 12px
+    //     // position: absolute
+    //     // left: 0
+    //     &:hover
+    //       transform: translate(12px, 0px)
 
     .home-btn, .bio-btn, .contact-btn, .audio-btn, .multimedia-btn
       @extend .nav-button-type
 
-    .music-btn
-      cursor: default
-      transition: all 0.5s
-      margin-right: -74px
-      width: 145px
-      &:hover
-        height: 115px
-        box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
-        .nav-music-sub
-          opacity: 1
+    .home-btn
+      // background: pink
+      width: 85px
+      // position: relative
+      // h3
+      //   position: absolute
+      //   left: 0
+      //   top: 8px
+      //
+      //   &:last-child
+      //     left: 10px
+      //     top: 11px
+      //     color: rgba(91, 237, 212, 0.3)
 
-      .nav-music-sub
-        @extend .sub-button-type
-        opacity: 0
-        height: 120px
-        transition: all 0.2s
+    .bio-btn
+      width: 58px
 
-    .multimedia-btn
-      // background: green
-      z-index: 9
+    .contact-btn
+      width: 100px
 
     .audio-btn
-      z-index: 8
-      cursor: pointer
+      width: 85px
+
+    .multimedia-btn
+      width: 135px
+
+    // .music-btn
+    //   cursor: default
+    //   transition: all 0.5s
+    //   margin-right: -74px
+    //   width: 145px
+    //   &:hover
+    //     height: 115px
+    //     box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
+    //     .nav-music-sub
+    //       opacity: 1
+    //
+    //   .nav-music-sub
+    //     @extend .sub-button-type
+    //     opacity: 0
+    //     height: 120px
+    //     transition: all 0.2s
+    //
+    // .multimedia-btn
+    //   // background: green
+    //   z-index: 9
+    //
+    // .audio-btn
+    //   z-index: 8
+    //   cursor: pointer
       // background: pink
       // cursor: default
       // transition: all 0.5s
@@ -130,19 +177,19 @@
         // height: 165px
         // box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
         // .nav-audio-sub
-          opacity: 1
-
-      .nav-audio-sub
-        @extend .sub-button-type
-        height: 120px
-        opacity: 0
-        transition: all 0.2s
-
-    .audio-main-hover
-      height: 165px
-      box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
-      .nav-audio-sub
-        opacity: 1
+      //     opacity: 1
+      //
+      // .nav-audio-sub
+      //   @extend .sub-button-type
+      //   height: 120px
+      //   opacity: 0
+      //   transition: all 0.2s
+    //
+    // .audio-main-hover
+    //   height: 165px
+    //   box-shadow: -9px 10px 16px 0px rgba(0,0,0,0.2)
+    //   .nav-audio-sub
+    //     opacity: 1
 
 .header-ham-wrap
   z-index: 10

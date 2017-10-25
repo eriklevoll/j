@@ -18,7 +18,7 @@ function setHomeView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
-  $('.home-video').find('video').css('opacity', '0.2');
+  // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(0deg)');
 }
 
@@ -28,7 +28,7 @@ function setContactView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
-  $('.home-video').find('video').css('opacity', '0.2');
+  // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(90deg)');
 }
 
@@ -38,7 +38,7 @@ function SetBioView() {
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), true);
-  $('.home-video').find('video').css('opacity', '0.2');
+  // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(180deg)');
 }
 
@@ -48,7 +48,7 @@ function setAudioView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
-  $('.home-video').find('video').css('opacity', '0');
+  // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(270deg)');
 }
 
@@ -58,7 +58,7 @@ function setMultimediaView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
-  $('.home-video').find('video').css('opacity', '0');
+  // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
 }
 
@@ -317,6 +317,29 @@ window.addEventListener('resize', function(event) {
   reSizeVideoControls();
 });
 
+var bgVideo = $('.home-video').find('video');
+
+window.addEventListener('mousemove', function(event) {
+  // var displacement = -50 - event.pageY / $(window).height() * 50;
+  // if (event.pageX > event.pageY) {
+  //   displacement = -50 - event.pageX / $(window).width() * 75;
+  // }
+  // var displacement = 100 + event.pageY / $(window).height() * 50;
+  // console.log(event.pageY + "," + displacement);
+  // bgVideo.css('margin-bottom', displacement);
+
+  var midpointX = $(window).width() - 250 - event.pageX;
+  var midpointY = event.pageY - 40;
+  // console.log($(window).width() + "," + event.pageX);
+  // console.log(midpointY);
+
+  var elems = $('.header-nav').find('.ghost-nav');
+  elems.each(function() {
+    $(this).css('left', midpointX*0.01)
+    $(this).css('top', 10 - midpointY*0.015)
+  });
+});
+
 function reSizeVideoControls() {
   $('video').each(function() {
     var source = $(this).get(0);
@@ -342,7 +365,7 @@ $(document).ready(function(){
   //   console.log(pathName);
   //   console.log(last);
   // }
-
+//TODO se peaks olema multimedia videod
   $('video').each(function() {
     var source = $(this).get(0);
     var controls = $(this).siblings('.v-controls');
@@ -355,6 +378,13 @@ $(document).ready(function(){
       }
       // controls.width($(this).width());
     });
+
+    $('.home-video video').get(0).playbackRate = 0.9;
+    //
+    // .home-main.tab-visible(onclick="")
+    //   .home-video
+    //     //- .video-placeholder
+    //     video(playsinline autoplay muted loop)
 
     // source.load();
 
