@@ -158,7 +158,7 @@ var bgVideo = $(".home-video").find("video");
 window.addEventListener("mousemove", function(i) {
     var e = $(window).width() - 250 - i.pageX, t = i.pageY - 40;
     $(".header-nav").find(".ghost-nav").each(function() {
-        $(this).css("left", .01 * e), $(this).css("top", 10 - .015 * t);
+        $(this).css("left", .01 * e + 5), $(this).css("top", 10 - .015 * t - 2);
     });
 }), $(document).ready(function() {
     $("video").each(function() {

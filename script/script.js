@@ -335,8 +335,8 @@ window.addEventListener('mousemove', function(event) {
 
   var elems = $('.header-nav').find('.ghost-nav');
   elems.each(function() {
-    $(this).css('left', midpointX*0.01)
-    $(this).css('top', 10 - midpointY*0.015)
+    $(this).css('left', midpointX*0.01 + 5)
+    $(this).css('top', 10 - midpointY*0.015 - 2)
   });
 });
 
