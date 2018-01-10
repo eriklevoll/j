@@ -1,6 +1,6 @@
 var audioPlaying = false;
-var currentAudioSource;
-
+var currentMediaSource = null;
+var currentMediaHolder = null;
 var currentPlayingTitle = "";
 
 function setVisible(item, visible) {
@@ -153,9 +153,7 @@ function playMedia(source, play, title) {
 }
 
 function SetCurrentlyPlaying(source, play, title) {
-  // var audioPlaying = false;
-  console.log(title);
-  var currentPlayingTitle = title;
+  currentPlayingTitle = title;
 
   var footerTitle = $('.footer').find('#footer-title')[0];
   var footerPlayBtn = $('.footer').find('.footer-play-btn')[0];
@@ -210,6 +208,7 @@ $('.v-player-main').find('.v-buttons').on('click', function() {
   if($(this).hasClass('v-buttons-playing')) {
     $(this).removeClass('v-buttons-playing');
     $(this).addClass('v-buttons-paused');
+    SetFooterPlay(false);
     playMedia(source, false, title);
   }
   else
@@ -219,6 +218,7 @@ $('.v-player-main').find('.v-buttons').on('click', function() {
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
+    SetFooterPlay(true);
     playMedia(source, true, title);
   }
 });
@@ -231,14 +231,30 @@ $('.v-player-main').find('.v-buttons').on('click', function() {
 
 $('.footer').find('.play-btn-area').on('click', function() {
   if ($(this).hasClass('footer-play-btn-playing')) {
-    $(this).removeClass('footer-play-btn-playing');
-    $(this).addClass('footer-play-btn-paused');
+    SetFooterPlay(false);
   }
   else {
-    $(this).removeClass('footer-play-btn-paused');
-    $(this).addClass('footer-play-btn-playing');
+    SetFooterPlay(true);
   }
 })
+
+$('.footer').find('.text-area').on('click', function() {
+  setAudioView();
+})
+
+function SetFooterPlay(play) {
+  var playBtn = $('.footer').find('.play-btn-area')[0];
+  if (play) {
+    $(playBtn).removeClass('footer-play-btn-paused');
+    $(playBtn).addClass('footer-play-btn-playing');
+    PlayCurrentMedia();
+  }
+  else {
+    $(playBtn).removeClass('footer-play-btn-playing');
+    $(playBtn).addClass('footer-play-btn-paused');
+    PauseCurrentMedia();
+  }
+}
 
 // .audio-wrapper.play-btn-loading
 //   .play-button
@@ -251,6 +267,23 @@ $('.footer').find('.play-btn-area').on('click', function() {
 //     p#info-author Johanna Kivimägi
 //   .info-time
 
+function PauseCurrentMedia() {
+  if (currentMediaHolder == null) {
+    return;
+  }
+  currentMediaHolder.removeClass('play-btn-playing');
+  currentMediaHolder.addClass('play-btn-paused');
+  playMedia(currentMediaSource, false, currentPlayingTitle);
+}
+
+function PlayCurrentMedia() {
+  if (currentMediaHolder == null) {
+    return;
+  }
+  currentMediaHolder.removeClass('play-btn-paused');
+  currentMediaHolder.addClass('play-btn-playing');
+  playMedia(currentMediaSource, true, currentPlayingTitle);
+}
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);
@@ -261,15 +294,20 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
+    SetFooterPlay(false);
     playMedia(source, false, title);
   }
   else
   {
+    PauseCurrentMedia();
     $(this).removeClass('play-btn-paused');
     $(this).addClass('play-btn-playing');
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
+    currentMediaSource = source;
+    currentMediaHolder = $(this);
+    SetFooterPlay(true);
     playMedia(source, true, title);
   }
 });
@@ -421,7 +459,7 @@ $(document).ready(function(){
     var source = $(this).get(0);
     var controls = $(this).siblings('.v-controls');
     var section = $(this).parent().parent();
-    console.log(section.width());
+    // console.log(section.width());
 
     // source.addEventListener('resize', function(event) {
     //   if ($(this).width() > $(window).width()) {
