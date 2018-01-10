@@ -369,15 +369,17 @@ $(document).ready(function(){
   $('video').each(function() {
     var source = $(this).get(0);
     var controls = $(this).siblings('.v-controls');
+    var section = $(this).parent().parent();
+    console.log(section.width());
 
-    source.addEventListener('resize', function(event) {
-      if ($(this).width() > $(window).width()) {
-          controls.width($(window).width());
-      } else {
-        controls.width($(this).width());
-      }
-      // controls.width($(this).width());
-    });
+    // source.addEventListener('resize', function(event) {
+    //   if ($(this).width() > $(window).width()) {
+    //       controls.width($(window).width());
+    //   } else {
+    //     controls.width(section.width());
+    //   }
+    //   // controls.width($(this).width());
+    // });
 
     $('.home-video video').get(0).playbackRate = 0.9;
     //

@@ -94,7 +94,7 @@ function reSizeVideoControls() {
     });
 }
 
-var audioPlaying = !1, currentAudioSource;
+var currentAudioSource, audioPlaying = !1;
 
 $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setHomeView();
@@ -162,10 +162,9 @@ window.addEventListener("mousemove", function(i) {
     });
 }), $(document).ready(function() {
     $("video").each(function() {
-        var i = $(this).get(0), e = $(this).siblings(".v-controls");
-        i.addEventListener("resize", function(i) {
-            $(this).width() > $(window).width() ? e.width($(window).width()) : e.width($(this).width());
-        }), $(".home-video video").get(0).playbackRate = .9;
+        $(this).get(0), $(this).siblings(".v-controls");
+        var i = $(this).parent().parent();
+        console.log(i.width()), $(".home-video video").get(0).playbackRate = .9;
     });
     var i = 1;
     $("audio").each(function() {
