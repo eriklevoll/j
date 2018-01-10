@@ -230,3 +230,11 @@ window.addEventListener("mousemove", function(e) {
     $(this).removeClass("ham-closed"), $(this).addClass("ham-open")) : (e.removeClass("menu-visible"), 
     e.addClass("menu-hidden"), $(this).removeClass("ham-open"), $(this).addClass("ham-closed"));
 });
+
+var vid = $(".home-main").find("video").get(0);
+
+vid.addEventListener("canplay", function() {
+    $(".home-main").find(".video-placeholder").eq(0).hide();
+}), vid.addEventListener("canplaythrough", function() {
+    $(".home-main").find(".video-placeholder").eq(0).hide();
+});
