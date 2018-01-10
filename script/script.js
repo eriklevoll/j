@@ -1,6 +1,8 @@
 var audioPlaying = false;
 var currentAudioSource;
 
+var currentPlayingTitle = "";
+
 function setVisible(item, visible) {
   if (visible) {
     item.removeClass('tab-hidden');
@@ -18,6 +20,8 @@ function setHomeView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.home-main'), true);
+  // $('.footer').css('background', 'rgba(255,255,255,0.15)')
+  $('.footer').show();
   // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(0deg)');
 }
@@ -28,6 +32,8 @@ function setContactView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), true);
+  // $('.footer').css('background', 'rgba(255,255,255,0.15)')
+  $('.footer').show();
   // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(90deg)');
 }
@@ -38,6 +44,8 @@ function SetBioView() {
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), true);
+  // $('.footer').css('background', 'black')
+  $('.footer').show();
   // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(180deg)');
 }
@@ -48,6 +56,7 @@ function setAudioView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), true);
+  $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(270deg)');
 }
@@ -58,6 +67,7 @@ function setMultimediaView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
+  $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
 }
@@ -132,13 +142,25 @@ $('.mobile-audio-btn').on('click', function(){
   setAudioView();
 });
 
-function playMedia(source, play) {
+function playMedia(source, play, title) {
   audioPlaying = play;
+  SetCurrentlyPlaying(source, play, title)
   if (play) {
     source.play();
   } else {
     source.pause();
   }
+}
+
+function SetCurrentlyPlaying(source, play, title) {
+  // var audioPlaying = false;
+  console.log(title);
+  var currentPlayingTitle = title;
+
+  var footerTitle = $('.footer').find('#footer-title')[0];
+  var footerPlayBtn = $('.footer').find('.footer-play-btn')[0];
+
+  footerTitle.innerHTML = title;
 }
 
 $('.multimedia-main video').on('play', function() {
@@ -188,7 +210,7 @@ $('.v-player-main').find('.v-buttons').on('click', function() {
   if($(this).hasClass('v-buttons-playing')) {
     $(this).removeClass('v-buttons-playing');
     $(this).addClass('v-buttons-paused');
-    playMedia(source, false);
+    playMedia(source, false, title);
   }
   else
   {
@@ -197,20 +219,49 @@ $('.v-player-main').find('.v-buttons').on('click', function() {
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
-    playMedia(source, true);
+    playMedia(source, true, title);
   }
 });
+
+// .footer
+//   .text-area
+//     p Currently playing
+//     p#footer-title Cinematic Orchesta - Hey Now
+//   .play-btn-area.footer-play-btn-playing
+
+$('.footer').find('.play-btn-area').on('click', function() {
+  if ($(this).hasClass('footer-play-btn-playing')) {
+    $(this).removeClass('footer-play-btn-playing');
+    $(this).addClass('footer-play-btn-paused');
+  }
+  else {
+    $(this).removeClass('footer-play-btn-paused');
+    $(this).addClass('footer-play-btn-playing');
+  }
+})
+
+// .audio-wrapper.play-btn-loading
+//   .play-button
+//   .pause-button
+//   .loader
+//   audio(src="audio/Creep.mp3" type="audio/mpeg")
+// .info-section
+//   .info-name
+//     p#info-title Muundumine
+//     p#info-author Johanna Kivimägi
+//   .info-time
 
 
 $('.player-main').find('.audio-wrapper').on('click', function() {
   var source = $(this).find('audio').get(0);
+  var title = $(this).siblings('.info-section').find('#info-title')[0].innerHTML;
   // if($(this).hasClass('play-btn-loading')) {
   //   source.currentTime = 0;
   // }
   if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
-    playMedia(source, false);
+    playMedia(source, false, title);
   }
   else
   {
@@ -219,7 +270,7 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
-    playMedia(source, true);
+    playMedia(source, true, title);
   }
 });
 
