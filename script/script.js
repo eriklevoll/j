@@ -450,10 +450,22 @@ function reSizeVideoControls() {
   });
 }
 
-
+// var wavesurfer = WaveSurfer.create({
+//   container: '#waveform',
+//   waveColor: 'violet',
+//   progressColor: 'purple'
+// });
 
 $(document).ready(function(){
   $('.footer').hide();
+
+//   wavesurfer.load('audio/Creep.mp3');
+//
+//   wavesurfer.on('ready', function () {
+//     wavesurfer.play();
+//     wavesurfer.pause();
+// });
+
   // var pathName = window.location.href;
   //
   // if(pathName.indexOf('#') != -1) {
