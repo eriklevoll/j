@@ -5,17 +5,17 @@ function setVisible(e, i) {
 
 function setHomeView() {
     setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), 
-    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0), $(".footer").show();
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0), ShowFooter();
 }
 
 function setContactView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !0), $(".footer").show();
+    setVisible($(".contact-main"), !0), ShowFooter();
 }
 
 function SetBioView() {
     setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), $(".footer").show();
+    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), ShowFooter();
 }
 
 function setAudioView() {
@@ -35,6 +35,10 @@ function closeSideNav() {
         e.removeClass("menu-visible"), e.addClass("menu-hidden"), i.removeClass("ham-open"), 
         i.addClass("ham-closed");
     }
+}
+
+function ShowFooter() {
+    null != currentMediaSource && $(".footer").show();
 }
 
 function playMedia(e, i, t) {
@@ -189,7 +193,7 @@ window.addEventListener("mousemove", function(e) {
         $(this).css("left", .01 * i + 5), $(this).css("top", 10 - .015 * t - 2);
     });
 }), $(document).ready(function() {
-    $("video").each(function() {
+    $(".footer").hide(), $("video").each(function() {
         $(this).get(0), $(this).siblings(".v-controls"), $(this).parent().parent();
         $(".home-video video").get(0).playbackRate = .9;
     });
@@ -200,24 +204,24 @@ window.addEventListener("mousemove", function(e) {
             m = e, u.eq(0).html("00:00"), u.eq(2).html(i);
         }
         function t() {
-            var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), t = o.width();
+            var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), t = s.width();
             r.css("width", i / 100 * t);
         }
-        var n = $(this), a = n.get(0), s = n.parent(), o = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), r = s.siblings(".buffer-indicator"), d = o.children(".info-time");
+        var n = $(this), a = n.get(0), o = n.parent(), s = o.siblings(".info-section"), l = o.siblings(".distance-indicator"), r = o.siblings(".buffer-indicator"), d = s.children(".info-time");
         addTimeSpans(d);
-        var u = d.find("p").children(), c = s.parent().siblings(".player-text")[0], m = 0;
+        var u = d.find("p").children(), c = o.parent().siblings(".player-text")[0], m = 0;
         a.addEventListener("timeupdate", function() {
             var e = a.currentTime, i = timeConvert(Math.round(e));
             if (u.eq(0).html(i), m > 0) {
-                var n = timeToPercent(e, m), r = o.width();
+                var n = timeToPercent(e, m), r = s.width();
                 l.css("width", n / 100 * r);
             }
-            e >= m && (a.currentTime = 0, s.trigger("click")), t();
+            e >= m && (a.currentTime = 0, o.trigger("click")), t();
         }), a.addEventListener("progress", function() {
             a.buffered.length > 0 && t();
         }), a.addEventListener("loadedmetadata", function() {
-            i(), removeLoading(s);
-        }), a.readyState > 3 && (i(), removeLoading(s)), loadDescription(c, "track_" + e), 
+            i(), removeLoading(o);
+        }), a.readyState > 3 && (i(), removeLoading(o)), loadDescription(c, "track_" + e), 
         e++;
     });
 }), $(".header-ham-wrap").on("click", function() {
