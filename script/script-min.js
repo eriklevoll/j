@@ -15,7 +15,7 @@ function setContactView() {
 
 function SetBioView() {
     setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), ShowFooter();
+    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), $(".footer").hide();
 }
 
 function setAudioView() {

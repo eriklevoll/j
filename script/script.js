@@ -45,7 +45,7 @@ function SetBioView() {
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), true);
   // $('.footer').css('background', 'black')
-  ShowFooter();
+  $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0.2');
   // $('.home-video').find('video').css('filter', 'hue-rotate(180deg)');
 }
