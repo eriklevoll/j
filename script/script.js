@@ -67,7 +67,7 @@ function setMultimediaView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
-  $('.footer').hide();
+  // $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
 }
@@ -111,25 +111,8 @@ $('.left-author.sub-author').on('click', function(){
   setHomeView();
 });
 
-$('.audio-btn').on({
-  // mouseover: function(){
-  //   if (!$(this).hasClass('audio-main-hover')) {
-  //     $(this).addClass('audio-main-hover');
-  //   }
-  // },
-  // mouseleave: function() {
-  //   $(this).removeClass('audio-main-hover');
-  // },
-  click: function() {
-    setAudioView();
-    // if ($(this).hasClass('audio-main-hover')) {
-    //   console.log('on, votame ära');
-    //   $(this).removeClass('audio-main-hover');
-    // } else {
-    //   console.log('ei ole, paneme peale');
-    //   $(this).addClass('audio-main-hover');
-    // }
-  }
+$('.audio-btn').on('click', function() {
+  setAudioView();
 });
 
 function ShowFooter() {
@@ -138,11 +121,6 @@ function ShowFooter() {
   }
   $('.footer').show();
 }
-
-// $('.audio-btn h3#audio-sub-one').on('click', function(){
-//   $('.audio-btn').removeClass('audio-main-hover');
-//   setAudioView();
-// });
 
 $('.mobile-audio-btn').on('click', function(){
   closeSideNav();
@@ -416,24 +394,22 @@ window.addEventListener('resize', function(event) {
 var bgVideo = $('.home-video').find('video');
 
 window.addEventListener('mousemove', function(event) {
-  // var displacement = -50 - event.pageY / $(window).height() * 50;
-  // if (event.pageX > event.pageY) {
-  //   displacement = -50 - event.pageX / $(window).width() * 75;
-  // }
-  // var displacement = 100 + event.pageY / $(window).height() * 50;
-  // console.log(event.pageY + "," + displacement);
-  // bgVideo.css('margin-bottom', displacement);
-
   var midpointX = $(window).width() - 250 - event.pageX;
   var midpointY = event.pageY - 40;
-  // console.log($(window).width() + "," + event.pageX);
-  // console.log(midpointY);
-
   var elems = $('.header-nav').find('.ghost-nav');
-  elems.each(function() {
-    $(this).css('left', midpointX*0.01 + 5)
-    $(this).css('top', 10 - midpointY*0.015 - 2)
-  });
+  setTimeout(function() {
+
+    elems.each(function() {
+      // $(this).animate({
+      //   left: midpointX*0.01 + 5
+      // }, 100);
+      // setTimeout(function() {
+      //   $(this).css('left', midpointX*0.01 + 5)
+      // }, 1);
+      $(this).css('left', midpointX*0.01 + 5)
+      $(this).css('top', 10 - midpointY*0.015 - 2)
+    });
+  }, 100);
 });
 
 function reSizeVideoControls() {

@@ -25,7 +25,7 @@ function setAudioView() {
 
 function setMultimediaView() {
     setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".multimedia-main"), !0), $(".footer").hide();
+    setVisible($(".multimedia-main"), !0);
 }
 
 function closeSideNav() {
@@ -136,10 +136,8 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
-}), $(".audio-btn").on({
-    click: function() {
-        setAudioView();
-    }
+}), $(".audio-btn").on("click", function() {
+    setAudioView();
 }), $(".mobile-audio-btn").on("click", function() {
     closeSideNav(), setAudioView();
 }), $(".multimedia-main video").on("play", function() {
@@ -188,10 +186,12 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 var bgVideo = $(".home-video").find("video");
 
 window.addEventListener("mousemove", function(e) {
-    var i = $(window).width() - 250 - e.pageX, t = e.pageY - 40;
-    $(".header-nav").find(".ghost-nav").each(function() {
-        $(this).css("left", .01 * i + 5), $(this).css("top", 10 - .015 * t - 2);
-    });
+    var i = $(window).width() - 250 - e.pageX, t = e.pageY - 40, n = $(".header-nav").find(".ghost-nav");
+    setTimeout(function() {
+        n.each(function() {
+            $(this).css("left", .01 * i + 5), $(this).css("top", 10 - .015 * t - 2);
+        });
+    }, 100);
 }), $(document).ready(function() {
     $(".footer").hide(), $("video").each(function() {
         $(this).get(0), $(this).siblings(".v-controls"), $(this).parent().parent();
