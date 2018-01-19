@@ -60,13 +60,19 @@ function SetFooterPlay(e) {
 }
 
 function PauseCurrentMedia() {
-    null != currentMediaHolder && (currentMediaHolder.removeClass("play-btn-playing"), 
-    currentMediaHolder.addClass("play-btn-paused"), playMedia(currentMediaSource, !1, currentPlayingTitle));
+    if (null != currentMediaHolder) {
+        var e = "play-btn";
+        currentIsVideo && (e = "v-buttons"), currentMediaHolder.removeClass(e + "-playing"), 
+        currentMediaHolder.addClass(e + "-paused"), playMedia(currentMediaSource, !1, currentPlayingTitle);
+    }
 }
 
 function PlayCurrentMedia() {
-    null != currentMediaHolder && (currentMediaHolder.removeClass("play-btn-paused"), 
-    currentMediaHolder.addClass("play-btn-playing"), playMedia(currentMediaSource, !0, currentPlayingTitle));
+    if (null != currentMediaHolder) {
+        var e = "play-btn";
+        currentIsVideo && (e = "v-buttons"), currentMediaHolder.removeClass(e + "-paused"), 
+        currentMediaHolder.addClass(e + "-playing"), playMedia(currentMediaSource, !0, currentPlayingTitle);
+    }
 }
 
 function setPlayPosition(e, i, t) {
@@ -122,7 +128,7 @@ function reSizeVideoControls() {
     });
 }
 
-var audioPlaying = !1, currentMediaSource = null, currentMediaHolder = null, currentPlayingTitle = "";
+var audioPlaying = !1, currentMediaSource = null, currentMediaHolder = null, currentPlayingTitle = "", currentIsVideo = !1;
 
 $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setHomeView();
@@ -153,11 +159,12 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     var e = $(this).parent().parent().siblings().get(0);
     e.requestFullscreen ? e.requestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen ? e.webkitRequestFullscreen() : e.msRequestFullscreen && e.msRequestFullscreen();
 }), $(".v-player-main").find(".v-buttons").on("click", function() {
-    var e = $(this).parent().siblings().get(0);
-    $(this).hasClass("v-buttons-playing") ? ($(this).removeClass("v-buttons-playing"), 
-    $(this).addClass("v-buttons-paused"), SetFooterPlay(!1), playMedia(e, !1, title)) : ($(this).removeClass("v-buttons-paused"), 
-    $(this).addClass("v-buttons-playing"), e.currentTime <= 0 && (e.currentTime = .05), 
-    SetFooterPlay(!0), playMedia(e, !0, title));
+    var e = $(this).parent(), i = e.siblings().get(0), t = e.find("#v-info-title")[0].innerHTML;
+    console.log(t), $(this).hasClass("v-buttons-playing") ? ($(this).removeClass("v-buttons-playing"), 
+    $(this).addClass("v-buttons-paused"), SetFooterPlay(!1), playMedia(i, !1, t)) : (PauseCurrentMedia(), 
+    $(this).removeClass("v-buttons-paused"), $(this).addClass("v-buttons-playing"), 
+    i.currentTime <= 0 && (i.currentTime = .05), currentMediaSource = i, currentMediaHolder = $(this), 
+    SetFooterPlay(!0), playMedia(i, !0, t), currentIsVideo = !0);
 }), $(".footer").find(".play-btn-area").on("click", function() {
     SetFooterPlay($(this).hasClass("footer-play-btn-playing") ? !1 : !0);
 }), $(".footer").find(".text-area").on("click", function() {
@@ -167,7 +174,8 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), SetFooterPlay(!1), playMedia(e, !1, i)) : (PauseCurrentMedia(), 
     $(this).removeClass("play-btn-paused"), $(this).addClass("play-btn-playing"), e.currentTime <= 0 && (e.currentTime = .05), 
-    currentMediaSource = e, currentMediaHolder = $(this), SetFooterPlay(!0), playMedia(e, !0, i));
+    currentMediaSource = e, currentMediaHolder = $(this), SetFooterPlay(!0), playMedia(e, !0, i), 
+    currentIsVideo = !1);
 }), $(".player-main").find(".info-section").on("click", function(e) {
     var i = $(this).width();
     setPlayPosition(e.pageX - $(this).offset().left, i, $(this).siblings().find("audio").get(0));

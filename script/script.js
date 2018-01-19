@@ -2,6 +2,7 @@ var audioPlaying = false;
 var currentMediaSource = null;
 var currentMediaHolder = null;
 var currentPlayingTitle = "";
+var currentIsVideo = false;
 
 function setVisible(item, visible) {
   if (visible) {
@@ -190,6 +191,8 @@ $('.v-player-main').find('.v-fullscreen-btn').on('click', function() {
 $('.v-player-main').find('.v-buttons').on('click', function() {
   var controls = $(this).parent();
   var source = controls.siblings().get(0);
+  var title = controls.find('#v-info-title')[0].innerHTML;
+  console.log(title);
   if($(this).hasClass('v-buttons-playing')) {
     $(this).removeClass('v-buttons-playing');
     $(this).addClass('v-buttons-paused');
@@ -198,21 +201,19 @@ $('.v-player-main').find('.v-buttons').on('click', function() {
   }
   else
   {
+    PauseCurrentMedia();
     $(this).removeClass('v-buttons-paused');
     $(this).addClass('v-buttons-playing');
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
+    currentMediaSource = source;
+    currentMediaHolder = $(this);
     SetFooterPlay(true);
     playMedia(source, true, title);
+    currentIsVideo = true;
   }
 });
-
-// .footer
-//   .text-area
-//     p Currently playing
-//     p#footer-title Cinematic Orchesta - Hey Now
-//   .play-btn-area.footer-play-btn-playing
 
 $('.footer').find('.play-btn-area').on('click', function() {
   if ($(this).hasClass('footer-play-btn-playing')) {
@@ -241,23 +242,16 @@ function SetFooterPlay(play) {
   }
 }
 
-// .audio-wrapper.play-btn-loading
-//   .play-button
-//   .pause-button
-//   .loader
-//   audio(src="audio/Creep.mp3" type="audio/mpeg")
-// .info-section
-//   .info-name
-//     p#info-title Muundumine
-//     p#info-author Johanna Kivimägi
-//   .info-time
-
 function PauseCurrentMedia() {
   if (currentMediaHolder == null) {
     return;
   }
-  currentMediaHolder.removeClass('play-btn-playing');
-  currentMediaHolder.addClass('play-btn-paused');
+  var className = 'play-btn';
+  if (currentIsVideo) {
+    className = 'v-buttons';
+  }
+  currentMediaHolder.removeClass(className + '-playing');
+  currentMediaHolder.addClass(className + '-paused');
   playMedia(currentMediaSource, false, currentPlayingTitle);
 }
 
@@ -265,8 +259,12 @@ function PlayCurrentMedia() {
   if (currentMediaHolder == null) {
     return;
   }
-  currentMediaHolder.removeClass('play-btn-paused');
-  currentMediaHolder.addClass('play-btn-playing');
+  var className = 'play-btn';
+  if (currentIsVideo) {
+    className = 'v-buttons';
+  }
+  currentMediaHolder.removeClass(className + '-paused');
+  currentMediaHolder.addClass(className + '-playing');
   playMedia(currentMediaSource, true, currentPlayingTitle);
 }
 
@@ -294,6 +292,7 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
     currentMediaHolder = $(this);
     SetFooterPlay(true);
     playMedia(source, true, title);
+    currentIsVideo = false;
   }
 });
 
