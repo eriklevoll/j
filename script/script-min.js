@@ -128,7 +128,7 @@ function reSizeVideoControls() {
     });
 }
 
-var audioPlaying = !1, currentMediaSource = null, currentMediaHolder = null, currentPlayingTitle = "", currentIsVideo = !1;
+var audioPlaying = !1, currentMediaSource = null, currentMediaHolder = null, currentPlayingTitle = "", currentIsVideo = !1, headerLoaded = !1, bgImageLoaded = !1;
 
 $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setHomeView();
@@ -185,8 +185,6 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".player-main").find(".buffer-indicator").on("click", function(e) {
     var i = $(this).siblings(".info-section"), t = $(this).siblings().find("audio").get(0), n = i.width();
     setPlayPosition(e.pageX - i.offset().left, n, t);
-}), $(window).on("load", function() {
-    $(".status").fadeOut(), $(".preloader").delay(350).fadeOut("slow");
 }), window.addEventListener("resize", function(e) {
     reSizeVideoControls();
 });
@@ -203,7 +201,7 @@ window.addEventListener("mousemove", function(e) {
 }), $(document).ready(function() {
     $(".footer").hide(), $("video").each(function() {
         $(this).get(0), $(this).siblings(".v-controls"), $(this).parent().parent();
-        $(".home-video video").get(0).playbackRate = .9;
+        $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow");
     });
     var e = 1;
     $("audio").each(function() {

@@ -1,8 +1,10 @@
-var audioPlaying = false;
-var currentMediaSource = null;
-var currentMediaHolder = null;
+var audioPlaying        = false;
+var currentMediaSource  = null;
+var currentMediaHolder  = null;
 var currentPlayingTitle = "";
-var currentIsVideo = false;
+var currentIsVideo      = false;
+var headerLoaded        = false;
+var bgImageLoaded       = false;
 
 function setVisible(item, visible) {
   if (visible) {
@@ -386,10 +388,10 @@ function loadDescription(textDiv, title) {
   });
 }
 
-$(window).on('load', function () {
-  $('.status').fadeOut(); // will first fade out the loading animation
-  $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
-})
+// $(window).on('load', function () {
+//   // $('.status').fadeOut(); // will first fade out the loading animation
+//   $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+// })
 
 window.addEventListener('resize', function(event) {
   reSizeVideoControls();
@@ -471,6 +473,10 @@ $(document).ready(function(){
     // });
 
     $('.home-video video').get(0).playbackRate = 0.9;
+
+    $('.preloader').delay(350).fadeOut('slow');
+    // $('.preloader').delay(350).fadeOut('slow');
+
     //
     // .home-main.tab-visible(onclick="")
     //   .home-video
