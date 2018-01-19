@@ -225,7 +225,12 @@ $('.footer').find('.play-btn-area').on('click', function() {
 })
 
 $('.footer').find('.text-area').on('click', function() {
-  setAudioView();
+  if (currentIsVideo) {
+    setMultimediaView();
+  }
+  else {
+    setAudioView();
+  }
 })
 
 function SetFooterPlay(play) {

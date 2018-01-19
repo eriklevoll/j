@@ -168,7 +168,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".footer").find(".play-btn-area").on("click", function() {
     SetFooterPlay($(this).hasClass("footer-play-btn-playing") ? !1 : !0);
 }), $(".footer").find(".text-area").on("click", function() {
-    setAudioView();
+    currentIsVideo ? setMultimediaView() : setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
     var e = $(this).find("audio").get(0), i = $(this).siblings(".info-section").find("#info-title")[0].innerHTML;
     $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
