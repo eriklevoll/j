@@ -25,7 +25,7 @@ function setAudioView() {
 
 function setMultimediaView() {
     setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".multimedia-main"), !0);
+    setVisible($(".multimedia-main"), !0), $(".footer").hide();
 }
 
 function closeSideNav() {

@@ -68,7 +68,7 @@ function setMultimediaView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
-  // $('.footer').hide();
+  $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
 }
