@@ -147,9 +147,9 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".mobile-audio-btn").on("click", function() {
     closeSideNav(), setAudioView();
 }), $(".multimedia-main video").on("play", function() {
-    $(".header-ham-wrap").hide(), $(".multimedia-overlay").addClass("multioverlay-visible");
+    $(".multimedia-overlay").addClass("multioverlay-visible");
 }), $(".multimedia-main video").on("pause", function() {
-    window.innerWidth <= 1e3 && $(".header-ham-wrap").show(), $(".multimedia-overlay").removeClass("multioverlay-visible");
+    window.innerWidth, $(".multimedia-overlay").removeClass("multioverlay-visible");
 }), $(".multimedia-overlay").on("click", function() {
     $(this).removeClass("multioverlay-visible"), $(".multimedia-main video").pause();
 }), $(".multimedia-main video").on("click", function() {

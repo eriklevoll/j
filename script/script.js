@@ -148,13 +148,13 @@ function SetCurrentlyPlaying(source, play, title) {
 }
 
 $('.multimedia-main video').on('play', function() {
-  $('.header-ham-wrap').hide();
+  // $('.header-ham-wrap').hide();
   $('.multimedia-overlay').addClass('multioverlay-visible');
 });
 
 $('.multimedia-main video').on('pause', function() {
   if ((window).innerWidth <= 1000) {
-    $('.header-ham-wrap').show();
+    // $('.header-ham-wrap').show();
   }
   $('.multimedia-overlay').removeClass('multioverlay-visible');
 });
