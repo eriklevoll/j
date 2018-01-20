@@ -199,16 +199,24 @@ window.addEventListener("mousemove", function(e) {
         });
     }, 100);
 }), $(document).ready(function() {
-    $(".footer").hide(), $("video").each(function() {
-        $(this).get(0), $(this).siblings(".v-controls"), $(this).parent().parent();
-        var e = $(".home-video video").get(0), i = $(".home-main").find(".video-placeholder");
-        e.playbackRate = .9, e.addEventListener("play", function() {
-            i.delay(100).fadeOut(2e3);
-        }), e.addEventListener("canplay", function() {
-            i.delay(100).fadeOut(2e3);
-        }), e.addEventListener("canplaythrough", function() {
-            i.delay(100).fadeOut(2e3);
-        }), $(".preloader").delay(350).fadeOut("slow");
+    $(".footer").hide();
+    $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow"), 
+    $(".multimedia-main video").each(function() {
+        var e = $(this).get(0), i = $(this).siblings(".v-controls"), t = ($(this).parent().parent(), 
+        0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator");
+        e.addEventListener("loadedmetadata", function() {
+            !function() {
+                var i = e.duration;
+                timeConvert(Math.round(e.duration)), t = i;
+            }();
+        }), e.addEventListener("timeupdate", function() {
+            var i = e.currentTime;
+            timeConvert(Math.round(i));
+            if (t > 0) {
+                var o = timeToPercent(i, t), s = n.width();
+                a.css("width", o / 100 * s);
+            }
+        });
     });
     var e = 1;
     $("audio").each(function() {
@@ -242,4 +250,14 @@ window.addEventListener("mousemove", function(e) {
     e.hasClass("menu-hidden") ? (e.removeClass("menu-hidden"), e.addClass("menu-visible"), 
     $(this).removeClass("ham-closed"), $(this).addClass("ham-open")) : (e.removeClass("menu-visible"), 
     e.addClass("menu-hidden"), $(this).removeClass("ham-open"), $(this).addClass("ham-closed"));
+});
+
+var homeVideo = $(".home-video video").get(0), vidPlaceholder = $(".home-main").find(".video-placeholder");
+
+homeVideo.addEventListener("play", function() {
+    vidPlaceholder.delay(100).fadeOut(2e3);
+}), homeVideo.addEventListener("canplay", function() {
+    vidPlaceholder.delay(100).fadeOut(2e3);
+}), homeVideo.addEventListener("canplaythrough", function() {
+    vidPlaceholder.delay(100).fadeOut(2e3);
 });

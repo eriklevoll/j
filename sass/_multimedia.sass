@@ -107,12 +107,46 @@
         border-top: 1px solid black
         // width: 100px
         // width: 0
-        height: 55px
+        height: 45px
         // min-height: 55px
         // max-height: 55px
         background: black
         display: flex
-        // position: relative
+        position: relative
+        .v-distance-indicator
+          width: 0
+          height: 45px
+          position: absolute
+          left: 0
+          top: 0
+          margin-left: 60px
+          // background: rgb(105, 71, 48)
+          background: rgba(255,255,255,0.06)
+          border-right: 1px solid rgba(255,255,255,0.15)
+        .v-distance-full
+          height: 45px
+          position: absolute
+          left: 0
+          top: 0
+          right: 0
+          margin-right: 45px
+          margin-left: 60px
+          // border: 1px solid #ccc
+        // .v-waveform
+        //   // width: 100px
+        //   height: 45px
+        //   position: absolute
+        //   left: 0
+        //   top: 0
+        //   right: 0
+        //   margin-right: 45px
+        //   margin-left: 60px
+        //   // background: pink
+        //   background-repeat: no-repeat
+        //   background-position: center
+        //   background-size: 100% 100%
+        //   background-image: url("spectra/creep_spectre.png")
+
         .v-buttons
           cursor: pointer
           height: 100%
@@ -190,6 +224,7 @@
           font-family: 'Montserrat', sans-serif
           display: flex
           flex: 1
+          z-index: 1
           .v-info-name
             width: 200px
             height: 100%
