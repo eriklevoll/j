@@ -473,6 +473,7 @@ $(document).ready(function(){
     // });
 
     var homeVideo = $('.home-video video').get(0);
+    var vidPlaceholder = $('.home-main').find('.video-placeholder');
     homeVideo.playbackRate = 0.9;
     // console.log(homeVideo);
 
@@ -483,8 +484,19 @@ $(document).ready(function(){
     homeVideo.addEventListener('play', function() {
         // console.log('play');
       // $('.home-main').find('.video-placeholder').eq(0).hide();
-      $('.home-main').find('.video-placeholder').delay(100).fadeOut(2000);
+      // $('.home-main').find('.video-placeholder').delay(100).fadeOut(2000);
+      vidPlaceholder.delay(100).fadeOut(2000);
     });
+
+    homeVideo.addEventListener('canplay', function() {
+      vidPlaceholder.delay(100).fadeOut(2000);
+      // $('.home-main').find('.video-placeholder').eq(0).hide();
+    })
+
+    homeVideo.addEventListener('canplaythrough', function() {
+      vidPlaceholder.delay(100).fadeOut(2000);
+      // $('.home-main').find('.video-placeholder').eq(0).hide();
+    })
 
     // vid.addEventListener('canplay', function() {
     //   $('.home-main').find('.video-placeholder').eq(0).hide();
