@@ -152,31 +152,39 @@
         .loader
           margin-left: 0
 
-
       .info-section
         height: 100%
         width: 200px
         font-family: 'Montserrat', sans-serif
         display: flex
         flex: 1
-        background-repeat: no-repeat
-        background-position: center
-        background-size: 100% 100%
+        .info-waveform
+          position: absolute
+          left: 0
+          top: 0
+          right: 0
+          bottom: 0
+          opacity: 0.8
+          margin-left: 60px
 
-        &#muundumine
-          background-image: url("spectra/creep_spectre.png")
-        &#reflection
-          background-image: url("spectra/reflection_spectre.png")
-        &#s2ra
-          background-image: url("spectra/sära_spectre.png")
-        &#aria
-          background-image: url("spectra/aria_spectre.png")
-        &#unekujud
-          background-image: url("spectra/unekujud_spectre.png")
-        &#dona
-          background-image: url("spectra/dona_spectre.png")
+          background-repeat: no-repeat
+          background-position: center
+          background-size: 100% 100%
+          &#muundumine
+            background-image: url("spectra/creep_spectre.png")
+          &#reflection
+            background-image: url("spectra/reflection_spectre.png")
+          &#s2ra
+            background-image: url("spectra/sära_spectre.png")
+          &#aria
+            background-image: url("spectra/aria_spectre.png")
+          &#unekujud
+            background-image: url("spectra/unekujud_spectre.png")
+          &#dona
+            background-image: url("spectra/dona_spectre.png")
 
         .info-name
+          z-index: 1
           width: 200px
           height: 100%
           display: flex
@@ -204,6 +212,7 @@
             text-overflow: clip
 
         .info-time
+          z-index: 1
           min-width: 90px
           cursor: default
           flex: 1
