@@ -203,7 +203,7 @@ window.addEventListener("mousemove", function(e) {
         $(this).get(0), $(this).siblings(".v-controls"), $(this).parent().parent();
         var e = $(".home-video video").get(0);
         e.playbackRate = .9, e.addEventListener("play", function() {
-            $(".home-main").find(".video-placeholder").eq(0).hide();
+            $(".home-main").find(".video-placeholder").delay(100).fadeOut(2e3);
         }), $(".preloader").delay(350).fadeOut("slow");
     });
     var e = 1;

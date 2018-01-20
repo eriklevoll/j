@@ -482,7 +482,8 @@ $(document).ready(function(){
 
     homeVideo.addEventListener('play', function() {
         // console.log('play');
-      $('.home-main').find('.video-placeholder').eq(0).hide();
+      // $('.home-main').find('.video-placeholder').eq(0).hide();
+      $('.home-main').find('.video-placeholder').delay(100).fadeOut(2000);
     });
 
     // vid.addEventListener('canplay', function() {
