@@ -201,7 +201,10 @@ window.addEventListener("mousemove", function(e) {
 }), $(document).ready(function() {
     $(".footer").hide(), $("video").each(function() {
         $(this).get(0), $(this).siblings(".v-controls"), $(this).parent().parent();
-        $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow");
+        var e = $(".home-video video").get(0);
+        e.playbackRate = .9, e.addEventListener("play", function() {
+            $(".home-main").find(".video-placeholder").eq(0).hide();
+        }), $(".preloader").delay(350).fadeOut("slow");
     });
     var e = 1;
     $("audio").each(function() {
@@ -235,12 +238,4 @@ window.addEventListener("mousemove", function(e) {
     e.hasClass("menu-hidden") ? (e.removeClass("menu-hidden"), e.addClass("menu-visible"), 
     $(this).removeClass("ham-closed"), $(this).addClass("ham-open")) : (e.removeClass("menu-visible"), 
     e.addClass("menu-hidden"), $(this).removeClass("ham-open"), $(this).addClass("ham-closed"));
-});
-
-var vid = $(".home-main").find("video").get(0);
-
-vid.addEventListener("canplay", function() {
-    $(".home-main").find(".video-placeholder").eq(0).hide();
-}), vid.addEventListener("canplaythrough", function() {
-    $(".home-main").find(".video-placeholder").eq(0).hide();
 });
