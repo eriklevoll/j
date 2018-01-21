@@ -213,18 +213,19 @@ window.addEventListener("mousemove", function(e) {
     $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow"), 
     $(".multimedia-main video").each(function() {
         var e = $(this).get(0), i = $(this).siblings(".v-controls"), t = ($(this).parent().parent(), 
-        0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator");
+        0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator"), o = i.find(".v-info-time");
+        addTimeSpans(o);
+        var s = o.find("p").children();
         e.addEventListener("loadedmetadata", function() {
             !function() {
-                var i = e.duration;
-                timeConvert(Math.round(e.duration)), t = i;
+                var i = e.duration, n = timeConvert(Math.round(e.duration));
+                t = i, s.eq(0).html("00:00"), s.eq(2).html(n);
             }();
         }), e.addEventListener("timeupdate", function() {
-            var i = e.currentTime;
-            timeConvert(Math.round(i));
-            if (t > 0) {
-                var o = timeToPercent(i, t), s = n.width();
-                a.css("width", o / 100 * s);
+            var i = e.currentTime, o = timeConvert(Math.round(i));
+            if (s.eq(0).html(o), t > 0) {
+                var l = timeToPercent(i, t), r = n.width();
+                a.css("width", l / 100 * r);
             }
         });
     });

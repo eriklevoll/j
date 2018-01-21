@@ -476,14 +476,19 @@ $(document).ready(function(){
     var fullWidthElem = controls.find('.v-distance-full');
     var distance = controls.find('.v-distance-indicator');
 
+    // var info = parent.siblings('.info-section');
+    var infoTime = controls.find('.v-info-time');
+    addTimeSpans(infoTime);
+    var time = infoTime.find('p').children();
+
 
     function setVideoMetaData() {
       var dur = source.duration;
       var endTime = timeConvert(Math.round(source.duration));
       endDuration = dur;
 
-      // time.eq(0).html("00:00");
-      // time.eq(2).html(endTime);
+      time.eq(0).html("00:00");
+      time.eq(2).html(endTime);
     }
 
     source.addEventListener('loadedmetadata', function() {
@@ -494,7 +499,7 @@ $(document).ready(function(){
       var current = source.currentTime;
       var roundTime = Math.round(current);
       var convertedTime = timeConvert(roundTime);
-      // time.eq(0).html(convertedTime);
+      time.eq(0).html(convertedTime);
 
       // console.log(convertedTime);
 
