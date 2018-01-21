@@ -167,12 +167,16 @@ $('.multimedia-overlay').on('click', function() {
 });
 
 $('.multimedia-main video').on('click', function() {
-  var video = $(this)[0];
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
+  var buttons = $(this).siblings('.v-controls').find('.v-buttons');
+  // buttons.trigger('click');
+  ToggleVideoPlay(buttons);
+  //
+  // var video = $(this)[0];
+  // if (video.paused) {
+  //   video.play();
+  // } else {
+  //   video.pause();
+  // }
 });
 
 $('.v-player-main').find('.v-fullscreen-btn').on('click', function() {
@@ -190,31 +194,61 @@ $('.v-player-main').find('.v-fullscreen-btn').on('click', function() {
   }
 });
 
-$('.v-player-main').find('.v-buttons').on('click', function() {
-  var controls = $(this).parent();
+function ToggleVideoPlay(sourceElem) {
+  // var buttons = $('.v-player-main').find('.v-buttons');
+  var controls = sourceElem.parent();
   var source = controls.siblings().get(0);
   var title = controls.find('#v-info-title')[0].innerHTML;
-  console.log(title);
-  if($(this).hasClass('v-buttons-playing')) {
-    $(this).removeClass('v-buttons-playing');
-    $(this).addClass('v-buttons-paused');
+  // console.log(title);
+  if($(sourceElem).hasClass('v-buttons-playing')) {
+    $(sourceElem).removeClass('v-buttons-playing');
+    $(sourceElem).addClass('v-buttons-paused');
     SetFooterPlay(false);
     playMedia(source, false, title);
+
   }
   else
   {
     PauseCurrentMedia();
-    $(this).removeClass('v-buttons-paused');
-    $(this).addClass('v-buttons-playing');
+    $(sourceElem).removeClass('v-buttons-paused');
+    $(sourceElem).addClass('v-buttons-playing');
     if (source.currentTime <= 0) {
       source.currentTime = 0.05;
     }
     currentMediaSource = source;
-    currentMediaHolder = $(this);
+    currentMediaHolder = sourceElem;
     SetFooterPlay(true);
     playMedia(source, true, title);
     currentIsVideo = true;
   }
+};
+
+$('.v-player-main').find('.v-buttons').on('click', function() {
+  ToggleVideoPlay($(this));
+  // var controls = $(this).parent();
+  // var source = controls.siblings().get(0);
+  // var title = controls.find('#v-info-title')[0].innerHTML;
+  // console.log(title);
+  // if($(this).hasClass('v-buttons-playing')) {
+  //   $(this).removeClass('v-buttons-playing');
+  //   $(this).addClass('v-buttons-paused');
+  //   SetFooterPlay(false);
+  //   playMedia(source, false, title);
+  // }
+  // else
+  // {
+  //   PauseCurrentMedia();
+  //   $(this).removeClass('v-buttons-paused');
+  //   $(this).addClass('v-buttons-playing');
+  //   if (source.currentTime <= 0) {
+  //     source.currentTime = 0.05;
+  //   }
+  //   currentMediaSource = source;
+  //   currentMediaHolder = $(this);
+  //   SetFooterPlay(true);
+  //   playMedia(source, true, title);
+  //   currentIsVideo = true;
+  // }
 });
 
 $('.footer').find('.play-btn-area').on('click', function() {
@@ -475,6 +509,7 @@ $(document).ready(function(){
     var endDuration = 0.0;
     var fullWidthElem = controls.find('.v-distance-full');
     var distance = controls.find('.v-distance-indicator');
+    var buttons = $('.v-player-main').find('.v-buttons');
 
     // var info = parent.siblings('.info-section');
     var infoTime = controls.find('.v-info-time');
@@ -513,11 +548,11 @@ $(document).ready(function(){
         var maxWidth = fullWidthElem.width()
         distance.css('width', percent / 100 * maxWidth);
       }
-      //
-      // if (current >= endDuration) {
-      //   source.currentTime = 0;
-      //   parent.trigger('click');
-      // }
+
+      if (current >= endDuration) {
+        source.currentTime = 0;
+        buttons.trigger('click');
+      }
     });
   });
 

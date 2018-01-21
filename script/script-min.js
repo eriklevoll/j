@@ -52,6 +52,15 @@ function SetCurrentlyPlaying(e, i, t) {
     n.innerHTML = t;
 }
 
+function ToggleVideoPlay(e) {
+    var i = e.parent(), t = i.siblings().get(0), n = i.find("#v-info-title")[0].innerHTML;
+    $(e).hasClass("v-buttons-playing") ? ($(e).removeClass("v-buttons-playing"), $(e).addClass("v-buttons-paused"), 
+    SetFooterPlay(!1), playMedia(t, !1, n)) : (PauseCurrentMedia(), $(e).removeClass("v-buttons-paused"), 
+    $(e).addClass("v-buttons-playing"), t.currentTime <= 0 && (t.currentTime = .05), 
+    currentMediaSource = t, currentMediaHolder = e, SetFooterPlay(!0), playMedia(t, !0, n), 
+    currentIsVideo = !0);
+}
+
 function SetFooterPlay(e) {
     var i = $(".footer").find(".play-btn-area")[0];
     e ? ($(i).removeClass("footer-play-btn-paused"), $(i).addClass("footer-play-btn-playing"), 
@@ -160,18 +169,12 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".multimedia-overlay").on("click", function() {
     $(this).removeClass("multioverlay-visible"), $(".multimedia-main video").pause();
 }), $(".multimedia-main video").on("click", function() {
-    var e = $(this)[0];
-    e.paused ? e.play() : e.pause();
+    ToggleVideoPlay($(this).siblings(".v-controls").find(".v-buttons"));
 }), $(".v-player-main").find(".v-fullscreen-btn").on("click", function() {
     var e = $(this).parent().parent().siblings().get(0);
     e.requestFullscreen ? e.requestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen ? e.webkitRequestFullscreen() : e.msRequestFullscreen && e.msRequestFullscreen();
 }), $(".v-player-main").find(".v-buttons").on("click", function() {
-    var e = $(this).parent(), i = e.siblings().get(0), t = e.find("#v-info-title")[0].innerHTML;
-    console.log(t), $(this).hasClass("v-buttons-playing") ? ($(this).removeClass("v-buttons-playing"), 
-    $(this).addClass("v-buttons-paused"), SetFooterPlay(!1), playMedia(i, !1, t)) : (PauseCurrentMedia(), 
-    $(this).removeClass("v-buttons-paused"), $(this).addClass("v-buttons-playing"), 
-    i.currentTime <= 0 && (i.currentTime = .05), currentMediaSource = i, currentMediaHolder = $(this), 
-    SetFooterPlay(!0), playMedia(i, !0, t), currentIsVideo = !0);
+    ToggleVideoPlay($(this));
 }), $(".footer").find(".play-btn-area").on("click", function() {
     SetFooterPlay($(this).hasClass("footer-play-btn-playing") ? !1 : !0);
 }), $(".footer").find(".text-area").on("click", function() {
@@ -213,20 +216,21 @@ window.addEventListener("mousemove", function(e) {
     $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow"), 
     $(".multimedia-main video").each(function() {
         var e = $(this).get(0), i = $(this).siblings(".v-controls"), t = ($(this).parent().parent(), 
-        0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator"), o = i.find(".v-info-time");
-        addTimeSpans(o);
-        var s = o.find("p").children();
+        0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator"), o = $(".v-player-main").find(".v-buttons"), s = i.find(".v-info-time");
+        addTimeSpans(s);
+        var l = s.find("p").children();
         e.addEventListener("loadedmetadata", function() {
             !function() {
                 var i = e.duration, n = timeConvert(Math.round(e.duration));
-                t = i, s.eq(0).html("00:00"), s.eq(2).html(n);
+                t = i, l.eq(0).html("00:00"), l.eq(2).html(n);
             }();
         }), e.addEventListener("timeupdate", function() {
-            var i = e.currentTime, o = timeConvert(Math.round(i));
-            if (s.eq(0).html(o), t > 0) {
-                var l = timeToPercent(i, t), r = n.width();
-                a.css("width", l / 100 * r);
+            var i = e.currentTime, s = timeConvert(Math.round(i));
+            if (l.eq(0).html(s), t > 0) {
+                var r = timeToPercent(i, t), d = n.width();
+                a.css("width", r / 100 * d);
             }
+            i >= t && (e.currentTime = 0, o.trigger("click"));
         });
     });
     var e = 1;
