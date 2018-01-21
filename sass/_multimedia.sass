@@ -101,7 +101,9 @@
         display: none !important
 
       .v-controls
-        // background: green
+        // background: rgba(26, 26, 26, 1)
+        // background: pink
+        // z-index: 1
         min-width: 700px
         // margin-top: -1px
         border-top: 1px solid black
@@ -123,6 +125,7 @@
           // background: rgb(105, 71, 48)
           background: rgba(255,255,255,0.06)
           border-right: 1px solid rgba(255,255,255,0.15)
+          transition: width 0.5s
         .v-distance-full
           height: 45px
           position: absolute
@@ -157,6 +160,7 @@
           justify-content: center
           align-items: center
           overflow: hidden
+          background: black
           .v-play-button
             width: 0
             height: 0
@@ -218,8 +222,13 @@
             margin-left: 0
 
         .v-info-section
-          // background: green
-          height: 100%
+          background: rgba(255,255,255,0.05)
+          // background:
+          border-right: 1px solid rgba(255,255,255,0.2)
+          border-left: 1px solid rgba(255,255,255,0.2)
+          margin-right: 45px
+          margin-top: -1px
+          height: 46px
           width: 200px
           font-family: 'Montserrat', sans-serif
           display: flex
@@ -267,7 +276,9 @@
 
           .v-fullscreen-btn
             width: 34px
-            margin-right: 5px
+            // margin-right: 5px
+            // background: pink
+            margin-right: -40px
             background-image: url("img/full_screen_200.png")
             background-repeat: no-repeat
             background-position: center

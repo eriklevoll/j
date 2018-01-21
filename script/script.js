@@ -303,10 +303,22 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   }
 });
 
-function setPlayPosition(relX, width, audio) {
+function setPlayPosition(relX, width, source) {
   var percent = clickPosToPercent(relX, width);
-  var duration = audio.duration;
-  audio.currentTime = percent / 100 * duration;
+  var duration = source.duration;
+  source.currentTime = percent / 100 * duration;
+}
+
+function setVideoPlayPosition(relX, width, source) {
+  var percent = clickPosToPercent(relX, width);
+  var duration = source.duration;
+  source.currentTime = percent / 100 * duration;
+  var controls = $(source).siblings('.v-controls');
+  var distance = controls.find('.v-distance-indicator');
+  var fullWidthElem = controls.find('.v-distance-full');
+
+  var maxWidth = fullWidthElem.width()
+  distance.css('width', percent / 100 * maxWidth);
 }
 
 $('.player-main').find('.info-section').on('click', function(e) {
@@ -330,6 +342,17 @@ $('.player-main').find('.buffer-indicator').on('click', function(e) {
   var width = info.width();
   var relX = e.pageX - info.offset().left;
   setPlayPosition(relX, width, audio);
+});
+
+$('.v-player-main').find('.v-info-section').on('click', function(e) {
+  var width = $(this).width();
+  var relX = e.pageX - $(this).offset().left;
+  var video = $(this).parent().siblings('video').get(0);
+
+  // var audio = $(this).siblings().find('audio').get(0);
+  setVideoPlayPosition(relX, width, video);
+  // console.log(relX, width);
+  // console.log(video);
 });
 
 function timeConvert(inputTime) {

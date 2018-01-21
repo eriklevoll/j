@@ -80,6 +80,13 @@ function setPlayPosition(e, i, t) {
     t.currentTime = n / 100 * a;
 }
 
+function setVideoPlayPosition(e, i, t) {
+    var n = clickPosToPercent(e, i), a = t.duration;
+    t.currentTime = n / 100 * a;
+    var o = $(t).siblings(".v-controls"), s = o.find(".v-distance-indicator"), l = o.find(".v-distance-full").width();
+    s.css("width", n / 100 * l);
+}
+
 function timeConvert(e) {
     var i = "";
     if (e < 60) i = "00:", e < 10 && (i += "0"), i += e; else {
@@ -185,6 +192,9 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".player-main").find(".buffer-indicator").on("click", function(e) {
     var i = $(this).siblings(".info-section"), t = $(this).siblings().find("audio").get(0), n = i.width();
     setPlayPosition(e.pageX - i.offset().left, n, t);
+}), $(".v-player-main").find(".v-info-section").on("click", function(e) {
+    var i = $(this).width();
+    setVideoPlayPosition(e.pageX - $(this).offset().left, i, $(this).parent().siblings("video").get(0));
 }), window.addEventListener("resize", function(e) {
     reSizeVideoControls();
 });
@@ -222,7 +232,7 @@ window.addEventListener("mousemove", function(e) {
     $("audio").each(function() {
         function i() {
             var e = a.duration, i = timeConvert(Math.round(a.duration));
-            m = e, u.eq(0).html("00:00"), u.eq(2).html(i);
+            m = e, c.eq(0).html("00:00"), c.eq(2).html(i);
         }
         function t() {
             var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), t = s.width();
@@ -230,10 +240,10 @@ window.addEventListener("mousemove", function(e) {
         }
         var n = $(this), a = n.get(0), o = n.parent(), s = o.siblings(".info-section"), l = o.siblings(".distance-indicator"), r = o.siblings(".buffer-indicator"), d = s.children(".info-time");
         addTimeSpans(d);
-        var u = d.find("p").children(), c = o.parent().siblings(".player-text")[0], m = 0;
+        var c = d.find("p").children(), u = o.parent().siblings(".player-text")[0], m = 0;
         a.addEventListener("timeupdate", function() {
             var e = a.currentTime, i = timeConvert(Math.round(e));
-            if (u.eq(0).html(i), m > 0) {
+            if (c.eq(0).html(i), m > 0) {
                 var n = timeToPercent(e, m), r = s.width();
                 l.css("width", n / 100 * r);
             }
@@ -242,7 +252,7 @@ window.addEventListener("mousemove", function(e) {
             a.buffered.length > 0 && t();
         }), a.addEventListener("loadedmetadata", function() {
             i(), removeLoading(o);
-        }), a.readyState > 3 && (i(), removeLoading(o)), loadDescription(c, "track_" + e), 
+        }), a.readyState > 3 && (i(), removeLoading(o)), loadDescription(u, "track_" + e), 
         e++;
     });
 }), $(".header-ham-wrap").on("click", function() {
