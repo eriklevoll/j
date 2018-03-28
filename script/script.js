@@ -22,7 +22,7 @@ function setHomeView() {
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
-  setVisible($('.performances-wrapper-main'), false);
+  setVisible($('.performances-main'), false);
   setVisible($('.home-main'), true);
   // $('.footer').css('background', 'rgba(255,255,255,0.15)')
   ShowFooter();
@@ -35,7 +35,7 @@ function setContactView() {
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
-  setVisible($('.performances-wrapper-main'), false);
+  setVisible($('.performances-main'), false);
   setVisible($('.contact-main'), true);
   // $('.footer').css('background', 'rgba(255,255,255,0.15)')
   ShowFooter();
@@ -48,7 +48,7 @@ function SetBioView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
-  setVisible($('.performances-wrapper-main'), false);
+  setVisible($('.performances-main'), false);
   setVisible($('.bio-main'), true);
   // $('.footer').css('background', 'black')
   $('.footer').hide();
@@ -61,7 +61,7 @@ function setAudioView() {
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
-  setVisible($('.performances-wrapper-main'), false);
+  setVisible($('.performances-main'), false);
   setVisible($('.players-wrapper-main'), true);
   $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
@@ -73,7 +73,7 @@ function setMultimediaView() {
   setVisible($('.bio-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
-  setVisible($('.performances-wrapper-main'), false);
+  setVisible($('.performances-main'), false);
   setVisible($('.multimedia-main'), true);
   $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
@@ -85,7 +85,7 @@ function setPerformancesView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
-  setVisible($('.performances-wrapper-main'), true);
+  setVisible($('.performances-main'), true);
   ShowFooter();
 }
 

@@ -5,37 +5,36 @@ function setVisible(e, i) {
 
 function setHomeView() {
     setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), 
-    setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-wrapper-main"), !1), 
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-main"), !1), 
     setVisible($(".home-main"), !0), ShowFooter();
 }
 
 function setContactView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".performances-wrapper-main"), !1), setVisible($(".contact-main"), !0), 
-    ShowFooter();
+    setVisible($(".performances-main"), !1), setVisible($(".contact-main"), !0), ShowFooter();
 }
 
 function SetBioView() {
     setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !1), setVisible($(".performances-wrapper-main"), !1), 
-    setVisible($(".bio-main"), !0), $(".footer").hide();
+    setVisible($(".contact-main"), !1), setVisible($(".performances-main"), !1), setVisible($(".bio-main"), !0), 
+    $(".footer").hide();
 }
 
 function setAudioView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
-    setVisible($(".performances-wrapper-main"), !1), setVisible($(".players-wrapper-main"), !0), 
+    setVisible($(".performances-main"), !1), setVisible($(".players-wrapper-main"), !0), 
     $(".footer").hide();
 }
 
 function setMultimediaView() {
     setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".performances-wrapper-main"), !1), setVisible($(".multimedia-main"), !0), 
+    setVisible($(".performances-main"), !1), setVisible($(".multimedia-main"), !0), 
     $(".footer").hide();
 }
 
 function setPerformancesView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
-    setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-wrapper-main"), !0), 
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-main"), !0), 
     ShowFooter();
 }
 
