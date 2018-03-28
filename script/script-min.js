@@ -35,7 +35,7 @@ function setMultimediaView() {
 function setPerformancesView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
     setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-main"), !0), 
-    ShowFooter();
+    $(".footer").hide();
 }
 
 function closeSideNav() {

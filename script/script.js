@@ -86,7 +86,7 @@ function setPerformancesView() {
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.performances-main'), true);
-  ShowFooter();
+  $('.footer').hide();
 }
 
 function closeSideNav() {
