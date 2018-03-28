@@ -22,6 +22,7 @@ function setHomeView() {
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
+  setVisible($('.performances-wrapper-main'), false);
   setVisible($('.home-main'), true);
   // $('.footer').css('background', 'rgba(255,255,255,0.15)')
   ShowFooter();
@@ -34,6 +35,7 @@ function setContactView() {
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
+  setVisible($('.performances-wrapper-main'), false);
   setVisible($('.contact-main'), true);
   // $('.footer').css('background', 'rgba(255,255,255,0.15)')
   ShowFooter();
@@ -46,6 +48,7 @@ function SetBioView() {
   setVisible($('.multimedia-main'), false);
   setVisible($('.players-wrapper-main'), false);
   setVisible($('.contact-main'), false);
+  setVisible($('.performances-wrapper-main'), false);
   setVisible($('.bio-main'), true);
   // $('.footer').css('background', 'black')
   $('.footer').hide();
@@ -58,6 +61,7 @@ function setAudioView() {
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
+  setVisible($('.performances-wrapper-main'), false);
   setVisible($('.players-wrapper-main'), true);
   $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
@@ -69,10 +73,20 @@ function setMultimediaView() {
   setVisible($('.bio-main'), false);
   setVisible($('.contact-main'), false);
   setVisible($('.players-wrapper-main'), false);
+  setVisible($('.performances-wrapper-main'), false);
   setVisible($('.multimedia-main'), true);
   $('.footer').hide();
   // $('.home-video').find('video').css('opacity', '0');
   // $('.home-video').find('video').css('filter', 'hue-rotate(-60deg)');
+}
+
+function setPerformancesView() {
+  setVisible($('.bio-main'), false);
+  setVisible($('.multimedia-main'), false);
+  setVisible($('.contact-main'), false);
+  setVisible($('.players-wrapper-main'), false);
+  setVisible($('.performances-wrapper-main'), true);
+  ShowFooter();
 }
 
 function closeSideNav() {
@@ -100,6 +114,21 @@ $('.bio-btn, .mobile-bio-btn').on('click', function(){
   SetBioView();
 });
 
+$('.audio-btn, .mobile-audio-btn').on('click', function() {
+  closeSideNav();
+  setAudioView();
+});
+
+$('.performances-btn, .mobile-performances-btn').on('click', function() {
+  closeSideNav();
+  setPerformancesView();
+});
+
+// $('.mobile-audio-btn').on('click', function(){
+//   closeSideNav();
+//   setAudioView();
+// });
+
 $('.multimedia-btn, .mobile-multimedia-btn').on('click', function(){
   closeSideNav();
   setMultimediaView();
@@ -114,10 +143,6 @@ $('.left-author.sub-author').on('click', function(){
   setHomeView();
 });
 
-$('.audio-btn').on('click', function() {
-  setAudioView();
-});
-
 function ShowFooter() {
   if (currentMediaSource == null) {
     return;
@@ -125,10 +150,6 @@ function ShowFooter() {
   $('.footer').show();
 }
 
-$('.mobile-audio-btn').on('click', function(){
-  closeSideNav();
-  setAudioView();
-});
 
 function playMedia(source, play, title) {
   audioPlaying = play;

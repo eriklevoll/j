@@ -5,27 +5,38 @@ function setVisible(e, i) {
 
 function setHomeView() {
     setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), 
-    setVisible($(".players-wrapper-main"), !1), setVisible($(".home-main"), !0), ShowFooter();
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-wrapper-main"), !1), 
+    setVisible($(".home-main"), !0), ShowFooter();
 }
 
 function setContactView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !0), ShowFooter();
+    setVisible($(".performances-wrapper-main"), !1), setVisible($(".contact-main"), !0), 
+    ShowFooter();
 }
 
 function SetBioView() {
     setVisible($(".multimedia-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".contact-main"), !1), setVisible($(".bio-main"), !0), $(".footer").hide();
+    setVisible($(".contact-main"), !1), setVisible($(".performances-wrapper-main"), !1), 
+    setVisible($(".bio-main"), !0), $(".footer").hide();
 }
 
 function setAudioView() {
     setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
-    setVisible($(".players-wrapper-main"), !0), $(".footer").hide();
+    setVisible($(".performances-wrapper-main"), !1), setVisible($(".players-wrapper-main"), !0), 
+    $(".footer").hide();
 }
 
 function setMultimediaView() {
     setVisible($(".bio-main"), !1), setVisible($(".contact-main"), !1), setVisible($(".players-wrapper-main"), !1), 
-    setVisible($(".multimedia-main"), !0), $(".footer").hide();
+    setVisible($(".performances-wrapper-main"), !1), setVisible($(".multimedia-main"), !0), 
+    $(".footer").hide();
+}
+
+function setPerformancesView() {
+    setVisible($(".bio-main"), !1), setVisible($(".multimedia-main"), !1), setVisible($(".contact-main"), !1), 
+    setVisible($(".players-wrapper-main"), !1), setVisible($(".performances-wrapper-main"), !0), 
+    ShowFooter();
 }
 
 function closeSideNav() {
@@ -92,8 +103,8 @@ function setPlayPosition(e, i, t) {
 function setVideoPlayPosition(e, i, t) {
     var n = clickPosToPercent(e, i), a = t.duration;
     t.currentTime = n / 100 * a;
-    var o = $(t).siblings(".v-controls"), s = o.find(".v-distance-indicator"), l = o.find(".v-distance-full").width();
-    s.css("width", n / 100 * l);
+    var o = $(t).siblings(".v-controls"), s = o.find(".v-distance-indicator"), r = o.find(".v-distance-full").width();
+    s.css("width", n / 100 * r);
 }
 
 function timeConvert(e) {
@@ -152,16 +163,16 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     closeSideNav(), setContactView();
 }), $(".bio-btn, .mobile-bio-btn").on("click", function() {
     closeSideNav(), SetBioView();
+}), $(".audio-btn, .mobile-audio-btn").on("click", function() {
+    closeSideNav(), setAudioView();
+}), $(".performances-btn, .mobile-performances-btn").on("click", function() {
+    closeSideNav(), setPerformancesView();
 }), $(".multimedia-btn, .mobile-multimedia-btn").on("click", function() {
     closeSideNav(), setMultimediaView(), reSizeVideoControls();
 }), $(".left-author").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
-}), $(".audio-btn").on("click", function() {
-    setAudioView();
-}), $(".mobile-audio-btn").on("click", function() {
-    closeSideNav(), setAudioView();
 }), $(".multimedia-main video").on("play", function() {
     $(".multimedia-overlay").addClass("multioverlay-visible");
 }), $(".multimedia-main video").on("pause", function() {
@@ -218,17 +229,17 @@ window.addEventListener("mousemove", function(e) {
         var e = $(this).get(0), i = $(this).siblings(".v-controls"), t = ($(this).parent().parent(), 
         0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator"), o = $(".v-player-main").find(".v-buttons"), s = i.find(".v-info-time");
         addTimeSpans(s);
-        var l = s.find("p").children();
+        var r = s.find("p").children();
         e.addEventListener("loadedmetadata", function() {
             !function() {
                 var i = e.duration, n = timeConvert(Math.round(e.duration));
-                t = i, l.eq(0).html("00:00"), l.eq(2).html(n);
+                t = i, r.eq(0).html("00:00"), r.eq(2).html(n);
             }();
         }), e.addEventListener("timeupdate", function() {
             var i = e.currentTime, s = timeConvert(Math.round(i));
-            if (l.eq(0).html(s), t > 0) {
-                var r = timeToPercent(i, t), d = n.width();
-                a.css("width", r / 100 * d);
+            if (r.eq(0).html(s), t > 0) {
+                var l = timeToPercent(i, t), d = n.width();
+                a.css("width", l / 100 * d);
             }
             i >= t && (e.currentTime = 0, o.trigger("click"));
         });
@@ -241,16 +252,16 @@ window.addEventListener("mousemove", function(e) {
         }
         function t() {
             var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), t = s.width();
-            r.css("width", i / 100 * t);
+            l.css("width", i / 100 * t);
         }
-        var n = $(this), a = n.get(0), o = n.parent(), s = o.siblings(".info-section"), l = o.siblings(".distance-indicator"), r = o.siblings(".buffer-indicator"), d = s.children(".info-time");
+        var n = $(this), a = n.get(0), o = n.parent(), s = o.siblings(".info-section"), r = o.siblings(".distance-indicator"), l = o.siblings(".buffer-indicator"), d = s.children(".info-time");
         addTimeSpans(d);
         var c = d.find("p").children(), u = o.parent().siblings(".player-text")[0], m = 0;
         a.addEventListener("timeupdate", function() {
             var e = a.currentTime, i = timeConvert(Math.round(e));
             if (c.eq(0).html(i), m > 0) {
-                var n = timeToPercent(e, m), r = s.width();
-                l.css("width", n / 100 * r);
+                var n = timeToPercent(e, m), l = s.width();
+                r.css("width", n / 100 * l);
             }
             e >= m && (a.currentTime = 0, o.trigger("click")), t();
         }), a.addEventListener("progress", function() {
