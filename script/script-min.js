@@ -52,7 +52,7 @@ function ShowFooter() {
 }
 
 function playMedia(e, i, t) {
-    audioPlaying = i, SetCurrentlyPlaying(e, i, t), i ? e.play() : e.pause();
+    SetCurrentlyPlaying(e, audioPlaying = i, t), i ? e.play() : e.pause();
 }
 
 function SetCurrentlyPlaying(e, i, t) {
@@ -136,21 +136,11 @@ function checkIE() {
     return !(!e && !i);
 }
 
-function loadDescription(e, i) {
-    $.ajax({
-        url: "text/" + i + ".txt",
-        dataType: "text",
-        success: function(i) {
-            e.innerHTML = "<p>" + i + "</p>";
-        }
-    });
-}
-
 function reSizeVideoControls() {
     $("video").each(function() {
         $(this).get(0);
         var e = $(this).siblings(".v-controls");
-        $(this).width() > 0 && ($(this).width() > $(window).width() ? e.width($(window).width()) : e.width($(this).width()));
+        0 < $(this).width() && ($(this).width() > $(window).width() ? e.width($(window).width()) : e.width($(this).width()));
     });
 }
 
@@ -186,7 +176,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".v-player-main").find(".v-buttons").on("click", function() {
     ToggleVideoPlay($(this));
 }), $(".footer").find(".play-btn-area").on("click", function() {
-    SetFooterPlay($(this).hasClass("footer-play-btn-playing") ? !1 : !0);
+    $(this).hasClass("footer-play-btn-playing") ? SetFooterPlay(!1) : SetFooterPlay(!0);
 }), $(".footer").find(".text-area").on("click", function() {
     currentIsVideo ? setMultimediaView() : setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
@@ -223,52 +213,49 @@ window.addEventListener("mousemove", function(e) {
     }, 100);
 }), $(document).ready(function() {
     $(".footer").hide();
+    var m = checkIE();
     $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow"), 
     $(".multimedia-main video").each(function() {
-        var e = $(this).get(0), i = $(this).siblings(".v-controls"), t = ($(this).parent().parent(), 
-        0), n = i.find(".v-distance-full"), a = i.find(".v-distance-indicator"), o = $(".v-player-main").find(".v-buttons"), s = i.find(".v-info-time");
-        addTimeSpans(s);
-        var r = s.find("p").children();
-        e.addEventListener("loadedmetadata", function() {
-            !function() {
-                var i = e.duration, n = timeConvert(Math.round(e.duration));
-                t = i, r.eq(0).html("00:00"), r.eq(2).html(n);
-            }();
-        }), e.addEventListener("timeupdate", function() {
-            var i = e.currentTime, s = timeConvert(Math.round(i));
-            if (r.eq(0).html(s), t > 0) {
-                var l = timeToPercent(i, t), d = n.width();
-                a.css("width", l / 100 * d);
-            }
-            i >= t && (e.currentTime = 0, o.trigger("click"));
-        });
-    });
-    var e = 1;
-    $("audio").each(function() {
-        function i() {
-            var e = a.duration, i = timeConvert(Math.round(a.duration));
-            m = e, c.eq(0).html("00:00"), c.eq(2).html(i);
-        }
-        function t() {
-            var e = a.buffered, i = timeToPercent(e.end(e.length - 1), m), t = s.width();
-            l.css("width", i / 100 * t);
-        }
-        var n = $(this), a = n.get(0), o = n.parent(), s = o.siblings(".info-section"), r = o.siblings(".distance-indicator"), l = o.siblings(".buffer-indicator"), d = s.children(".info-time");
-        addTimeSpans(d);
-        var c = d.find("p").children(), u = o.parent().siblings(".player-text")[0], m = 0;
-        a.addEventListener("timeupdate", function() {
+        var a = $(this).get(0), e = $(this).siblings(".v-controls"), o = ($(this).parent().parent(), 
+        0), s = e.find(".v-distance-full"), r = e.find(".v-distance-indicator"), l = $(".v-player-main").find(".v-buttons"), i = e.find(".v-info-time");
+        addTimeSpans(i);
+        var d = i.find("p").children();
+        a.addEventListener("loadedmetadata", function() {
+            var e, i;
+            e = a.duration, i = timeConvert(Math.round(a.duration)), o = e, d.eq(0).html("00:00"), 
+            d.eq(2).html(i);
+        }), a.addEventListener("timeupdate", function() {
             var e = a.currentTime, i = timeConvert(Math.round(e));
-            if (c.eq(0).html(i), m > 0) {
-                var n = timeToPercent(e, m), l = s.width();
-                r.css("width", n / 100 * l);
+            if (d.eq(0).html(i), 0 < o) {
+                var t = timeToPercent(e, o), n = s.width();
+                r.css("width", t / 100 * n);
             }
-            e >= m && (a.currentTime = 0, o.trigger("click")), t();
-        }), a.addEventListener("progress", function() {
-            a.buffered.length > 0 && t();
-        }), a.addEventListener("loadedmetadata", function() {
-            i(), removeLoading(o);
-        }), a.readyState > 3 && (i(), removeLoading(o)), loadDescription(u, "track_" + e), 
-        e++;
+            o <= e && (a.currentTime = 0, l.trigger("click"));
+        });
+    }), $("audio").each(function() {
+        function e() {
+            var e = o.duration, i = timeConvert(Math.round(o.duration));
+            u = e, d.eq(0).html("00:00"), d.eq(2).html(i);
+        }
+        function a() {
+            var e = o.buffered, i = timeToPercent(e.end(e.length - 1), u), t = r.width();
+            n.css("width", i / 100 * t);
+        }
+        var i = $(this), o = i.get(0), s = i.parent(), r = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), n = s.siblings(".buffer-indicator"), t = r.children(".info-time");
+        addTimeSpans(t);
+        var d = t.find("p").children(), c = s.parent().siblings(".player-text"), u = 0;
+        m && c.hide(), o.addEventListener("timeupdate", function() {
+            var e = o.currentTime, i = timeConvert(Math.round(e));
+            if (d.eq(0).html(i), 0 < u) {
+                var t = timeToPercent(e, u), n = r.width();
+                l.css("width", t / 100 * n);
+            }
+            u <= e && (o.currentTime = 0, s.trigger("click")), a();
+        }), o.addEventListener("progress", function() {
+            0 < o.buffered.length && a();
+        }), o.addEventListener("loadedmetadata", function() {
+            e(), removeLoading(s);
+        }), 3 < o.readyState && (e(), removeLoading(s));
     });
 }), $(".header-ham-wrap").on("click", function() {
     var e = $(".header-overlay-buttons");

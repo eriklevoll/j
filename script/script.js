@@ -456,15 +456,15 @@ function checkIE() {
   return (ieVersion || isIE) ? true : false;
 }
 
-function loadDescription(textDiv, title) {
-  $.ajax({
-      url : "text/" + title + ".txt",
-      dataType: "text",
-      success : function (result) {
-        textDiv.innerHTML = "<p>" + result + "</p>";
-      }
-  });
-}
+// function loadDescription(textDiv, title) {
+  // $.ajax({
+  //     url : "text/" + title + ".txt",
+  //     dataType: "text",
+  //     success : function (result) {
+  //       textDiv.innerHTML = "<p>" + result + "</p>";
+  //     }
+  // });
+// }
 
 // $(window).on('load', function () {
 //   // $('.status').fadeOut(); // will first fade out the loading animation
@@ -518,6 +518,8 @@ function reSizeVideoControls() {
 
 $(document).ready(function(){
   $('.footer').hide();
+
+  var isIE = checkIE();
 
   var homeVideo = $('.home-video video').get(0);
   homeVideo.playbackRate = 0.9;
@@ -577,7 +579,7 @@ $(document).ready(function(){
     });
   });
 
-  var counter = 1;
+  // var counter = 1;
 
   $('audio').each(function() {
     var sourceElement = $(this);
@@ -589,8 +591,13 @@ $(document).ready(function(){
     var infoTime = info.children('.info-time');
     addTimeSpans(infoTime);
     var time = infoTime.find('p').children();
-    var text = parent.parent().siblings('.player-text')[0];
+    var text = parent.parent().siblings('.player-text');
     var endDuration = 0.0;
+
+    if (isIE) {
+      text.hide();
+    } else {
+    }
 
 
     function setMetaData() {
@@ -651,8 +658,8 @@ $(document).ready(function(){
       removeLoading(parent);
     }
 
-    loadDescription(text, "track_" + counter);
-    counter++;
+    // loadDescription(text, "track_" + counter);
+    // counter++;
   });
 });
 
