@@ -19,6 +19,11 @@
     .home-btn
       display: none
 
+@media screen and (max-width: 800px)
+  .multimedia-main
+    padding-right: 0
+    padding-left: 0
+
 @media screen and (max-width: 750px)
   .header
     .left-author
@@ -31,7 +36,10 @@
 @media screen and (max-width: 700px)
   .multimedia-main
     .v-player-section
+      width: 100%
       .v-player-main
+        video
+          width: 100%
         .v-controls
           min-width: 100px
 
@@ -80,14 +88,6 @@
       padding-left: 5%
       padding-right: 5%
 
-  .multimedia-main
-    margin-left: 0
-    padding-right: 40px
-    padding-left: 40px
-    .v-player-section
-      .v-player-main
-          margin-left: 0
-
   .performances-main
     .events-body
       font-size: 14px
@@ -132,6 +132,16 @@
     .events-body
       font-size: 13px
 
+@media screen and (max-width: 375px)
+  .multimedia-main
+    .v-player-section#one
+      .v-player-main
+        .v-controls
+          .v-info-section
+            .v-info-name
+              p#v-info-title
+                font-size: 13px
+
 @media screen and (max-width: 370px)
   .performances-main
     .events-body
@@ -160,6 +170,16 @@
         left: 20px
     .header-ham-wrap
       top: 0
+
+  .multimedia-main
+    .v-player-section
+      .v-player-main
+        .v-controls
+          .v-info-section
+            .v-info-name
+              padding-left: 10px
+            .v-info-time
+              padding-right: 15px
 
 @media screen and (max-width: 300px)
   .players-wrapper-main
