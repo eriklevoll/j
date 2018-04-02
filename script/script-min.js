@@ -107,8 +107,8 @@ function setPlayPosition(e, i, t) {
 function setVideoPlayPosition(e, i, t) {
     var n = clickPosToPercent(e, i), a = t.duration;
     t.currentTime = n / 100 * a;
-    var o = $(t).siblings(".v-controls"), s = o.find(".v-distance-indicator"), l = o.find(".v-distance-full").width();
-    s.css("width", n / 100 * l);
+    var o = $(t).siblings(".v-controls"), s = o.find(".v-distance-indicator"), r = o.find(".v-distance-full").width();
+    s.css("width", n / 100 * r);
 }
 
 function timeConvert(e) {
@@ -167,16 +167,10 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
     setHomeView();
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
-}), $(".multimedia-main video").on("play", function() {
-    $(".multimedia-overlay").addClass("multioverlay-visible");
-}), $(".multimedia-main video").on("pause", function() {
-    window.innerWidth, $(".multimedia-overlay").removeClass("multioverlay-visible");
-}), $(".multimedia-overlay").on("click", function() {
-    $(this).removeClass("multioverlay-visible"), $(".multimedia-main video").pause();
 }), $(".multimedia-main video").on("click", function() {
-    ToggleVideoPlay($(this).siblings(".v-controls").find(".v-buttons"));
+    $(this).siblings(".v-controls").find(".v-buttons");
 }), $(".v-player-main").find(".v-fullscreen-btn").on("click", function() {
-    var e = $(this).parent().parent().siblings().get(0);
+    var e = $(this).parent().siblings().get(0);
     e.requestFullscreen ? e.requestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen ? e.webkitRequestFullscreen() : e.msRequestFullscreen && e.msRequestFullscreen();
 }), $(".v-player-main").find(".v-buttons").on("click", function() {
     ToggleVideoPlay($(this));
@@ -222,7 +216,7 @@ window.addEventListener("mousemove", function(e) {
     $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow"), 
     $(".multimedia-main video").each(function() {
         var a = $(this).get(0), e = $(this).siblings(".v-controls"), o = ($(this).parent().parent(), 
-        0), s = e.find(".v-distance-full"), l = e.find(".v-distance-indicator"), r = $(".v-player-main").find(".v-buttons"), i = e.find(".v-info-time");
+        0), s = e.find(".v-distance-full"), r = e.find(".v-distance-indicator"), l = $(".v-player-main").find(".v-buttons"), i = e.find(".v-info-time");
         addTimeSpans(i);
         var d = i.find("p").children();
         a.addEventListener("loadedmetadata", function() {
@@ -233,9 +227,9 @@ window.addEventListener("mousemove", function(e) {
             var e = a.currentTime, i = timeConvert(Math.round(e));
             if (d.eq(0).html(i), 0 < o) {
                 var t = timeToPercent(e, o), n = s.width();
-                l.css("width", t / 100 * n);
+                r.css("width", t / 100 * n);
             }
-            o <= e && (a.currentTime = 0, r.trigger("click"));
+            o <= e && (a.currentTime = 0, l.trigger("click"));
         });
     }), $("audio").each(function() {
         function e() {
@@ -243,17 +237,17 @@ window.addEventListener("mousemove", function(e) {
             c = e, d.eq(0).html("00:00"), d.eq(2).html(i);
         }
         function a() {
-            var e = o.buffered, i = timeToPercent(e.end(e.length - 1), c), t = l.width();
+            var e = o.buffered, i = timeToPercent(e.end(e.length - 1), c), t = r.width();
             n.css("width", i / 100 * t);
         }
-        var i = $(this), o = i.get(0), s = i.parent(), l = s.siblings(".info-section"), r = s.siblings(".distance-indicator"), n = s.siblings(".buffer-indicator"), t = l.children(".info-time");
+        var i = $(this), o = i.get(0), s = i.parent(), r = s.siblings(".info-section"), l = s.siblings(".distance-indicator"), n = s.siblings(".buffer-indicator"), t = r.children(".info-time");
         addTimeSpans(t);
         var d = t.find("p").children(), c = (s.parent().siblings(".player-text"), 0);
         o.addEventListener("timeupdate", function() {
             var e = o.currentTime, i = timeConvert(Math.round(e));
             if (d.eq(0).html(i), 0 < c) {
-                var t = timeToPercent(e, c), n = l.width();
-                r.css("width", t / 100 * n);
+                var t = timeToPercent(e, c), n = r.width();
+                l.css("width", t / 100 * n);
             }
             c <= e && (o.currentTime = 0, s.trigger("click")), a();
         }), o.addEventListener("progress", function() {

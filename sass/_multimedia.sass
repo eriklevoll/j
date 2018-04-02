@@ -149,7 +149,7 @@
           background: rgba(255,255,255,0.05)
           border-right: 1px solid rgba(255,255,255,0.2)
           border-left: 1px solid rgba(255,255,255,0.2)
-          margin-right: 45px
+          // margin-right: 45px
           margin-top: -1px
           height: 46px
           width: 200px
@@ -197,10 +197,20 @@
               font-weight: normal
               color: rgba(255,255,255,0.95)
 
-          .v-fullscreen-btn
-            width: 34px
-            min-width: 34px
-            margin-right: -40px
+        .v-fullscreen-btn
+          width: 45px
+          height: 45px
+          min-width: 34px
+          // background: pink
+          display: flex
+          align-items: center
+          justify-content: center
+          .v-fullscreen-icon
+            // background: green
+            height: 38px
+            width: 38px
+            margin-left: 4px
+            margin-right: 4px
             background-image: url("img/full_screen_200.png")
             background-repeat: no-repeat
             background-position: center
@@ -209,6 +219,10 @@
             transition: all 0.1s
             &:hover
               transform: scale(1.1, 1.1)
+
+          // margin-right: -40px
+          // padding-left:  5px
+          // padding-right: 5px
 
 .multioverlay-visible
   visibility: visible

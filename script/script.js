@@ -181,27 +181,27 @@ function SetCurrentlyPlaying(source, play, title) {
   footerTitle.innerHTML = title;
 }
 
-$('.multimedia-main video').on('play', function() {
-  // $('.header-ham-wrap').hide();
-  $('.multimedia-overlay').addClass('multioverlay-visible');
-});
+// $('.multimedia-main video').on('play', function() {
+//   // $('.header-ham-wrap').hide();
+//   $('.multimedia-overlay').addClass('multioverlay-visible');
+// });
+//
+// $('.multimedia-main video').on('pause', function() {
+//   if ((window).innerWidth <= 1000) {
+//     // $('.header-ham-wrap').show();
+//   }
+//   $('.multimedia-overlay').removeClass('multioverlay-visible');
+// });
 
-$('.multimedia-main video').on('pause', function() {
-  if ((window).innerWidth <= 1000) {
-    // $('.header-ham-wrap').show();
-  }
-  $('.multimedia-overlay').removeClass('multioverlay-visible');
-});
-
-$('.multimedia-overlay').on('click', function() {
-  $(this).removeClass('multioverlay-visible');
-  $('.multimedia-main video').pause();
-});
+// $('.multimedia-overlay').on('click', function() {
+//   $(this).removeClass('multioverlay-visible');
+//   $('.multimedia-main video').pause();
+// });
 
 $('.multimedia-main video').on('click', function() {
   var buttons = $(this).siblings('.v-controls').find('.v-buttons');
   // buttons.trigger('click');
-  ToggleVideoPlay(buttons);
+  // ToggleVideoPlay(buttons);
   //
   // var video = $(this)[0];
   // if (video.paused) {
@@ -212,8 +212,8 @@ $('.multimedia-main video').on('click', function() {
 });
 
 $('.v-player-main').find('.v-fullscreen-btn').on('click', function() {
-  var info = $(this).parent();
-  var controls = info.parent();
+  var controls = $(this).parent();
+  // var controls = info.parent();
   var source = controls.siblings().get(0);
   if (source.requestFullscreen) {
       source.requestFullscreen();
@@ -256,6 +256,8 @@ function ToggleVideoPlay(sourceElem) {
 };
 
 $('.v-player-main').find('.v-buttons').on('click', function() {
+  // console.log('play');
+  // console.log(this);
   ToggleVideoPlay($(this));
   // var controls = $(this).parent();
   // var source = controls.siblings().get(0);
@@ -414,11 +416,7 @@ $('.v-player-main').find('.v-info-section').on('click', function(e) {
   var width = $(this).width();
   var relX = e.pageX - $(this).offset().left;
   var video = $(this).parent().siblings('video').get(0);
-
-  // var audio = $(this).siblings().find('audio').get(0);
   setVideoPlayPosition(relX, width, video);
-  // console.log(relX, width);
-  // console.log(video);
 });
 
 function timeConvert(inputTime) {
