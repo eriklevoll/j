@@ -166,9 +166,19 @@ function playMedia(source, play, title) {
   audioPlaying = play;
   SetCurrentlyPlaying(source, play, title)
   if (play) {
-    source.play();
+    try {
+      source.play();
+    }
+    catch (err) {
+      console.log("Failed to play: " + err.message);
+    }
   } else {
-    source.pause();
+    try {
+      source.pause();
+    }
+    catch (err) {
+      console.log("Failed to pause: " + err.message);
+    }
   }
 }
 

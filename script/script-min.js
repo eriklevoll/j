@@ -57,7 +57,15 @@ function ShowFooter() {
 }
 
 function playMedia(e, i, t) {
-    SetCurrentlyPlaying(e, audioPlaying = i, t), i ? e.play() : e.pause();
+    if (SetCurrentlyPlaying(e, audioPlaying = i, t), i) try {
+        e.play();
+    } catch (e) {
+        console.log("Failed to play: " + e.message);
+    } else try {
+        e.pause();
+    } catch (e) {
+        console.log("Failed to pause: " + e.message);
+    }
 }
 
 function SetCurrentlyPlaying(e, i, t) {
