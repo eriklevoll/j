@@ -72,78 +72,71 @@
           left: 0
           top: 0
           right: 0
-          margin-right: 45px
+          // margin-right: 45px
           margin-left: 60px
         .v-buttons
           cursor: pointer
           height: 100%
           width: 60px
           min-width: 60px
-          display: flex
+          // display: flex
           position: relative
-          justify-content: center
-          align-items: center
+          position: absolute
+          // justify-content: center
+          // align-items: center
           overflow: hidden
           background: black
-          .v-play-button
-            width: 0
-            height: 0
-            border-top: 10px solid transparent
-            border-bottom: 10px solid transparent
-            border-left: 15px solid white
+          .v-button-container
+            width: 300px
+            height: 100%
+            margin-left: -100px
+            position: relative
             transition: all 0.5s
-            position: absolute
-            top: calc(50% - 10px)
-            left: calc(50% - 4px)
-          .v-pause-button
-            border-bottom: none
-            border-right: 5px solid white
-            border-top: none
-            border-left: 5px solid white
-            width: 5px
-            height: 20px
-            position: absolute
-            transition: all 0.5s
-            top: calc(50% - 10px)
-            left: calc(50% - 7px)
-          .v-loader
-            position: absolute
-            height: 20px
-            width: 20px
-            background: #222
-            animation: spin 2s linear infinite
-            border: 6px solid #f3f3f3
-            border-radius: 50%
-            border-top: 6px solid rgba(255,255,255,0.2)
-            transition: all 0.5s
-            top: calc(50% - 16px)
-            left: calc(50% - 16px)
+            .v-play-button
+              width: 0
+              height: 0
+              border-top: 10px solid transparent
+              border-bottom: 10px solid transparent
+              border-left: 15px solid white
+              position: absolute
+              margin-left: 0
+              top: calc(50% - 10px)
+              left: calc(50% - 23px)
+            .v-pause-button
+              border-bottom: none
+              border-right: 5px solid white
+              border-top: none
+              border-left: 5px solid white
+              width: 5px
+              height: 20px
+              position: absolute
+              margin-left: 0
+              top: calc(50% - 10px)
+              left: 24px
+            // .v-loader
+            //   position: absolute
+            //   height: 20px
+            //   width: 20px
+            //   background: #222
+            //   animation: spin 2s linear infinite
+            //   border: 6px solid #f3f3f3
+            //   border-radius: 50%
+            //   border-top: 6px solid rgba(255,255,255,0.2)
+            //   margin-left: 100px
+            //   top: calc(50% - 16px)
+            //   left: calc(50% - 16px)
 
         .v-buttons-playing
-          .v-play-button
-            margin-left: 100px
-          .v-pause-button
-            margin-left: 0
-          .v-loader
-            animation: none
-            margin-left: 200px
+          .v-button-container
+            margin-left: 0px
 
         .v-buttons-paused
-          .v-play-button
-            margin-left: 0
-          .v-pause-button
+          .v-button-container
             margin-left: -100px
-          .v-loader
-            animation: none
-            margin-left: 100px
 
         .v-buttons-loading
-          .v-play-button
-            margin-left: -100px
-          .v-pause-button
-            margin-left: -200px
-          .v-loader
-            margin-left: 0
+          .v-button-container
+            margin-left: 100px
 
         .v-info-section
           background: rgba(255,255,255,0.05)
@@ -151,6 +144,7 @@
           border-left: 1px solid rgba(255,255,255,0.2)
           // margin-right: 45px
           margin-top: -1px
+          margin-left: 60px
           height: 46px
           width: 200px
           font-family: 'Montserrat', sans-serif
@@ -198,13 +192,14 @@
               color: rgba(255,255,255,0.95)
 
         .v-fullscreen-btn
-          width: 45px
-          height: 45px
-          min-width: 34px
-          // background: pink
-          display: flex
-          align-items: center
-          justify-content: center
+          // width: 45px
+          // height: 45px
+          // min-width: 34px
+          // // background: pink
+          // display: flex
+          // align-items: center
+          // justify-content: center
+          display: none
           .v-fullscreen-icon
             // background: green
             height: 38px

@@ -237,7 +237,6 @@ function ToggleVideoPlay(sourceElem) {
     $(sourceElem).addClass('v-buttons-paused');
     SetFooterPlay(false);
     playMedia(source, false, title);
-
   }
   else
   {
@@ -355,7 +354,7 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
     SetFooterPlay(false);
     playMedia(source, false, title);
   }
-  else
+  else if($(this).hasClass('play-btn-paused'))
   {
     PauseCurrentMedia();
     $(this).removeClass('play-btn-paused');
@@ -379,13 +378,15 @@ function setPlayPosition(relX, width, source) {
 
 function setVideoPlayPosition(relX, width, source) {
   var percent = clickPosToPercent(relX, width);
+  // percent = 98
   var duration = source.duration;
   source.currentTime = percent / 100 * duration;
+  // source.currentTime = 0.98 * duration;
   var controls = $(source).siblings('.v-controls');
   var distance = controls.find('.v-distance-indicator');
   var fullWidthElem = controls.find('.v-distance-full');
-
-  var maxWidth = fullWidthElem.width()
+  // console.log(duration, source.currentTime)
+  var maxWidth = fullWidthElem.width();
   distance.css('width', percent / 100 * maxWidth);
 }
 
@@ -562,6 +563,10 @@ $(document).ready(function(){
       setVideoMetaData();
     });
 
+    if (source.readyState >= 2) {
+      setVideoMetaData();
+    }
+
     source.addEventListener("timeupdate",function(){
       var current = source.currentTime;
       var roundTime = Math.round(current);
@@ -662,7 +667,7 @@ $(document).ready(function(){
     //   removeLoading(parent);
     // });
 
-    if (source.readyState > 3) {
+    if (source.readyState >= 2) {
       setMetaData();
       removeLoading(parent);
     }
