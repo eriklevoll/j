@@ -29,6 +29,7 @@ function setVisible(item, visible) {
 }
 
 function setHomeView() {
+  setPageHash("home");
   setVisible($('.contact-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
@@ -42,6 +43,7 @@ function setHomeView() {
 }
 
 function setContactView() {
+  setPageHash("contact");
   // setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
@@ -55,6 +57,7 @@ function setContactView() {
 }
 
 function SetBioView() {
+  setPageHash("bio");
   // setVisible($('.home-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisibleBlock($('.players-wrapper-main'), false);
@@ -68,6 +71,7 @@ function SetBioView() {
 }
 
 function setAudioView() {
+  setPageHash("audio");
   // setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
@@ -80,6 +84,7 @@ function setAudioView() {
 }
 
 function setMultimediaView() {
+  setPageHash("multimedia");
   // setVisible($('.home-main'), false);
   setVisible($('.bio-main'), false);
   setVisible($('.contact-main'), false);
@@ -92,6 +97,7 @@ function setMultimediaView() {
 }
 
 function setPerformancesView() {
+  setPageHash("performances");
   setVisible($('.bio-main'), false);
   setVisible($('.multimedia-main'), false);
   setVisible($('.contact-main'), false);
@@ -530,13 +536,90 @@ function reSizeVideoControls() {
   });
 }
 
+// function parseAddress() {
+//   var url = window.location.href;
+//   if (!url.includes("#")) {
+//     return;
+//   }
+//   var sub = url.split('#')[1];
+//   if (sub.length < 2) {
+//     return;
+//   }
+//
+//   switch (sub) {
+//     case "audio":
+//       setAudioView();
+//       break;
+//     default:
+//       console.log('def');
+//       break;
+//   }
+//   console.log(url, sub);
+// }
+function parseAddress() {
+  var hash = location.hash;
+
+  if (hash == '') {
+    return;
+  }
+
+  switch (hash) {
+    case "#home":
+      setHomeView();
+      break;
+    case "#bio":
+      SetBioView();
+      break;
+    case "#audio":
+      setAudioView();
+      break;
+    case "#multimedia":
+      setMultimediaView();
+      break;
+    case "#performances":
+      setPerformancesView();
+      break;
+    case "#contact":
+      setContactView();
+      break;
+    default:
+      setHomeView();
+      break;
+  }
+  // console.log(hash);
+}
+
 // var wavesurfer = WaveSurfer.create({
 //   container: '#waveform',
 //   waveColor: 'violet',
 //   progressColor: 'purple'
 // });
 
+//set up hash detection
+// $(window).bind( 'hashchange', function(e) {
+//  parseAddress(e)
+// });
+//
+// $(window).trigger( 'hashchange' );
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function setPageHash(hash) {
+  var subTitle = capitalizeFirstLetter(hash);
+  location.hash = "#" + hash;
+  if (hash == "home") {
+    document.title = "Johanna Kivimägi";
+  } else {
+    document.title = "Johanna Kivimägi | " + subTitle;
+  }
+}
+
+
 $(document).ready(function(){
+  parseAddress();
+
   $('.footer').hide();
 
   var isIE = checkIE();
