@@ -503,24 +503,24 @@ window.addEventListener('resize', function(event) {
 
 var bgVideo = $('.home-video').find('video');
 
-window.addEventListener('mousemove', function(event) {
-  var midpointX = $(window).width() - 250 - event.pageX;
-  var midpointY = event.pageY - 40;
-  var elems = $('.header-nav').find('.ghost-nav');
-  setTimeout(function() {
-
-    elems.each(function() {
-      // $(this).animate({
-      //   left: midpointX*0.01 + 5
-      // }, 100);
-      // setTimeout(function() {
-      //   $(this).css('left', midpointX*0.01 + 5)
-      // }, 1);
-      $(this).css('left', midpointX*0.01 + 5)
-      $(this).css('top', 10 - midpointY*0.015 - 2)
-    });
-  }, 100);
-});
+// window.addEventListener('mousemove', function(event) {
+//   var midpointX = $(window).width() - 250 - event.pageX;
+//   var midpointY = event.pageY - 40;
+//   var elems = $('.header-nav').find('.ghost-nav');
+//   setTimeout(function() {
+//
+//     elems.each(function() {
+//       // $(this).animate({
+//       //   left: midpointX*0.01 + 5
+//       // }, 100);
+//       // setTimeout(function() {
+//       //   $(this).css('left', midpointX*0.01 + 5)
+//       // }, 1);
+//       $(this).css('left', midpointX*0.01 + 5)
+//       $(this).css('top', 10 - midpointY*0.015 - 2)
+//     });
+//   }, 100);
+// });
 
 function reSizeVideoControls() {
   $('video').each(function() {

@@ -253,14 +253,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 
 var bgVideo = $(".home-video").find("video");
 
-window.addEventListener("mousemove", function(e) {
-    var i = $(window).width() - 250 - e.pageX, t = e.pageY - 40, n = $(".header-nav").find(".ghost-nav");
-    setTimeout(function() {
-        n.each(function() {
-            $(this).css("left", .01 * i + 5), $(this).css("top", 10 - .015 * t - 2);
-        });
-    }, 100);
-}), $(document).ready(function() {
+$(document).ready(function() {
     parseAddress(), $(".footer").hide();
     checkIE();
     $(".home-video video").get(0).playbackRate = .9, $(".preloader").delay(350).fadeOut("slow"), 
