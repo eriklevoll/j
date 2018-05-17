@@ -218,7 +218,7 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".left-author.sub-author").on("click", function() {
     setHomeView();
 }), $(".multimedia-main video").on("click", function() {
-    $(this).siblings(".v-controls").find(".v-buttons");
+    $(this).siblings(".v-controls").find(".v-buttons").trigger("click");
 }), $(".v-player-main").find(".v-fullscreen-btn").on("click", function() {
     var e = $(this).parent().siblings().get(0);
     e.requestFullscreen ? e.requestFullscreen() : e.mozRequestFullScreen ? e.mozRequestFullScreen() : e.webkitRequestFullscreen ? e.webkitRequestFullscreen() : e.msRequestFullscreen && e.msRequestFullscreen();
