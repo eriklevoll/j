@@ -32,15 +32,28 @@
         h3
         left: 40px
 
-@media screen and (max-width: 700px)
   .multimedia-main
     .v-player-section
-      width: 100%
+      width: calc(100% - 22px)
+      .v-text
+        text-align: justify 
       .v-player-main
+        width: 100%
         video
           width: 100%
         .v-controls
+          width: 100%
           min-width: 100px
+
+// @media screen and (max-width: 700px)
+//   .multimedia-main
+//     .v-player-section
+//       width: 100%
+//       .v-player-main
+//         video
+//           width: 100%
+//         .v-controls
+//           min-width: 100px
 
 @media screen and (max-width: 650px)
   .contact-main
