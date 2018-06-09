@@ -186,7 +186,7 @@ function parseAddress() {
         break;
 
       default:
-        if (~e.indexOf("#audio") && ~e.indexOf("/")) setSongPlaying(e.split("/")[1]); else setHomeView();
+        if (~e.indexOf("#audio") && ~e.indexOf("/")) setSongPlaying(e.split("/")[1]);
     }
 }
 

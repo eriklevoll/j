@@ -552,9 +552,7 @@ function parseAddress() {
       if (~hash.indexOf("#audio") && ~hash.indexOf("/")) {
         var songName = hash.split("/")[1];
         setSongPlaying(songName);
-      } else {
-        setHomeView();
-      }
+      } 
       break;
   }
 }
