@@ -523,6 +523,8 @@ function reSizeVideoControls() {
 function parseAddress() {
   var hash = location.hash;
 
+  console.log(hash);
+
   if (hash == '') {
     return;
   }
@@ -547,11 +549,50 @@ function parseAddress() {
       setContactView();
       break;
     default:
-      setHomeView();
+      if (~hash.indexOf("#audio") && ~hash.indexOf("/")) {
+        var songName = hash.split("/")[1];
+        setSongPlaying(songName);
+      } else {
+        setHomeView();
+      }
       break;
   }
-  // console.log(hash);
 }
+
+function setSongPlaying(song) {
+  setAudioView();
+  $('.players-wrapper-main').scrollTop(0).scrollTop($('#' + song).position().top);
+}
+
+// function getInfo(song) {
+//   var section = $('.players-wrapper-main').find('#' + song);
+//   var wrapper = section.find('.audio-wrapper');
+//   console.log(wrapper);
+//   wrapper.trigger('click');
+  // var audio = section.find('audio').get(0);
+  // console.log(audio);
+  // playMedia(audio, false, song);
+  //
+  // wrapper.addClass('play-btn-playing');
+  // if (audio.currentTime <= 0) {
+  //   audio.currentTime = 0.05;
+  // }
+  // currentMediaSource = audio;
+  // currentMediaHolder = wrapper;
+  // SetFooterPlay(true);
+  // playMedia(audio, true, song);
+  // currentIsVideo = false;
+// }
+// $('.player-main').find('.audio-wrapper').on('click', function() {
+//   var source = $(this).find('audio').get(0);
+//   var title = $(this).siblings('.info-section').find('#info-title')[0].innerHTML;
+//
+//   if($(this).hasClass('play-btn-playing')) {
+//     $(this).removeClass('play-btn-playing');
+//     $(this).addClass('play-btn-paused');
+//     SetFooterPlay(false);
+//     playMedia(source, false, title);
+//   }
 
 // var wavesurfer = WaveSurfer.create({
 //   container: '#waveform',
