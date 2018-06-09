@@ -188,7 +188,7 @@ function parseAddress() {
       default:
         if (~e.indexOf("#audio") && ~e.indexOf("/")) {
             var i = e.split("/")[1];
-            console.log(i), setSongPlaying(i);
+            console.log(i), console.log(i), setSongPlaying(i);
         }
     }
 }

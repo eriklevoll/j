@@ -552,6 +552,7 @@ function parseAddress() {
       if (~hash.indexOf("#audio") && ~hash.indexOf("/")) {
         var songName = hash.split("/")[1];
         console.log(songName);
+        console.log(songName);
         setSongPlaying(songName);
       }
       break;
