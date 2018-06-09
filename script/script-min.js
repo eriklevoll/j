@@ -186,7 +186,10 @@ function parseAddress() {
         break;
 
       default:
-        if (~e.indexOf("#audio") && ~e.indexOf("/")) setSongPlaying(e.split("/")[1]);
+        if (~e.indexOf("#audio") && ~e.indexOf("/")) {
+            var i = e.split("/")[1];
+            console.log(i), setSongPlaying(i);
+        }
     }
 }
 
