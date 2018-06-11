@@ -523,7 +523,7 @@ function reSizeVideoControls() {
 function parseAddress() {
   var hash = location.hash;
 
-  console.log(hash);
+  // console.log(hash);
 
   if (hash == '') {
     return;
@@ -551,8 +551,7 @@ function parseAddress() {
     default:
       if (~hash.indexOf("#audio") && ~hash.indexOf("/")) {
         var songName = hash.split("/")[1];
-        console.log(songName);
-        console.log(songName);
+        setAudioOpacity(0.2, songName);
         setSongPlaying(songName);
       }
       break;
@@ -564,25 +563,49 @@ function setSongPlaying(song) {
   $('.players-wrapper-main').scrollTop(0).scrollTop($('#' + song).position().top);
 }
 
-// function getInfo(song) {
-//   var section = $('.players-wrapper-main').find('#' + song);
-//   var wrapper = section.find('.audio-wrapper');
-//   console.log(wrapper);
-//   wrapper.trigger('click');
-  // var audio = section.find('audio').get(0);
-  // console.log(audio);
-  // playMedia(audio, false, song);
-  //
-  // wrapper.addClass('play-btn-playing');
-  // if (audio.currentTime <= 0) {
-  //   audio.currentTime = 0.05;
-  // }
-  // currentMediaSource = audio;
-  // currentMediaHolder = wrapper;
-  // SetFooterPlay(true);
-  // playMedia(audio, true, song);
-  // currentIsVideo = false;
-// }
+function setAudioOpacity(value, exception) {
+  var wrapper = $('.players-wrapper-main');
+  if (exception != 'none') {
+    wrapper.addClass('transparent');
+  }
+  var sections = wrapper.find('.player-section');
+  sections.each(function() {
+    var section = $(this);
+    var id = section.get(0).id;
+    if (id != exception && !section.hasClass('linked')) {
+      section.fadeTo( "slow" , value, function() {
+    // Animation complete.
+      });
+      // section.css('opacity', value);
+    } else {
+      section.addClass('linked');
+    }
+  });
+}
+
+$('.players-wrapper-main').find('.player-section').on('click', function(event) {
+  event.stopPropagation();
+
+  var wrapper = $('.players-wrapper-main');
+  if (!wrapper.hasClass('transparent')){
+    return;
+  }
+
+  if ($(this).hasClass('linked')) {
+    $(this).css('opacity', 1);
+    return;
+  }
+
+  setAudioOpacity(1, 'none');
+})
+
+$('.players-wrapper-main').on('click', function(event) {
+  if ($(this).hasClass('transparent')) {
+    setAudioOpacity(1, 'none');
+    $(this).removeClass('transparent');
+  }
+})
+
 // $('.player-main').find('.audio-wrapper').on('click', function() {
 //   var source = $(this).find('audio').get(0);
 //   var title = $(this).siblings('.info-section').find('#info-title')[0].innerHTML;
