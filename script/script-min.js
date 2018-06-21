@@ -244,7 +244,8 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".footer").find(".text-area").on("click", function() {
     currentIsVideo ? setMultimediaView() : setAudioView();
 }), $(".player-main").find(".audio-wrapper").on("click", function() {
-    var e = $(this).find("audio").get(0), i = $(this).siblings(".info-section").find("#info-title")[0].innerHTML;
+    var e = $(this).find("audio").get(0), i = $(this).siblings(".info-section").find("#info-title")[0].innerHTML, t = i.replace(/\s+/g, "-").toLowerCase();
+    t = (t = t.replace(/,/g, "")).replace(/ä/g, "a"), location.hash = "audio/" + t, 
     $(this).hasClass("play-btn-playing") ? ($(this).removeClass("play-btn-playing"), 
     $(this).addClass("play-btn-paused"), SetFooterPlay(!1), playMedia(e, !1, i)) : $(this).hasClass("play-btn-paused") && (PauseCurrentMedia(), 
     $(this).removeClass("play-btn-paused"), $(this).addClass("play-btn-playing"), e.currentTime <= 0 && (e.currentTime = .05), 

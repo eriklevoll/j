@@ -328,6 +328,11 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   // if($(this).hasClass('play-btn-loading')) {
   //   source.currentTime = 0;
   // }
+  var parsedTitle = title.replace(/\s+/g, '-').toLowerCase();
+  parsedTitle = parsedTitle.replace(/,/g , '');
+  parsedTitle = parsedTitle.replace(/ä/g , 'a');
+  location.hash = "audio/" + parsedTitle;
+
   if($(this).hasClass('play-btn-playing')) {
     $(this).removeClass('play-btn-playing');
     $(this).addClass('play-btn-paused');
