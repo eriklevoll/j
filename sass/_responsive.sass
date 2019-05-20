@@ -13,10 +13,12 @@
     .player-section
       width: 70%
   .bio-main
-    .bio-text
-      p
-        padding-left: 50px
-        padding-right: 50px
+    margin: 50px 5px 5px 5px
+    font-size: 16px
+    .bio-wrapper-outer
+      .bio-wrapper-inner
+        .bio-img
+        .bio-text
 
 @media screen and (max-width: 815px)
   .header-nav
@@ -27,6 +29,17 @@
   .multimedia-main
     padding-right: 0
     padding-left: 0
+
+  .bio-main
+    .bio-wrapper-outer
+      .bio-wrapper-inner
+        flex-direction: column
+        .bio-img
+          width: 100%
+        .bio-text
+          width: 100%
+          p
+            padding: 10px 10px
 
 @media screen and (max-width: 750px)
   .header
@@ -50,12 +63,12 @@
           width: 100%
           min-width: 100px
 
-  .bio-main
-    font-size: 16px
-    .bio-text
-      p
-        padding-left: 30px
-        padding-right: 30px
+  // .bio-main
+  //   font-size: 16px
+  //   .bio-text
+  //     p
+  //       padding-left: 30px
+  //       padding-right: 30px
 
 @media screen and (max-width: 650px)
   .contact-main
@@ -110,13 +123,13 @@
     .player-main
       width: 99%
 
-  .bio-main
-    font-size: 16px
-    .bio-text
-      p
-        text-align: justify
-        padding-left: 20px
-        padding-right: 20px
+  // .bio-main
+  //   font-size: 16px
+  //   .bio-text
+  //     p
+  //       text-align: justify
+  //       padding-left: 20px
+  //       padding-right: 20px
 
 @media screen and (max-width: 480px)
   .players-wrapper-main
