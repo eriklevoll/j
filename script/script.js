@@ -329,8 +329,13 @@ $('.player-main').find('.audio-wrapper').on('click', function() {
   //   source.currentTime = 0;
   // }
   var parsedTitle = title.replace(/\s+/g, '-').toLowerCase();
+  // parsedTitle = parsedTitle.replace(/[^\x00-\x7F]/g, "");
   parsedTitle = parsedTitle.replace(/,/g , '');
+  parsedTitle = parsedTitle.replace(/\./g,'')
   parsedTitle = parsedTitle.replace(/ä/g , 'a');
+  parsedTitle = parsedTitle.replace(/õ/g , 'o');
+  parsedTitle = parsedTitle.replace(/ö/g , 'o');
+  parsedTitle = parsedTitle.replace(/ü/g , 'u');
   location.hash = "audio/" + parsedTitle;
 
   if($(this).hasClass('play-btn-playing')) {
