@@ -1,92 +1,9 @@
 
 .players-wrapper-main.tab-hidden(onclick="")
 
-  .player-section#hobohono
-    .player-main
-      .audio-wrapper.play-btn-loading
-        .play-button
-        .pause-button
-        .loader
-        audio
-          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/HobohonoStereo.wav" type="audio/wav" preload="metadata")
-          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/HobohonoStereo.mp3" type="audio/mpeg" preload="metadata")
-      .info-section
-        .info-name
-          p#info-title Hõbõhõnõ
-          p#info-author Johanna Kivimägi
-        .info-time
-      .distance-indicator
-      .buffer-indicator
-    .player-text
-      p
-        | Hõbõhõnõ (2019) is an electroacoustic piece written for HELI&KEEL concert series. 
-        | The word "Hõbõhõnõ" means "silver" in seto language. 
-
-  .player-section#falling-indefinitely-pt-3
-    .player-main
-      .audio-wrapper.play-btn-loading
-        .play-button
-        .pause-button
-        .loader
-        audio
-          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/Falling_Indefinitely.wav" type="audio/wav" preload="metadata")
-          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/Falling_Indefinitely.mp3" type="audio/mpeg" preload="metadata")
-      .info-section
-        .info-name
-          p#info-title Falling Indefinitely pt. 3
-          p#info-author Johanna Kivimägi
-        .info-time
-      .distance-indicator
-      .buffer-indicator
-    .player-text
-      p
-        | Falling Indefinitely (2019) is part of a project with vocal ensemble "Sinilind" where gregorian 
-        | chant and electroacoustic music were mixed together in one program. This electronic part is 
-        | subtly melting into and taking over a canon sung a capella.
-
-
-  .player-section#radiance
-    .player-main
-      .audio-wrapper.play-btn-loading
-        .play-button
-        .pause-button
-        .loader
-        audio
-          source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/RadianceStereo17.9.18.wav" type="audio/wav" preload="metadata")
-          source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/RadianceStereo17.9.18.mp3" type="audio/mpeg" preload="metadata")
-      .info-section
-        .info-name
-          p#info-title Radiance
-          p#info-author Johanna Kivimägi
-        .info-time
-      .distance-indicator
-      .buffer-indicator
-    .player-text
-      p
-        | Radiance (2018) is electronic piece that is originally made for four speakers.
-        | The piece was premiered on 21.10.2018 in Helios cinema in Tallinn
-
-  //- .player-section#falling-into-place
-  //-   .player-main
-  //-     .audio-wrapper.play-btn-loading
-  //-       .play-button
-  //-       .pause-button
-  //-       .loader
-  //-       audio
-  //-         source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/FallingIntoPlace(15_05_18_2).wav" type="audio/wav" preload="metadata")
-  //-         source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/FallingIntoPlace(15_05_18_2).mp3" type="audio/mpeg" preload="metadata")
-  //-     .info-section
-  //-       //- .info-waveform#dona
-  //-       .info-name
-  //-         p#info-title Falling into place
-  //-         p#info-author Johanna Kivimägi
-  //-       .info-time
-  //-     .distance-indicator
-  //-     .buffer-indicator
-  //-   .player-text
-  //-     p
-  //-       | Falling into place (2018) for electronics (originally for quadrophonic speaker setting)
-
+  .players-heading
+    p Intruments/voice and electronics
+    
   .player-section#muutuda-et-jaada-samaks
     .player-main
       .audio-wrapper.play-btn-loading
@@ -109,31 +26,7 @@
         | Muutuda, et jääda samaks (2018) for soprano, alto saxophone, electric guitar, 
         | accordion, piano and electronics (originally quadrophonic setting). Performed by 
         | Ensemble Arsenale in Estonian Music Days concert "Elusate helide maja" in 2018. ​
-
-  //- .player-section#muundumine
-  //-   .player-main
-  //-     .audio-wrapper.play-btn-loading
-  //-       .play-button
-  //-       .pause-button
-  //-       .loader
-  //-       audio
-  //-         source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/Muundumine(15_05_2018).wav" type="audio/wav" preload="metadata")
-  //-         source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/Muundumine(15_05_2018).mp3" type="audio/mpeg" preload="metadata")
-  //-     .info-section
-  //-       //- .info-waveform#muundumine
-  //-       .info-name
-  //-         p#info-title Muundumine
-  //-         p#info-author Johanna Kivimägi
-  //-       .info-time
-  //-     .distance-indicator
-  //-     .buffer-indicator
-  //-   .player-text
-  //-     p 
-  //-       | Muundumine (2017) is a piece for piano and electronics for quadrophonic speaker setting. 
-  //-       | Premiere 1.06.2017, kohvik 7C, performed by Elle-Riin Volmer (piano) and Johanna Kivimägi 
-  //-       | (electronics). This recording is a stereo version of the piece.<br/><br/> 
-  //-       | Piano - Elle-Riin Volmer.
-  
+        
   .player-section#reflection
     .player-main
       .audio-wrapper.play-btn-loading
@@ -162,6 +55,76 @@
         | Premiere 11.01.2017 in Tallinn, Sõprus cinema, performed by Gianni Trovalusci (flute). Recorded 9.04.2017 in Tallinn.<br/><br/>
         | Flute - Gianni Trovalusci<br/>
         | Flute on electronics - Tarmo Johannes
+    
+  .players-heading
+    p Electroacoustic and electronic
+    
+  .player-section#hobohono
+    .player-main
+      .audio-wrapper.play-btn-loading
+        .play-button
+        .pause-button
+        .loader
+        audio
+          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/HobohonoStereo.wav" type="audio/wav" preload="metadata")
+          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/HobohonoStereo.mp3" type="audio/mpeg" preload="metadata")
+      .info-section
+        .info-name
+          p#info-title Hõbõhõnõ
+          p#info-author Johanna Kivimägi
+        .info-time
+      .distance-indicator
+      .buffer-indicator
+    .player-text
+      p
+        | Hõbõhõnõ (2019) is an electroacoustic piece written for HELI&KEEL concert series. 
+        | The word "Hõbõhõnõ" means "silver" in seto language. 
+        
+  .player-section#falling-indefinitely-pt-3
+    .player-main
+      .audio-wrapper.play-btn-loading
+        .play-button
+        .pause-button
+        .loader
+        audio
+          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/Falling_Indefinitely.wav" type="audio/wav" preload="metadata")
+          source(src="https://j-bucket0092.s3.eu-west-2.amazonaws.com/j/Falling_Indefinitely.mp3" type="audio/mpeg" preload="metadata")
+      .info-section
+        .info-name
+          p#info-title Falling Indefinitely pt. 3
+          p#info-author Johanna Kivimägi
+        .info-time
+      .distance-indicator
+      .buffer-indicator
+    .player-text
+      p
+        | Falling Indefinitely (2019) is part of a project with vocal ensemble "Sinilind" where gregorian 
+        | chant and electroacoustic music were mixed together in one program. This electronic part is 
+        | subtly melting into and taking over a canon sung a capella.
+        
+  .player-section#radiance
+    .player-main
+      .audio-wrapper.play-btn-loading
+        .play-button
+        .pause-button
+        .loader
+        audio
+          source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/RadianceStereo17.9.18.wav" type="audio/wav" preload="metadata")
+          source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/RadianceStereo17.9.18.mp3" type="audio/mpeg" preload="metadata")
+      .info-section
+        .info-name
+          p#info-title Radiance
+          p#info-author Johanna Kivimägi
+        .info-time
+      .distance-indicator
+      .buffer-indicator
+    .player-text
+      p
+        | Radiance (2018) is electronic piece that is originally made for four speakers.
+        | The piece was premiered on 21.10.2018 in Helios cinema in Tallinn
+    
+  .players-heading
+    p Acoustic
 
   .player-section#sara
     .player-main
@@ -173,7 +136,7 @@
           source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/S%C3%A4ra(J.Kivim%C3%A4gi).wav" type="audio/wav" preload="metadata")
           source(src="https://s3.eu-west-2.amazonaws.com/j-bucket0092/j/S%C3%A4ra(J.Kivim%C3%A4gi).mp3" type="audio/mpeg" preload="metadata")
       .info-section
-        //- .info-waveform#s2ra
+        .info-waveform#s2ra
         .info-name
           p#info-title Sära
           p#info-author Johanna Kivimägi
@@ -184,7 +147,7 @@
       p
         | Sära (2017) is a piece for big ensemble, performed by Sinfonietta, conductor Toomas Vavilov. 
         | Premiere 7.04.2017 in Tallinn, Estonian Music Days. This is a recording of the premiere.
-  
+
   .player-section#aria
     .player-main
       .audio-wrapper.play-btn-loading
