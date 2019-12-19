@@ -263,8 +263,6 @@ $(".home-btn, .mobile-home-btn").on("click", function() {
 }), $(".v-player-main").find(".v-info-section").on("click", function(e) {
     var i = $(this).width();
     setVideoPlayPosition(e.pageX - $(this).offset().left, i, $(this).parent().siblings("video").get(0));
-}), window.addEventListener("resize", function(e) {
-    reSizeVideoControls();
 });
 
 var bgVideo = $(".home-video").find("video");

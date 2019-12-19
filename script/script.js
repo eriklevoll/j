@@ -471,9 +471,9 @@ function checkIE() {
 //   $('.preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
 // })
 
-window.addEventListener('resize', function(event) {
-  reSizeVideoControls();
-});
+// window.addEventListener('resize', function(event) {
+//   //reSizeVideoControls();
+// });
 
 var bgVideo = $('.home-video').find('video');
 
